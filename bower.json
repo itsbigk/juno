@@ -1,0 +1,9 @@
+{
+  "name": "Juno",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "~1.4.0",
+    "angular-route": "~1.4.0",
+    "bootstrap": "~3.3.4"
+  }
+}
