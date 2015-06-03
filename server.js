@@ -28,7 +28,7 @@ console.log('App listening on port: ' + port);
 
 // connect to mongo database
 // @TODO decide on a mongo provider like mongolab, gcloud datastore, or modulus
-mongoose.connect(process.env.MONGOLAB_URI || database.url);
+mongoose.connect(process.env.MONGO_REMOTE_URI || database.url);
 
 
 
