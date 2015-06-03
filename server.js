@@ -1,15 +1,15 @@
 // require('newrelic');
-var express    = require('express'),                       // requiring the express framework
-app            = express(),                               //  every time the 'app' variable is called it will be using express
-port           = process.env.PORT || 3000,               //   defining the port that the app will run on
-morgan         = require('morgan'),                     //    logging all requests in the console
-mongoose       = require('mongoose'),                  //     using for mongo database
-bodyParser     = require('body-parser'),              //      parsing content in request body
-methodOverride = require('method-override'),         //       DELETE and PUT simulation
-session        = require('express-session'),        //        calling the express-session package to help with user sessions
-cookieParser   = require('cookie-parser'),         //         parsing through cookies and helps store the session id into the browser
+var express    = require('express'),                           // requiring the express framework
+app            = express(),                                   //  every time the 'app' variable is called it will be using express
+port           = process.env.PORT || 3000,                   //   defining the port that the app will run on
+morgan         = require('morgan'),                         //    logging all requests in the console
+mongoose       = require('mongoose'),                      //     using for mongo database
+bodyParser     = require('body-parser'),                  //      parsing content in request body
+methodOverride = require('method-override'),             //       DELETE and PUT simulation
+session        = require('express-session'),            //        calling the express-session package to help with user sessions
+cookieParser   = require('cookie-parser'),             //         parsing through cookies and helps store the session id into the browser
 database       = require('./app/config/db/database'), //          making sure the database is required in the app by specifying the path to the database.js file here
-flash          = require('connect-flash');       //           showing messages depending on what state of authentication you are in
+flash          = require('connect-flash');           //           showing messages depending on what state of authentication you are in
 
 
 // @TODO make newrelic environment variable

@@ -1,9 +1,16 @@
-module.exports = function(app, express) {
-  var adminRouter = express.Router();
+var path = require('path');
 
-  adminRouter.get('*', function(req, res) {
-    res.render('views/admin/index.html');
+module.exports = function(app, express) {
+  var apiRouter = express.Router();
+
+  apiRouter.get('/restaurants', function(req, res) {
+    
   });
 
-  app.use('/admin', adminRouter);
+  app.use('/api', apiRouter);
+
+  app.get('*', function(req, res) {
+    res.sendFile('index'));
+  });
+
 }
