@@ -45,11 +45,11 @@ gulp.task('angular', function() {
 // every function that lives in this task is made to watch a specific file and if the file is modified in any way then a specific gulp task will run to update the file
 gulp.task('watch', function() {
   // watching the style.css file for changes and it will run the css task if changes are detected
-  gulp.watch(['public/css/style.less', 'public/vendor/materialize/dist/css/materialize.css'], ['css', 'materialize']);
+  gulp.watch(['public/css/style.less'], ['css']);
 
   // watching all of the javascript files specified in the task above and running the task for them if they are modified
   // when other js files are potentially added in the future then the same watch method can watch for multiple locations as well as run multiple tasks
-  gulp.watch(['public/js/**/*.js', 'public/vendor/materialize/dist/js/materialize.js'], ['js', 'angular', 'materializeJs']);
+  gulp.watch(['public/js/**/*.js', 'public/vendor/materialize/dist/js/materialize.js'], ['js', 'angular']);
 })
 
 // have gulp run the tests using mocha
