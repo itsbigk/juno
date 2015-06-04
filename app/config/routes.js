@@ -93,7 +93,7 @@ module.exports = function(app, express) {
     .delete(function(req, res) {
       Restaurant.remove({
         _id: req.params.restaurant_id
-      }, function(err, user) {
+      }, function(err) {
         if (err) return res.send(err);
 
         res.json({ message: 'Successfully deleted restaurant' });
@@ -104,8 +104,18 @@ module.exports = function(app, express) {
 
   app.use('/api', apiRouter);
 
-  app.get('*', function(req, res) {
+  app.get('/', function(req, res) {
     res.sendFile('index');
+  });
+
+  // app.get('/partials/:name', function(req, res) {
+  //   var name = req.params.name;
+  //
+  //   res.render('/views/partials/' + name);
+  // });
+
+  app.get('*', function(req, res) {
+    res.redirect('/');
   });
 
 }

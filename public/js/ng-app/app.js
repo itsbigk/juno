@@ -1,3 +1,4 @@
 angular.module('Juno', ['homeController',
                         'ngRoutes',
-                        'restaurantService']);
+                        'restaurantService',
+                        'adminController']);
