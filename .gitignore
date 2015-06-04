@@ -6,7 +6,7 @@
 
 node_modules
 
-/bower-cache
+/.bower-cache
 /.bower-registry
 /bower-tmp
 /public/vendor

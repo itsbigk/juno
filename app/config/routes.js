@@ -1,4 +1,5 @@
-var path = require('path');
+var path    = require('path'),
+Restaurant  = require('../config/db/models/restaurant.js');
 
 module.exports = function(app, express) {
   var apiRouter = express.Router();
@@ -11,7 +12,7 @@ module.exports = function(app, express) {
     next();
   });
 
- 
+
 
   apiRouter.route('/restaurants')
 
@@ -34,6 +35,7 @@ module.exports = function(app, express) {
       // set the restaurant information (comes from the request)
       restaurant.name = req.body.name;
       restaurant.description = req.body.description;
+      restaurant.cuisine = req.body.cuisine;
       restaurant.address = req.body.address;
       restaurant.website = req.body.website;
       restaurant.phone = req.body.phone;
@@ -49,14 +51,14 @@ module.exports = function(app, express) {
         }
         res.json({ message: 'Restaurant created!' });
       })
-      
+
     });
 
   apiRouter.route('/restaurants/:restaurant_id')
 
     // get the restaurant with that id
     .get(function(req, res) {
-      Restaurant.findById(req.params.restaurant_id, function(err, restaurant) {          
+      Restaurant.findById(req.params.restaurant_id, function(err, restaurant) {
         if (err) res.send(err);
 
         //return that restaurant
@@ -74,6 +76,7 @@ module.exports = function(app, express) {
         if (req.body.name) restaurant.name = req.body.name;
         if (req.body.description) restaurant.description = req.body.description;
         if (req.body.address) restaurant.address = req.body.address;
+        if (req.body.cuisine) restaurant.cuisine = req.body.cuisine;
         if (req.body.website) restaurant.website = req.body.website;
         if (req.body.phone) restaurant.phone = req.body.phone;
 
@@ -97,7 +100,7 @@ module.exports = function(app, express) {
       });
     });
 
-    
+
 
   app.use('/api', apiRouter);
 
