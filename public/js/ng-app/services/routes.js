@@ -1,16 +1,21 @@
 angular.module('ngRoutes', ['ngRoute'])
 
-.config(function($routeProvider) {
+.config(function($routeProvider, $locationProvider) {
+
+  // $locationProvider.html5Mode(true);
+
+
   $routeProvider
     .when('/', {
       controller  : 'homeController',
-      templateUrl : 'views/home.html'
+      templateUrl : 'partials/home.html'
     })
     .when('/admin', {
       controller  : 'adminController',
-      templateUrl : 'views/admin/admin.html'
+      templateUrl : 'partials/admin/admin.html'
     })
     .otherwise({
       redirectTo : '/'
     });
+
 });
