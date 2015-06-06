@@ -45,7 +45,7 @@ module.exports = function(app, express) {
         if (err) {
           // duplicate entry
           if (err.code == 11000)
-            return res.json({ success: false, messages: 'A restaurant with that address already exists. '});
+            return res.send({ success: false, message: 'Restaurant address already exists.'});
           else
             return res.send(err);
         }
@@ -82,7 +82,7 @@ module.exports = function(app, express) {
 
         // save the restaurant
         restaurant.save(function(err) {
-          if (err) res.send(err);
+          if (err) res.send({ success: false, message: 'All required fields were not filled out.'});
 
           // return a message
           res.json({ message: 'Restaurant updated!' });

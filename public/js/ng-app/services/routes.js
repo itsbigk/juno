@@ -14,6 +14,18 @@ angular.module('ngRoutes', ['ngRoute'])
       controller  : 'adminController',
       templateUrl : 'partials/admin/admin.html'
     })
+    .when('/admin/restaurants', {
+      controller  : 'adminController',
+      templateUrl : 'partials/admin/restaurants/index.html'
+    })
+    .when('/admin/restaurants/new', {
+      controller  : 'createRestaurantController',
+      templateUrl : 'partials/admin/restaurants/restaurant.html'
+    })
+    .when('/admin/restaurants/:restaurant_id', {
+      controller  : 'editRestaurantController',
+      templateUrl : 'partials/admin/restaurants/restaurant.html'
+    })
     .otherwise({
       redirectTo : '/'
     });
