@@ -22,6 +22,7 @@ describe('testing crud functionality for restaurants', function() {
 
   it('should create a new record of a restaurant with all of the correct fields', function(done) {
     restaurant.save(function(err, obj) {
+      if (err) throw err;
       expect(obj.name).to.be.a('string').and.equal("Pepe's Pizza");
       expect(obj.description).to.be.a('string').and.equal("Pizza place");
       expect(obj.address).to.be.a('string').and.equal("1 Pizza Way");
@@ -35,7 +36,9 @@ describe('testing crud functionality for restaurants', function() {
 
   it('should get the restaurant that was created', function(done) {
     restaurant.save(function(err, obj) {
+      if (err) throw err;
       Restaurant.findById(restaurant._id, function(err, obj) {
+        if (err) throw err;
         expect(obj.name).to.be.a('string').and.equal("Pepe's Pizza");
         expect(obj.description).to.be.a('string').and.equal("Pizza place");
         expect(obj.address).to.be.a('string').and.equal("1 Pizza Way");
@@ -50,7 +53,9 @@ describe('testing crud functionality for restaurants', function() {
 
   it('should update a restaurant with the correct fields', function(done) {
     restaurant.save(function(err, obj) {
+      if (err) throw err;
       Restaurant.findById(restaurant._id, function(err, obj) {
+        if (err) throw err;
         restaurant.name = "Juno Burgers";
         restaurant.description = "Fresh organic beef burgers off the grill";
         restaurant.address =  "123 Main St";
@@ -58,6 +63,7 @@ describe('testing crud functionality for restaurants', function() {
         restaurant.website = "www.junoburgers.com";
         restaurant.phone = "239-655-7277";
         restaurant.save(function(err,obj) {
+          if (err) throw err;
           expect(obj.name).to.be.a('string').and.equal("Juno Burgers");
           expect(obj.description).to.be.a('string').and.equal("Fresh organic beef burgers off the grill");
           expect(obj.address).to.be.a('string').and.equal("123 Main St");
@@ -69,6 +75,22 @@ describe('testing crud functionality for restaurants', function() {
       });
     });
     
+  });
+
+  it('should delete the restaurant', function(done) {
+    restaurant.save(function(err, obj) {
+      if (err) throw err;
+      restaurant.remove(restaurant._id, function(err, obj) {
+        if (err) throw err;
+        expect(obj.name).to.be.a('string').and.equal("Pepe's Pizza");
+        expect(obj.description).to.be.a('string').and.equal("Pizza place");
+        expect(obj.address).to.be.a('string').and.equal("1 Pizza Way");
+        expect(obj.cuisine).to.be.a('string').and.equal("Italian");
+        expect(obj.website).to.be.a('string').and.equal("www.pepepizza.com");
+        expect(obj.phone).to.be.a('string').and.equal("839-838-1111");
+        done();
+      });
+    });
   });
 
 
