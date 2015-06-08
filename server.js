@@ -26,7 +26,6 @@ app.use(cookieParser());                                        // using cookie 
 app.use(flash());                                               // flash messages that are stored inside of sessions
 console.log('App listening on port: ' + port);
 
-
 // connect to mongo database
 // @TODO decide on a mongo provider like mongolab, gcloud datastore, or modulus
 mongoose.connect(process.env.MONGO_REMOTE_URL || database.url);
