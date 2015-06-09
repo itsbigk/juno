@@ -11,23 +11,25 @@ angular.module('createRestaurantController', [])
   // this will run when the ng-click function on the view happens
   $scope.saveRestaurant = function(formData) {
 
+    console.log($scope.formData);
+
     $scope.processing = true;
 
     $scope.message = '';
 
-    Restaurant.create(formData)
+    Restaurant.create($scope.formData)
       .success(function(data) {
 
         $scope.processing = false;
 
         // display the message given by the server saying the creation is successful
         $scope.message = data.message;
-      })
-      .error(function(err) {
-
-        // display the error that the server gives back
-        $scope.message = err.message;
       });
+      // .error(function(err) {
+      //
+      //   // display the error that the server gives back
+      //   $scope.message = err.message;
+      // });
   };
 
 }]);

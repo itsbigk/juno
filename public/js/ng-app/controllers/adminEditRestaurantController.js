@@ -34,8 +34,8 @@ angular.module('editRestaurantController', [])
   $scope.deleteRestaurant = function() {
 
     Restaurant.delete($routeParams.restaurant_id)
-      .then(function() {
-        $location.path('/admin/restaurants');
+      .success(function(data) {
+        $scope.message = data.message;
       });
   };
 }]);
