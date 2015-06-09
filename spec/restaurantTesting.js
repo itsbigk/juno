@@ -14,7 +14,11 @@ describe('testing crud functionality for restaurants', function() {
     restaurant = new Restaurant();
     restaurant.name = "Pepe's Pizza";
     restaurant.description = "Pizza place";
-    restaurant.address =  "1 Pizza Way";
+    restaurant.street =  "1 Pizza Way";
+    restaurant.state =  "California";
+    restaurant.city =  "Los Angeles";
+    restaurant.suite =  135;
+    restaurant.zip =  90045;
     restaurant.cuisine =  "Italian";
     restaurant.website = "www.pepepizza.com";
     restaurant.phone = "839-838-1111";
@@ -25,7 +29,11 @@ describe('testing crud functionality for restaurants', function() {
       expect(err).to.be.null;
       expect(obj.name).to.be.a('string').and.equal("Pepe's Pizza");
       expect(obj.description).to.be.a('string').and.equal("Pizza place");
-      expect(obj.address).to.be.a('string').and.equal("1 Pizza Way");
+      expect(obj.street).to.be.a('string').and.equal("1 Pizza Way");
+      expect(obj.state).to.be.a('string').and.equal("California");
+      expect(obj.city).to.be.a('string').and.equal("Los Angeles");
+      expect(obj.suite).to.be.a('number').and.equal(135);
+      expect(obj.zip).to.be.a('number').and.equal(90045);
       expect(obj.cuisine).to.be.a('string').and.equal("Italian");
       expect(obj.website).to.be.a('string').and.equal("www.pepepizza.com");
       expect(obj.phone).to.be.a('string').and.equal("839-838-1111");
@@ -41,14 +49,18 @@ describe('testing crud functionality for restaurants', function() {
         expect(err).to.be.null;
         expect(obj.name).to.be.a('string').and.equal("Pepe's Pizza");
         expect(obj.description).to.be.a('string').and.equal("Pizza place");
-        expect(obj.address).to.be.a('string').and.equal("1 Pizza Way");
+        expect(obj.street).to.be.a('string').and.equal("1 Pizza Way");
+        expect(obj.state).to.be.a('string').and.equal("California");
+        expect(obj.city).to.be.a('string').and.equal("Los Angeles");
+        expect(obj.suite).to.be.a('number').and.equal(135);
+        expect(obj.zip).to.be.a('number').and.equal(90045);
         expect(obj.cuisine).to.be.a('string').and.equal("Italian");
         expect(obj.website).to.be.a('string').and.equal("www.pepepizza.com");
         expect(obj.phone).to.be.a('string').and.equal("839-838-1111");
         done();
       });
     });
-    
+
   });
 
   it('should update a restaurant with the correct fields', function(done) {
@@ -58,7 +70,11 @@ describe('testing crud functionality for restaurants', function() {
         expect(err).to.be.null;
         restaurant.name = "Juno Burgers";
         restaurant.description = "Fresh organic beef burgers off the grill";
-        restaurant.address =  "123 Main St";
+        restaurant.street =  "123 Main St";
+        restaurant.state =  "California";
+        restaurant.city =  "Redondo Beach";
+        restaurant.suite =  139;
+        restaurant.zip =  90277;
         restaurant.cuisine =  "Burgers";
         restaurant.website = "www.junoburgers.com";
         restaurant.phone = "239-655-7277";
@@ -66,7 +82,11 @@ describe('testing crud functionality for restaurants', function() {
           expect(err).to.be.null;
           expect(obj.name).to.be.a('string').and.equal("Juno Burgers");
           expect(obj.description).to.be.a('string').and.equal("Fresh organic beef burgers off the grill");
-          expect(obj.address).to.be.a('string').and.equal("123 Main St");
+          expect(obj.street).to.be.a('string').and.equal("123 Main St");
+          expect(obj.state).to.be.a('string').and.equal("California");
+          expect(obj.city).to.be.a('string').and.equal("Redondo Beach");
+          expect(obj.suite).to.be.a('number').and.equal(139);
+          expect(obj.zip).to.be.a('number').and.equal(90277);
           expect(obj.cuisine).to.be.a('string').and.equal("Burgers");
           expect(obj.website).to.be.a('string').and.equal("www.junoburgers.com");
           expect(obj.phone).to.be.a('string').and.equal("239-655-7277");
@@ -74,7 +94,7 @@ describe('testing crud functionality for restaurants', function() {
         });
       });
     });
-    
+
   });
 
   it('should delete the restaurant', function(done) {
@@ -84,7 +104,11 @@ describe('testing crud functionality for restaurants', function() {
         expect(err).to.be.null;
         expect(obj.name).to.be.a('string').and.equal("Pepe's Pizza");
         expect(obj.description).to.be.a('string').and.equal("Pizza place");
-        expect(obj.address).to.be.a('string').and.equal("1 Pizza Way");
+        expect(obj.street).to.be.a('string').and.equal("1 Pizza Way");
+        expect(obj.state).to.be.a('string').and.equal("California");
+        expect(obj.city).to.be.a('string').and.equal("Los Angeles");
+        expect(obj.suite).to.be.a('number').and.equal(135);
+        expect(obj.zip).to.be.a('number').and.equal(90045);
         expect(obj.cuisine).to.be.a('string').and.equal("Italian");
         expect(obj.website).to.be.a('string').and.equal("www.pepepizza.com");
         expect(obj.phone).to.be.a('string').and.equal("839-838-1111");
