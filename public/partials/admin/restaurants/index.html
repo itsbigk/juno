@@ -1,0 +1,39 @@
+<!-- <h3>Listing restaurants</h3>
+<table class="table table-hover" ng-repeat="restaurant in restaurants">
+  <tr>
+    <td>{{$index + 1}}</td>
+    <td>{{restaurant.name}}</td>
+    <td>{{restaurant.cuisine}}</td>
+    <td>{{restaurant.website}}</td>
+    <td>{{restaurant.address}}</td>
+    <td></td>
+  </tr>
+</table>
+ -->
+ <div class="row show-hide-message" ng-show="message">
+  <div class="col-sm-6 col-sm-offset-2">
+    <div class="alert alert-info"> {{message}}</div>
+  </div>
+</div>
+ <h1>Search</h1>
+<input type="text" ng-model="searchText" class="form-control search-box">
+<table class="table table-hover" ng-show="restaurants">
+  <thead>
+    <tr>
+      <th>Name</th> <th>Address</th> <th>Cuisine</th>
+      <th class="col-sm-2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- LOOP OVER THE RESTAURANTS -->
+    <tr ng-repeat="restaurant in restaurants | filter:searchText">
+        <!-- <td>{{restaurant._id}}</td> -->
+        <td>{{restaurant.name}}</td>
+        <td>{{restaurant.address}}</td>
+        <td>{{restaurant.cuisine}}</td>
+        <td class="col-sm-2">
+          <a href="/#/admin/restaurants/{{restaurant._id}}" class="btn btn-danger">Edit</a>
+        </td>
+    </tr>
+  </tbody>
+</table>
