@@ -40,6 +40,8 @@ module.exports = function(app, express) {
       restaurant.website = req.body.website;
       restaurant.phone = req.body.phone;
 
+      console.log(restaurant);
+
       // save the restaurant and check for errors
       restaurant.save(function(err) {
         if (err) {
