@@ -16,7 +16,7 @@ gulp.task('css', function() {
   .pipe(minifyCSS())
   .pipe(rename('style.min.css'))
   .pipe(gulp.dest('public/dist'));
-})
+});
 
 // minifying all js files and using jshint
 gulp.task('js', function() {
@@ -27,7 +27,7 @@ gulp.task('js', function() {
   .pipe(rename('application.min.js'))
   .pipe(uglify())
   .pipe(gulp.dest('public/dist'));
-})
+});
 
 // minification of all angular files
 gulp.task('angular', function() {
@@ -39,18 +39,18 @@ gulp.task('angular', function() {
   .pipe(rename('ngApp.min.js'))
   .pipe(uglify())
   .pipe(gulp.dest('public/dist'));
-})
+});
 
 // watching files to see if changes are being made to automatically update the files being minified
 // every function that lives in this task is made to watch a specific file and if the file is modified in any way then a specific gulp task will run to update the file
-gulp.task('watch', function() {
+gulp.task('watch', ['js', 'css', 'angular'], function() {
   // watching the style.css file for changes and it will run the css task if changes are detected
   gulp.watch(['public/css/style.less'], ['css']);
 
   // watching all of the javascript files specified in the task above and running the task for them if they are modified
   // when other js files are potentially added in the future then the same watch method can watch for multiple locations as well as run multiple tasks
   gulp.watch(['public/js/**/*.js', 'public/vendor/materialize/dist/js/materialize.js'], ['js', 'angular']);
-})
+});
 
 // have gulp run the tests using mocha
 gulp.task('test', function() {
@@ -59,7 +59,7 @@ gulp.task('test', function() {
     .pipe(mocha({ reporter : 'spec' }))
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
-})
+});
 
 // having gulp run nodemon
 // everything is basically chaining off of each other starting with the nodemon task
@@ -68,14 +68,20 @@ gulp.task('nodemon', function() {
   nodemon({
     script : 'server.js',
     // below is specifying the types of files to watch
-    ext    : 'js less html'
+    ext    : 'js less html',
+    ignore : [
+      'public'
+    ]
   })
-  .on('start', ['js', 'angular', 'css', 'test'])
-  .on('change', ['watch', 'test'])
-  .on('restart', function() {
-    console.log('Restarted!');
-  });
-})
+  .on('start', ['watch'], function() {
+    // This is a bit hacky, but tests were being run before the server was ready.
+    setTimeout(function() {
+      gulp.run('test');
+    }, 500);
+  })
+  .on('change', ['watch'])
+  .on('restart', function() {});
+});
 
 // setting the default task to run the nodemon task
 gulp.task('default', ['nodemon']);
