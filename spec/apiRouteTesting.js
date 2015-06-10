@@ -9,7 +9,7 @@ request = require('supertest');
 process.env.NODE_ENV = 'test';
 
 describe('Routing', function() {
-  var url = 'localhost:3000';
+  var url = 'http://localhost:3000';
   describe('Restaurant API', function() {
     var restaurant = null;
     beforeEach(function() {
@@ -26,10 +26,8 @@ describe('Routing', function() {
       request(url)
       .post('/api/restaurants')
       .send(restaurant)
-      .expect('Content-Type', /json/)
-      .expect(200)
       .end(function(err, res) {
-        if (err) throw err;
+        expect(res.statusCode).to.equal(200);
         done();
       });
     });
