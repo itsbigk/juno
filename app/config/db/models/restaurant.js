@@ -28,10 +28,6 @@ RestaurantSchema = mongoose.model('Restaurant', {
                   type     : String,
                   required : true
                  },
-  suite       :  {
-                  type     : Number,
-                  required : false
-                 },
   zip         :  {
                   type     : Number,
                   required : true
@@ -42,6 +38,10 @@ RestaurantSchema = mongoose.model('Restaurant', {
                  },
   phone       :  {
                   type : String,
+                  required : false
+                 },
+  email       :  {
+                  type     : String,
                   required : false
                  }
 });

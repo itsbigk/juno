@@ -17,7 +17,7 @@ describe('testing crud functionality for restaurants', function() {
     restaurant.street =  "1 Pizza Way";
     restaurant.state =  "California";
     restaurant.city =  "Los Angeles";
-    restaurant.suite =  135;
+    restaurant.email =  "pepe@pepepizza.com";
     restaurant.zip =  90045;
     restaurant.cuisine =  "Italian";
     restaurant.website = "www.pepepizza.com";
@@ -32,7 +32,7 @@ describe('testing crud functionality for restaurants', function() {
       expect(obj.street).to.be.a('string').and.equal("1 Pizza Way");
       expect(obj.state).to.be.a('string').and.equal("California");
       expect(obj.city).to.be.a('string').and.equal("Los Angeles");
-      expect(obj.suite).to.be.a('number').and.equal(135);
+      expect(obj.email).to.be.a('string').and.equal("pepe@pepepizza.com");
       expect(obj.zip).to.be.a('number').and.equal(90045);
       expect(obj.cuisine).to.be.a('string').and.equal("Italian");
       expect(obj.website).to.be.a('string').and.equal("www.pepepizza.com");
@@ -52,7 +52,7 @@ describe('testing crud functionality for restaurants', function() {
         expect(obj.street).to.be.a('string').and.equal("1 Pizza Way");
         expect(obj.state).to.be.a('string').and.equal("California");
         expect(obj.city).to.be.a('string').and.equal("Los Angeles");
-        expect(obj.suite).to.be.a('number').and.equal(135);
+        expect(obj.email).to.be.a('string').and.equal("pepe@pepepizza.com");
         expect(obj.zip).to.be.a('number').and.equal(90045);
         expect(obj.cuisine).to.be.a('string').and.equal("Italian");
         expect(obj.website).to.be.a('string').and.equal("www.pepepizza.com");
@@ -73,7 +73,7 @@ describe('testing crud functionality for restaurants', function() {
         restaurant.street =  "123 Main St";
         restaurant.state =  "California";
         restaurant.city =  "Redondo Beach";
-        restaurant.suite =  139;
+        restaurant.email =  "pepe@pepepizza.com";
         restaurant.zip =  90277;
         restaurant.cuisine =  "Burgers";
         restaurant.website = "www.junoburgers.com";
@@ -85,7 +85,7 @@ describe('testing crud functionality for restaurants', function() {
           expect(obj.street).to.be.a('string').and.equal("123 Main St");
           expect(obj.state).to.be.a('string').and.equal("California");
           expect(obj.city).to.be.a('string').and.equal("Redondo Beach");
-          expect(obj.suite).to.be.a('number').and.equal(139);
+          expect(obj.email).to.be.a('string').and.equal("pepe@pepepizza.com");
           expect(obj.zip).to.be.a('number').and.equal(90277);
           expect(obj.cuisine).to.be.a('string').and.equal("Burgers");
           expect(obj.website).to.be.a('string').and.equal("www.junoburgers.com");
@@ -107,7 +107,7 @@ describe('testing crud functionality for restaurants', function() {
         expect(obj.street).to.be.a('string').and.equal("1 Pizza Way");
         expect(obj.state).to.be.a('string').and.equal("California");
         expect(obj.city).to.be.a('string').and.equal("Los Angeles");
-        expect(obj.suite).to.be.a('number').and.equal(135);
+        expect(obj.email).to.be.a('string').and.equal("pepe@pepepizza.com");
         expect(obj.zip).to.be.a('number').and.equal(90045);
         expect(obj.cuisine).to.be.a('string').and.equal("Italian");
         expect(obj.website).to.be.a('string').and.equal("www.pepepizza.com");
