@@ -15,9 +15,11 @@
     <div class="alert alert-info"> {{message}}</div>
   </div>
 </div>
-<a class="btn btn-success pull-right" href="/#/admin/restaurants/new">Create new listing</a>
+<!-- <a class="btn btn-success pull-right" href="/#/admin/restaurants/new">Create new listing</a> -->
 <h1>Search</h1>
-<input type="text" ng-model="searchText" class="form-control search-box">
+<div class="form-group">
+  <input type="text" ng-model="searchText" class="form-control">
+</div>
 <table class="table table-hover" ng-show="restaurants">
   <thead>
     <tr>
