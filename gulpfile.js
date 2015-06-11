@@ -49,7 +49,7 @@ gulp.task('watch', ['js', 'css', 'angular'], function() {
 
   // watching all of the javascript files specified in the task above and running the task for them if they are modified
   // when other js files are potentially added in the future then the same watch method can watch for multiple locations as well as run multiple tasks
-  gulp.watch(['public/js/**/*.js', 'public/vendor/materialize/dist/js/materialize.js'], ['js', 'angular']);
+  gulp.watch(['public/js/**/*.js'], ['js', 'angular']);
 });
 
 // have gulp run the tests using mocha

@@ -15,9 +15,10 @@
     <div class="alert alert-info"> {{message}}</div>
   </div>
 </div>
-<a class="btn btn-success pull-right" href="/#/admin/restaurants/new">Create new listing</a>
 <h1>Search</h1>
-<input type="text" ng-model="searchText" class="form-control search-box">
+<div class="form-group">
+  <input type="text" ng-model="searchText" class="form-control">
+</div>
 <table class="table table-hover" ng-show="restaurants">
   <thead>
     <tr>
@@ -29,11 +30,15 @@
     <!-- LOOP OVER THE RESTAURANTS -->
     <tr ng-repeat="restaurant in restaurants | filter:searchText">
         <!-- <td>{{restaurant._id}}</td> -->
-        <td>{{restaurant.name}}</td>
-        <td>{{restaurant.street}}</td>
-        <td>{{restaurant.cuisine}}</td>
+        <div ng-if="restaurant.archived == false">
+          <td>{{restaurant.name}}</td>
+          <td>{{restaurant.street}}</td>
+          <td>{{restaurant.cuisine}}</td>
+        </div>
         <td class="col-sm-2">
-          <a href="/#/admin/restaurants/{{restaurant._id}}" class="btn btn-danger">Edit</a>
+          <a href="/#/admin/restaurants/{{restaurant._id}}" ng-if="type == 'list'" class="btn btn-danger">Edit</a>
+          <a ng-click="archiveListing(restaurant._id)" ng-if="type == 'list'" class="btn btn-danger">Archive</a>
+          <a ng-click="deleteRestaurant(restaurant._id)" ng-if="type == 'delete'" class="btn btn-danger">Delete</a>
         </td>
     </tr>
   </tbody>
