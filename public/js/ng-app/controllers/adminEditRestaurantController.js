@@ -1,10 +1,10 @@
 angular.module('editRestaurantController', [])
 
-.controller('editRestaurantController', ['$scope', 'Restaurant', '$routeParams', '$location', function($scope, Restaurant, $routeParams, $location) {
+.controller('editRestaurantController', ['$scope', 'Restaurant', '$stateParams', '$location', function($scope, Restaurant, $stateParams, $location) {
 
   $scope.type = 'edit';
 
-  Restaurant.get($routeParams.restaurant_id)
+  Restaurant.get($stateParams.restaurant_id)
     .success(function(data) {
       $scope.formData = data;
     });
@@ -15,7 +15,7 @@ angular.module('editRestaurantController', [])
     $scope.message = '';
 
     // calling restaurant service to perform an update
-    Restaurant.update($routeParams.restaurant_id, $scope.formData)
+    Restaurant.update($stateParams.restaurant_id, $scope.formData)
       .success(function(data) {
 
         $scope.processing = false;
@@ -28,14 +28,6 @@ angular.module('editRestaurantController', [])
         $scope.processing = false;
 
         $scope.message = err.message;
-      });
-  };
-
-  $scope.deleteRestaurant = function() {
-
-    Restaurant.delete($routeParams.restaurant_id)
-      .success(function(data) {
-        $scope.message = data.message;
       });
   };
 }]);

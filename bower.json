@@ -1,12 +1,11 @@
 {
- "name": "Juno",
- "version": "0.0.1",
- "dependencies": {
-   "angular": "~1.4.0",
-   "angular-route": "~1.4.0",
-   "bootstrap": "~3.3.4",
-   "jquery": "~2.1.4",
-   "angular-bootstrap": "~0.13.0",
-   "angular-confirm": "~1.0.0"
- }
+  "name": "Juno",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "~1.4.0",
+    "bootstrap": "~3.3.4",
+    "jquery": "~2.1.4",
+    "angular-bootstrap": "~0.13.0",
+    "angular-ui-router": "~0.2.15"
+  }
 }

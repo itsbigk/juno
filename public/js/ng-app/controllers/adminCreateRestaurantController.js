@@ -24,12 +24,12 @@ angular.module('createRestaurantController', [])
 
         // display the message given by the server saying the creation is successful
         $scope.message = data.message;
+      })
+      .error(function(err) {
+
+        // display the error that the server gives back
+        $scope.message = err.message;
       });
-      // .error(function(err) {
-      //
-      //   // display the error that the server gives back
-      //   $scope.message = err.message;
-      // });
   };
 
 }]);

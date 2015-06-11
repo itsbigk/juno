@@ -43,6 +43,10 @@ RestaurantSchema = mongoose.model('Restaurant', {
   phone       :  {
                   type : String,
                   required : false
+                 },
+  archived    :  {
+                  type     : Boolean,
+                  required : false
                  }
 });
 

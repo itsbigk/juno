@@ -103,10 +103,17 @@ module.exports = function(app, express) {
     .delete(function(req, res) {
       Restaurant.remove({
         _id: req.params.restaurant_id
-      }, function(err) {
+      }, function(err, restaurant) {
         if (err) return res.send(err);
 
         res.json({ message: 'Successfully deleted restaurant' });
+
+        Restaurant.find(function(err, restaurants) {
+          if (err) res.send(err);
+
+          // return the restaurants after removing one
+          res.json({ restaurants: restaurants });
+        });
       });
     });
 

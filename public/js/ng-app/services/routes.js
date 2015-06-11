@@ -1,33 +1,41 @@
-angular.module('ngRoutes', ['ngRoute'])
+angular.module('ngRoutes', ['ui.router'])
 
-.config(function($routeProvider, $locationProvider) {
+.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
   // $locationProvider.html5Mode(true);
 
+  $urlRouterProvider.otherwise('/');
 
-  $routeProvider
-    .when('/', {
+  $stateProvider
+    .state('/', {
+      url         : '/',
       controller  : 'homeController',
       templateUrl : 'partials/home.html'
     })
-    .when('/admin', {
-      controller  : 'adminController',
+    .state('admin', {
+      url         : '/admin',
+      controller  : 'adminRestaurantIndex',
       templateUrl : 'partials/admin/admin.html'
     })
-    .when('/admin/restaurants', {
-      controller  : 'adminController',
+    .state('admin-restaurant-index', {
+      url         : '/admin/restaurants',
+      controller  : 'adminRestaurantIndex',
       templateUrl : 'partials/admin/restaurants/index.html'
     })
-    .when('/admin/restaurants/new', {
+    .state('admin-delete-restaurants', {
+      url         : '/admin/restaurants/delete',
+      controller  : 'deleteRestaurantController',
+      templateUrl : 'partials/admin/restaurants/index.html'
+    })
+    .state('admin-restaurant-new', {
+      url         : '/admin/restaurants/new',
       controller  : 'createRestaurantController',
       templateUrl : 'partials/admin/restaurants/restaurant.html'
     })
-    .when('/admin/restaurants/:restaurant_id', {
+    .state('admin-edit-restaurant', {
+      url         : '/admin/restaurants/:restaurant_id',
       controller  : 'editRestaurantController',
       templateUrl : 'partials/admin/restaurants/restaurant.html'
-    })
-    .otherwise({
-      redirectTo : '/'
     });
 
 });
