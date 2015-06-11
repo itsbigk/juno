@@ -16,7 +16,6 @@ describe('Routing', function() {
       restaurant = new Restaurant();
       restaurant.name = "Pepe's Pizza";
       restaurant.description = "Pizza place";
-      restaurant.address =  "1 Pizza Way";
       restaurant.cuisine =  "Italian";
       restaurant.website = "www.pepepizza.com";
       restaurant.phone = "839-838-1111";
