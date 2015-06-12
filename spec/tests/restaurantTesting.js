@@ -2,15 +2,18 @@ var chai   = require('chai'),
 mongoose   = require('mongoose'),
 expect     = chai.expect,
 should     = chai.should(),
-Restaurant = require('../app/config/db/models/restaurant'),
-utils      = require('./utils');
+Restaurant = require('../../app/config/db/models/restaurant'),
+utils      = require('../utils');
 
 process.env.NODE_ENV = 'test';
 
 describe('testing crud functionality for restaurants', function() {
   var restaurant = null;
 
-  beforeEach(function() {
+  beforeEach(function(done) {
+    Restaurant.collection.dropAllIndexes(function(err, results) {
+      done();
+    });
     restaurant = new Restaurant();
     restaurant.name = "Pepe's Pizza";
     restaurant.description = "Pizza place";
