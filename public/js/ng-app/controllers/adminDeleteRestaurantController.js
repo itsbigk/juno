@@ -1,4 +1,4 @@
-angular.module('deleteRestaurantController', [])
+angular.module('Juno')
 
   .controller('deleteRestaurantController', ['$scope', 'Restaurant', '$stateParams', function($scope, Restaurant, $stateParams) {
 

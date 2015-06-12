@@ -1,4 +1,4 @@
-angular.module('adminRestaurantIndex', [])
+angular.module('Juno')
 
 .controller('adminRestaurantIndex', ['$scope', 'Restaurant', function($scope, Restaurant) {
 

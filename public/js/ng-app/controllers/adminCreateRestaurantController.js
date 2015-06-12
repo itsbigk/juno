@@ -1,4 +1,4 @@
-angular.module('createRestaurantController', [])
+angular.module('Juno')
 
 .controller('createRestaurantController', ['$scope', 'Restaurant', function($scope, Restaurant) {
 
