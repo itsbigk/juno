@@ -7,8 +7,7 @@ uglify           = require('gulp-uglify'),
 mocha            = require('gulp-mocha'),
 jshint           = require('gulp-jshint'),
 ngAnnotate       = require('gulp-ng-annotate'),
-nodemon          = require('gulp-nodemon'),
-env              = require('gulp-env');
+nodemon          = require('gulp-nodemon');
 
 gulp.task('css', function() {
   // processing the less file and outputting it to the same folder as css
@@ -84,13 +83,5 @@ gulp.task('nodemon', function() {
   .on('restart', function() {});
 });
 
-gulp.task('set-env', function() {
-  env({
-    vars: {
-      NODE_ENV: "test"
-    }
-  });
-});
-
 // setting the default task to run the nodemon task
-gulp.task('default', ['set-env', 'nodemon']);
+gulp.task('default', ['nodemon']);

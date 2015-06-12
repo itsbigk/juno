@@ -44,18 +44,16 @@ module.exports = function(app, express) {
       restaurant.website = req.body.website;
       restaurant.phone = req.body.phone;
 
-      console.log(restaurant);
-
       // save the restaurant and check for errors
       restaurant.save(function(err) {
         if (err) {
           // duplicate entry
           if (err.code == 11000)
-            return res.send({ success: false, message: 'Restaurant street already exists.'});
+            return res.status(400).send({ success: false, message: 'Restaurant street already exists.', restaurant_id: restaurant._id});
           else
             return res.send(err);
         }
-        res.json({ message: 'Restaurant created!' });
+        res.json({ message: 'Restaurant created!', restaurant_id: restaurant._id });
       })
 
     });

@@ -29,10 +29,8 @@ console.log('App listening on port: ' + port);
 // connect to mongo database
 // @TODO decide on a mongo provider like mongolab, gcloud datastore, or modulus
 var db = null;
-if ('test' == process.env.NODE_ENV) db = config.db.test;
-else if ('development' == process.env.NODE_ENV) db = process.env.MONGO_REMOTE_URL || config.db.development;
+db = process.env.MONGO_REMOTE_URL || config.db.development;
 mongoose.connect(db);
-
 
 require('./app/config/routes')(app, express);
 module.exports = app;

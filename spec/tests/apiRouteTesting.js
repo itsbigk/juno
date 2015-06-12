@@ -20,66 +20,59 @@ describe('Routing', function() {
       restaurant.street =  "8 Pizza Way";
       restaurant.state =  "California";
       restaurant.city =  "Los Angeles";
-      restaurant.suite =  135;
       restaurant.zip =  90045;
     });
 
+    it('should create restaurant successfully', function(done) {
+      request(url)
+      .post('/api/restaurants')
+      .send(restaurant)
+      .expect(200)
+      .end(function(err, res) {
+        request(url)
+        .delete('/api/restaurants/' + res.body.restaurant_id)
+        .end(function(err, res) {
+          done();
+        });
+      });
+    });
+  });
 
-    it('POST /api/restaurants', function(done) {
-      request(app)
+  describe('POST duplicate to /api/restaurants', function() {
+    var restaurant = null;
+    before(function() {
+      restaurant = new Restaurant();
+      restaurant.name = "Pepe's Pizza";
+      restaurant.description = "Pizza place";
+      restaurant.cuisine =  "Italian";
+      restaurant.website = "www.pepepizza.com";
+      restaurant.phone = "839-838-1111";
+      restaurant.street =  "8 Pizza Way";
+      restaurant.state =  "California";
+      restaurant.city =  "Los Angeles";
+      restaurant.zip =  90045;
+    });
+
+    it('should not create duplicate restaurant', function(done) {
+      request(url)
       .post('/api/restaurants')
       .send(restaurant)
       .end(function(err, res) {
+        var firstRestaurantId = res.body.restaurant_id;
+        expect(err).to.be.null;
         expect(res.statusCode).to.equal(200);
-        done();
+        request(url)
+        .post('/api/restaurants')
+        .send(restaurant)
+        .end(function(err, res) {
+          expect(res.statusCode).to.equal(400);
+          request(url)
+          .delete('/api/restaurants/' + firstRestaurantId)
+          .end(function(err, res) {
+            done();
+          });
+        });
       });
     });
-
-    // it('should create restaurant successfully', function(done) {
-    //   request(url)
-    //   .post('/api/restaurants')
-    //   .send(restaurant)
-    //   .expect(200)
-    //   .end(function(err, res) {
-    //     console.log(res.body);
-    //     request(url)
-    //     .delete('/api/restaurants/' + restaurant._id)
-    //     .end(function(err, res) {
-    //       console.log(res.body);
-    //       done();
-    //     });
-    //   });
-    // });
   });
-
-  // describe('POST duplicate to /api/restaurants', function() {
-  //   var restaurant = null;
-  //   before(function() {
-  //     restaurant = new Restaurant();
-  //     restaurant.name = "Pepe's Pizza";
-  //     restaurant.description = "Pizza place";
-  //     restaurant.cuisine =  "Italian";
-  //     restaurant.website = "www.pepepizza.com";
-  //     restaurant.phone = "839-838-1111";
-  //   });
-
-  //   it('should not create duplicate restaurant', function(done) {
-  //     request(url)
-  //     .post('/api/restaurants')
-  //     .send(restaurant)
-  //     .end(function(err, res) {
-  //       console.log("FIRST CALLBACK" + res);
-  //       expect(err).to.be.null;
-  //       expect(res.statusCode).to.equal(200);
-  //       request(url)
-  //       .post('/api/restaurants')
-  //       .send(restaurant)
-  //       .end(function(err, res) {
-  //         console.log("SECOND CALLBACK" + res.statusCode);
-  //         expect(err).to.be.null;
-  //         done();
-  //       });
-  //     });
-  //   });
-  // });
 });

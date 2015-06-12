@@ -28,7 +28,7 @@ beforeEach(function (done) {
      return clearDB();
    });
  } else {
-   return clearDB();
+   return clearDB()
  }
 });
 
