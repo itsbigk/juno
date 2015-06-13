@@ -12,8 +12,6 @@ module.exports = function(app, express) {
     next();
   });
 
-
-
   apiRouter.route('/restaurants')
 
     // get all the restaurants
@@ -34,7 +32,6 @@ module.exports = function(app, express) {
 
       // set the restaurant information (comes from the request)
       restaurant.name = req.body.name;
-      restaurant.description = req.body.description;
       restaurant.cuisine = req.body.cuisine;
       restaurant.street = req.body.street;
       restaurant.state = req.body.state;
@@ -44,18 +41,16 @@ module.exports = function(app, express) {
       restaurant.website = req.body.website;
       restaurant.phone = req.body.phone;
 
-      console.log(restaurant);
-
       // save the restaurant and check for errors
       restaurant.save(function(err) {
         if (err) {
           // duplicate entry
           if (err.code == 11000)
-            return res.send({ success: false, message: 'Restaurant street already exists.'});
+            return res.status(400).send({ success: false, message: 'Restaurant street already exists.', restaurant_id: restaurant._id});
           else
             return res.send(err);
         }
-        res.json({ message: 'Restaurant created!' });
+        res.json({ message: 'Restaurant created!', restaurant_id: restaurant._id });
       })
 
     });

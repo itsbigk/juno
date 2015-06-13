@@ -55,7 +55,11 @@ gulp.task('watch', ['js', 'css', 'angular'], function() {
 // have gulp run the tests using mocha
 gulp.task('test', function() {
   // adding the test files
+<<<<<<< HEAD
+  return gulp.src('spec/*.js', { read : false })
+=======
   return gulp.src('spec/tests/*', { read : false })
+>>>>>>> master
     .pipe(mocha({ reporter : 'spec' }))
     .pipe(jshint())
     .pipe(jshint.reporter('default'));

@@ -1,6 +1,12 @@
+<<<<<<< HEAD
+angular.module('Juno')
+
+.controller('createRestaurantController', ['$scope', 'Restaurant', function($scope, Restaurant) {
+=======
 angular
   .module('Juno')
   .controller('createRestaurantController', ['$scope', '$state', 'Restaurant', function($scope, $state, Restaurant) {
+>>>>>>> master
 
   $scope.type = 'create';
 

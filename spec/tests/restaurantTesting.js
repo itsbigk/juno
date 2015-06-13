@@ -2,18 +2,20 @@ var chai   = require('chai'),
 mongoose   = require('mongoose'),
 expect     = chai.expect,
 should     = chai.should(),
-Restaurant = require('../app/config/db/models/restaurant'),
-utils      = require('./utils');
+Restaurant = require('../../app/config/db/models/restaurant'),
+utils      = require('../utils');
 
 process.env.NODE_ENV = 'test';
 
 describe('testing crud functionality for restaurants', function() {
   var restaurant = null;
 
-  beforeEach(function() {
+  beforeEach(function(done) {
+    Restaurant.collection.dropAllIndexes(function(err, results) {
+      done();
+    });
     restaurant = new Restaurant();
     restaurant.name = "Pepe's Pizza";
-    restaurant.description = "Pizza place";
     restaurant.street =  "1 Pizza Way";
     restaurant.state =  "California";
     restaurant.city =  "Los Angeles";
@@ -28,7 +30,6 @@ describe('testing crud functionality for restaurants', function() {
     restaurant.save(function(err, obj) {
       expect(err).to.be.null;
       expect(obj.name).to.be.a('string').and.equal("Pepe's Pizza");
-      expect(obj.description).to.be.a('string').and.equal("Pizza place");
       expect(obj.street).to.be.a('string').and.equal("1 Pizza Way");
       expect(obj.state).to.be.a('string').and.equal("California");
       expect(obj.city).to.be.a('string').and.equal("Los Angeles");
@@ -48,7 +49,6 @@ describe('testing crud functionality for restaurants', function() {
       Restaurant.findById(restaurant._id, function(err, obj) {
         expect(err).to.be.null;
         expect(obj.name).to.be.a('string').and.equal("Pepe's Pizza");
-        expect(obj.description).to.be.a('string').and.equal("Pizza place");
         expect(obj.street).to.be.a('string').and.equal("1 Pizza Way");
         expect(obj.state).to.be.a('string').and.equal("California");
         expect(obj.city).to.be.a('string').and.equal("Los Angeles");
@@ -69,7 +69,6 @@ describe('testing crud functionality for restaurants', function() {
       Restaurant.findById(restaurant._id, function(err, obj) {
         expect(err).to.be.null;
         restaurant.name = "Juno Burgers";
-        restaurant.description = "Fresh organic beef burgers off the grill";
         restaurant.street =  "123 Main St";
         restaurant.state =  "California";
         restaurant.city =  "Redondo Beach";
@@ -81,7 +80,6 @@ describe('testing crud functionality for restaurants', function() {
         restaurant.save(function(err,obj) {
           expect(err).to.be.null;
           expect(obj.name).to.be.a('string').and.equal("Juno Burgers");
-          expect(obj.description).to.be.a('string').and.equal("Fresh organic beef burgers off the grill");
           expect(obj.street).to.be.a('string').and.equal("123 Main St");
           expect(obj.state).to.be.a('string').and.equal("California");
           expect(obj.city).to.be.a('string').and.equal("Redondo Beach");
@@ -103,7 +101,6 @@ describe('testing crud functionality for restaurants', function() {
       restaurant.remove(restaurant._id, function(err, obj) {
         expect(err).to.be.null;
         expect(obj.name).to.be.a('string').and.equal("Pepe's Pizza");
-        expect(obj.description).to.be.a('string').and.equal("Pizza place");
         expect(obj.street).to.be.a('string').and.equal("1 Pizza Way");
         expect(obj.state).to.be.a('string').and.equal("California");
         expect(obj.city).to.be.a('string').and.equal("Los Angeles");

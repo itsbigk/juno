@@ -8,7 +8,7 @@ bodyParser     = require('body-parser'),                  //      parsing conten
 methodOverride = require('method-override'),             //       DELETE and PUT simulation
 session        = require('express-session'),            //        calling the express-session package to help with user sessions
 cookieParser   = require('cookie-parser'),             //         parsing through cookies and helps store the session id into the browser
-database       = require('./app/config/db/database'), //          making sure the database is required in the app by specifying the path to the database.js file here
+config         = require('./config'), //          making sure the database is required in the app by specifying the path to the database.js file here
 flash          = require('connect-flash');           //           showing messages depending on what state of authentication you are in
 
 
@@ -28,8 +28,9 @@ console.log('App listening on port: ' + port);
 
 // connect to mongo database
 // @TODO decide on a mongo provider like mongolab, gcloud datastore, or modulus
-mongoose.connect(process.env.MONGO_REMOTE_URL || database.url);
-
-
+var db = null;
+db = process.env.MONGO_REMOTE_URL || config.db.development;
+mongoose.connect(db);
 
 require('./app/config/routes')(app, express);
+module.exports = app;
