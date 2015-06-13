@@ -6,9 +6,7 @@ module.exports = function(app, express) {
 
   // middleware to use for all requests
   apiRouter.use(function(req, res, next) {
-    console.log('Somebody just came to our app!');
     // this is where we will authenticate users
-
     next();
   });
 
@@ -60,7 +58,7 @@ module.exports = function(app, express) {
     // get the restaurant with that id
     .get(function(req, res) {
       Restaurant.findById(req.params.restaurant_id, function(err, restaurant) {
-        if (err) res.send(err);
+        if (err) res.status(404).send(err);
 
         //return that restaurant
         res.json(restaurant);
@@ -71,7 +69,7 @@ module.exports = function(app, express) {
     .put(function(req, res) {
       // use our restaurant model to find the restaurant we want
       Restaurant.findById(req.params.restaurant_id, function(err, restaurant) {
-        if (err) res.send(err);
+        if (err) res.status(404).send(err);
 
         // update the restaurant's info only if it's new
         if (req.body.name) restaurant.name = req.body.name;
@@ -87,7 +85,7 @@ module.exports = function(app, express) {
 
         // save the restaurant
         restaurant.save(function(err) {
-          if (err) res.send({ success: false, message: 'All required fields were not filled out.'});
+          if (err) res.status(400).send({ success: false, message: 'All required fields were not filled out.'});
 
           // return a message
           res.json({ message: 'Restaurant updated!' });
