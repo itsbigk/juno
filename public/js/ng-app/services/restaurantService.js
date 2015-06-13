@@ -1,6 +1,6 @@
-angular.module('restaurantService', [])
+angular.module('Juno')
 
-.factory('Restaurant', function($http) {
+.factory('Restaurant', ['$http', function($http) {
   return {
     all : function() {
       return $http.get('/api/restaurants');
@@ -18,4 +18,4 @@ angular.module('restaurantService', [])
       return $http.delete('/api/restaurants/' + id);
     }
   };
-});
+}]);

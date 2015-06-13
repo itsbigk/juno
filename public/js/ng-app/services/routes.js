@@ -1,6 +1,6 @@
-angular.module('ngRoutes', ['ui.router'])
+angular.module('Juno')
 
-.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
 
   // $locationProvider.html5Mode(true);
 
@@ -38,4 +38,4 @@ angular.module('ngRoutes', ['ui.router'])
       templateUrl : 'partials/admin/restaurants/restaurant.html'
     });
 
-});
+}]);
