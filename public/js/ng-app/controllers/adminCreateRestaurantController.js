@@ -1,6 +1,6 @@
-angular.module('createRestaurantController', [])
-
-.controller('createRestaurantController', ['$scope', 'Restaurant', function($scope, Restaurant) {
+angular
+  .module('Juno')
+  .controller('createRestaurantController', ['$scope', '$state', 'Restaurant', function($scope, $state, Restaurant) {
 
   $scope.type = 'create';
 
@@ -19,15 +19,28 @@ angular.module('createRestaurantController', [])
 
     Restaurant.create($scope.formData)
       .success(function(data) {
+        console.log("success!");
+        console.log("data: ", data);
 
         $scope.processing = false;
 
-        // display the message given by the server saying the creation is successful
-        $scope.message = data.message;
+        if (data.errors == null) {
+          $scope.message = data.message;
+          $scope.formData = {};
+        }
+        else {
+          for (var key in data.errors) {
+            $scope.message = data.message;
+            var errorMessage = data.errors[key].message.substring(5).replace(/`/g, ''),
+                errorElementId = "#" + key;
+            if ( !$(errorElementId).hasClass("error") ){
+              $(errorElementId + "-container").append("<div class='error-message'>" + errorMessage  + "</div>");
+            }
+            $(errorElementId).addClass("error");
+          }
+        }
       })
-      .error(function(err) {
-
-        // display the error that the server gives back
+      .error(function(err){
         $scope.message = err.message;
       });
   };

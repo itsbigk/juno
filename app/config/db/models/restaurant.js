@@ -5,10 +5,6 @@ RestaurantSchema = mongoose.model('Restaurant', {
                   type     : String,
                   required : true
                  },
-  description :  {
-                  type     : String,
-                  required : true
-                 },
   cuisine     :  {
                     type     : String,
                     required : true,
