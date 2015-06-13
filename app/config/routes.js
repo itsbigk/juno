@@ -12,8 +12,6 @@ module.exports = function(app, express) {
     next();
   });
 
-
-
   apiRouter.route('/restaurants')
 
     // get all the restaurants
@@ -34,7 +32,6 @@ module.exports = function(app, express) {
 
       // set the restaurant information (comes from the request)
       restaurant.name = req.body.name;
-      restaurant.description = req.body.description;
       restaurant.cuisine = req.body.cuisine;
       restaurant.street = req.body.street;
       restaurant.state = req.body.state;
