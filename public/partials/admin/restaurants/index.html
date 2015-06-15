@@ -19,7 +19,7 @@
 <div class="form-group">
   <input type="text" ng-model="searchText" class="form-control">
 </div>
-<table class="table table-hover" ng-show="restaurants">
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Name</th> <th>Address</th> <th>Cuisine</th>
@@ -28,10 +28,10 @@
   </thead>
   <tbody>
     <!-- LOOP OVER THE RESTAURANTS -->
-    <tr ng-repeat="restaurant in restaurants | filter:searchText">
+    <tr ng-repeat="restaurant in restaurants | filter:searchText | filter:archived === false">
         <!-- <td>{{restaurant._id}}</td> -->
         <!-- @TODO eliminating archived listings is still not working -->
-        <div ng-show="restaurant.archived != true">
+        <div>
           <td>{{restaurant.name}}</td>
           <td>{{restaurant.street}}</td>
           <td>{{restaurant.cuisine}}</td>

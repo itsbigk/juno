@@ -56,7 +56,7 @@ describe('juno restaurant service testing', function() {
       httpBackend.flush();
   });
 
-  it('should create a new restaurant, check values, and delete when done', function() {
+  it('should create a new restaurant', function() {
     rest = {
          name: 'Pizza',
          cuisine: 'Italian',
@@ -68,5 +68,62 @@ describe('juno restaurant service testing', function() {
     };
 
     httpBackend.expectPOST('/api/restaurants', rest).respond(200);
+  });
+
+  it('should get a restaurant and check vlaues', function() {
+
+    httpBackend.expectGET('/api/restaurants/1').respond(200, {
+      name: 'Pizza',
+      cuisine: 'Italian',
+      street: '123 Pizza Planet Drive',
+      state: 'California',
+      city: 'Los Angeles',
+      zip: 90045,
+      email: 'pizza.planet123456@gmail.com'
+    });
+
+    Restaurant.get(1)
+      .success(function(data) {
+        expect(data.name).toEqual('Pizza');
+        expect(data.cuisine).toEqual('Italian');
+        expect(data.street).toEqual('123 Pizza Planet Drive');
+        expect(data.state).toEqual('California');
+        expect(data.city).toEqual('Los Angeles');
+        expect(data.zip).toEqual(90045);
+        expect(data.email).toEqual('pizza.planet123456@gmail.com');
+      });
+    httpBackend.flush();
+  });
+
+  it('should delete a restaurant listing', function() {
+
+    httpBackend.expectDELETE('/api/restaurants/1').respond(200);
+
+    httpBackend.expectGET('/api/restaurants').respond(200, [{
+        name: 'Pizza Planet',
+        cuisine: 'Italian',
+        street: '123 Pizza Planet Drive',
+        state: 'California',
+        city: 'Los Angeles',
+        zip: 90045,
+        email: 'pizza.planet123456@gmail.com',
+        restaurant_id: 1
+      },
+      {
+        name: 'Spagetti Central',
+        cuisine: 'Italian',
+        street: '124 Spagetti Drive',
+        state: 'California',
+        city: 'Los Angeles',
+        zip: 90045,
+        email: 'spagetti.restaurant@gmail.com',
+        restaurant_id: 2
+      }]);
+
+    Restaurant.delete(1)
+      .success(function(data) {
+        expect(data.message).toEqual('Restaurant deleted!');
+        expect(Restaurant.all().length).toBe(2);
+      });
   });
 });
