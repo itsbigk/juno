@@ -38,6 +38,7 @@ module.exports = function(app, express) {
       restaurant.suite = req.body.suite;
       restaurant.website = req.body.website;
       restaurant.phone = req.body.phone;
+      restaurant.email = req.body.email;
       restaurant.archived = false;
 
       // save the restaurant and check for errors
@@ -84,6 +85,7 @@ module.exports = function(app, express) {
         if (req.body.cuisine) restaurant.cuisine = req.body.cuisine;
         if (req.body.website) restaurant.website = req.body.website;
         if (req.body.phone) restaurant.phone = req.body.phone;
+        if (req.body.email) restaurant.email = req.body.email;
         if (req.body.archived) restaurant.archived = req.body.archived;
 
         // save the restaurant
