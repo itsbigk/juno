@@ -26,7 +26,8 @@ RestaurantSchema = mongoose.model('Restaurant', {
                  },
   zip         :  {
                   type     : Number,
-                  required : true
+                  required : true,
+                  message: "Must be a number"
                  },
   website     :  {
                   type : String,
