@@ -57,15 +57,15 @@ describe('juno restaurant service testing', function() {
   });
 
   it('should create a new restaurant, check values, and delete when done', function() {
-  rest = {
-       name: 'Pizza',
-       cuisine: 'Italian',
-       street: '123 Pizza Planet Drive',
-       state: 'California',
-       city: 'Los Angeles',
-       zip: 90045,
-       email: 'pizza.planet123456@gmail.com'
-     };
+    rest = {
+         name: 'Pizza',
+         cuisine: 'Italian',
+         street: '123 Pizza Planet Drive',
+         state: 'California',
+         city: 'Los Angeles',
+         zip: 90045,
+         email: 'pizza.planet123456@gmail.com'
+    };
 
     httpBackend.expectPOST('/api/restaurants', rest).respond(200);
   });

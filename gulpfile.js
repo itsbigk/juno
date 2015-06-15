@@ -5,7 +5,6 @@ rename           = require('gulp-rename'),
 concat           = require('gulp-concat'),
 uglify           = require('gulp-uglify'),
 mocha            = require('gulp-mocha'),
-karma            = require('gulp-karma'),
 jshint           = require('gulp-jshint'),
 ngAnnotate       = require('gulp-ng-annotate'),
 nodemon          = require('gulp-nodemon');
@@ -71,7 +70,10 @@ gulp.task('nodemon', function() {
     // below is specifying the types of files to watch
     ext    : 'js less html',
     ignore : [
-      'public'
+      'public',
+      'node_modules',
+      'bower*',
+      '.bower*'
     ]
   })
   .on('start', ['watch'], function() {
