@@ -8,7 +8,7 @@ bodyParser     = require('body-parser'),                  //      parsing conten
 methodOverride = require('method-override'),             //       DELETE and PUT simulation
 session        = require('express-session'),            //        calling the express-session package to help with user sessions
 cookieParser   = require('cookie-parser'),             //         parsing through cookies and helps store the session id into the browser
-config         = require('./config'), //          making sure the database is required in the app by specifying the path to the database.js file here
+config         = require('./config'),                 //          making sure the database is required in the app by specifying the path to the database.js file here
 flash          = require('connect-flash');           //           showing messages depending on what state of authentication you are in
 
 

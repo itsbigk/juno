@@ -24,7 +24,7 @@ angular
 
         $scope.processing = false;
 
-        if (data.errors == null) {
+        if (data.errors === null) {
           $scope.message = data.message;
           $scope.formData = {};
         }

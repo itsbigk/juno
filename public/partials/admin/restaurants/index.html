@@ -30,7 +30,8 @@
     <!-- LOOP OVER THE RESTAURANTS -->
     <tr ng-repeat="restaurant in restaurants | filter:searchText">
         <!-- <td>{{restaurant._id}}</td> -->
-        <div ng-if="restaurant.archived == false">
+        <!-- @TODO eliminating archived listings is still not working -->
+        <div ng-show="restaurant.archived != true">
           <td>{{restaurant.name}}</td>
           <td>{{restaurant.street}}</td>
           <td>{{restaurant.cuisine}}</td>
