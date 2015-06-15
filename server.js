@@ -27,9 +27,8 @@ app.use(flash());                                               // flash message
 console.log('App listening on port: ' + port);
 
 // connect to mongo database
-// @TODO decide on a mongo provider like mongolab, gcloud datastore, or modulus
 var db = null;
-// db = process.env.MONGO_REMOTE_URL || config.db.development;
+// MONGOLAB_URI is set as a Heroku config var on production
 db = process.env.MONGOLAB_URI || config.db.development;
 mongoose.connect(db);
 
