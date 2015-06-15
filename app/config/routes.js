@@ -98,9 +98,9 @@ module.exports = function(app, express) {
       Restaurant.remove({
         _id: req.params.restaurant_id
       }, function(err, restaurant) {
-        if (err) return res.send(err);
-        if (restaurant === null) return res.status(404).send(err);
-        res.json({ message: 'Successfully deleted restaurant' });
+        if (err) return res.status(404).send(err);
+        if (restaurant.result.n === 0) return res.status(404).send(err);
+        res.json({ message: 'Restaurant deleted!' });
 
         Restaurant.find(function(err, restaurants) {
           if (err) res.send(err);

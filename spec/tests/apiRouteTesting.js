@@ -218,4 +218,42 @@ describe('Routing', function() {
       });
     });
   });
+
+  describe('Testing DEL /api/restaurants/:restaurant_id', function() {
+    var restaurant = null;
+    before(function() {
+      restaurant = new Restaurant();
+      restaurant.name = "Pepe's Pizza";
+      restaurant.cuisine =  "Italian";
+      restaurant.website = "www.pepepizza.com";
+      restaurant.phone = "839-838-1111";
+      restaurant.street =  "8 Pizza Way";
+      restaurant.state =  "California";
+      restaurant.city =  "Los Angeles";
+      restaurant.zip =  90045;
+    });
+
+    it('should delete an existing restaurant successfully', function(done) {
+      request
+      .post(restaurantsURL)
+      .send(restaurant)
+      .end(function(err, res) {
+        expect(res.statusCode).to.equal(200);
+        request.delete(restaurantsURL + res.body.restaurant_id)
+        .end(function(err, res) {
+          expect(res.statusCode).to.equal(200);
+          done();
+        });
+      });
+    });
+
+    it('should return 404 if trying to delete a restaurant that does not exist', function(done) {
+      request
+      .delete(restaurantsURL + restaurant._id)
+      .end(function(err, res) {
+        expect(res.statusCode).to.equal(404);
+        done();
+      });
+    });
+  });
 });
