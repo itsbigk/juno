@@ -120,12 +120,6 @@ module.exports = function(app, express) {
     res.sendFile('index');
   });
 
-  // app.get('/partials/:name', function(req, res) {
-  //   var name = req.params.name;
-  //
-  //   res.render('/views/partials/' + name);
-  // });
-
   app.get('*', function(req, res) {
     res.redirect('/');
   });

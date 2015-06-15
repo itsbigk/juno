@@ -97,9 +97,7 @@ describe('juno restaurant service testing', function() {
 
   it('should delete a restaurant listing', function() {
 
-    httpBackend.expectDELETE('/api/restaurants/1').respond(200);
-
-    httpBackend.expectGET('/api/restaurants').respond(200, [{
+    httpBackend.expectDELETE('/api/restaurants/1').respond(200, [{
         name: 'Pizza Planet',
         cuisine: 'Italian',
         street: '123 Pizza Planet Drive',
@@ -118,12 +116,10 @@ describe('juno restaurant service testing', function() {
         zip: 90045,
         email: 'spagetti.restaurant@gmail.com',
         restaurant_id: 2
-      }]);
+    }]);
 
-    Restaurant.delete(1)
-      .success(function(data) {
-        expect(data.message).toEqual('Restaurant deleted!');
-        expect(Restaurant.all().length).toBe(2);
-      });
+    Restaurant.delete(1);
+
+    httpBackend.flush();
   });
 });
