@@ -38,8 +38,8 @@
         </div>
         <td class="col-sm-2">
           <a href="/#/admin/restaurants/{{restaurant._id}}" ng-if="type == 'list'" class="btn btn-danger">Edit</a>
-          <a ng-click="archiveListing(restaurant._id)" ng-if="type == 'list'" class="btn btn-danger">Archive</a>
-          <a ng-click="deleteRestaurant(restaurant._id)" ng-if="type == 'delete'" class="btn btn-danger">Delete</a>
+          <a confirm-click="archiveListing(restaurant._id)" ng-if="type == 'list'" class="btn btn-danger" confirmation="Do you really want to archive?">Archive</a>
+          <a confirm-click="deleteRestaurant(restaurant._id)" ng-if="type == 'delete'" class="btn btn-danger" confirmation="Do you really want to delete?">Delete</a>
         </td>
     </tr>
   </tbody>
