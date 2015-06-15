@@ -35,7 +35,6 @@ module.exports = function(app, express) {
       restaurant.state = req.body.state;
       restaurant.city = req.body.city;
       restaurant.zip = req.body.zip;
-      restaurant.suite = req.body.suite;
       restaurant.website = req.body.website;
       restaurant.phone = req.body.phone;
       restaurant.email = req.body.email;
@@ -76,12 +75,10 @@ module.exports = function(app, express) {
 
         // update the restaurant's info only if it's new
         if (req.body.name) restaurant.name = req.body.name;
-        if (req.body.description) restaurant.description = req.body.description;
         if (req.body.street) restaurant.street = req.body.street;
         if (req.body.city) restaurant.city = req.body.city;
         if (req.body.state) restaurant.state = req.body.state;
         if (req.body.zip) restaurant.zip = req.body.zip;
-        if (req.body.suite) restaurant.suite = req.body.suite;
         if (req.body.cuisine) restaurant.cuisine = req.body.cuisine;
         if (req.body.website) restaurant.website = req.body.website;
         if (req.body.phone) restaurant.phone = req.body.phone;
