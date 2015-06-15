@@ -9,3 +9,5 @@ node_modules
 /.bower-*
 /bower-tmp
 /public/vendor
+
+*.orig

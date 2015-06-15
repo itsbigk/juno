@@ -15,7 +15,7 @@ module.exports = function(app, express) {
     // get all the restaurants
     .get(function(req, res) {
       Restaurant.find(function(err, restaurants) {
-        if (err) res.send(err);
+        if (err) res.status(404).send(err);
 
         // return the restaurants
         res.json(restaurants);
@@ -35,9 +35,10 @@ module.exports = function(app, express) {
       restaurant.state = req.body.state;
       restaurant.city = req.body.city;
       restaurant.zip = req.body.zip;
-      restaurant.suite = req.body.suite;
       restaurant.website = req.body.website;
       restaurant.phone = req.body.phone;
+      restaurant.email = req.body.email;
+      restaurant.archived = false;
 
       // save the restaurant and check for errors
       restaurant.save(function(err) {
@@ -58,10 +59,10 @@ module.exports = function(app, express) {
     // get the restaurant with that id
     .get(function(req, res) {
       Restaurant.findById(req.params.restaurant_id, function(err, restaurant) {
-        if (err) res.status(404).send(err);
-
+        if (err) return res.status(404).send(err);
+        if (restaurant === null) return res.status(404).send(err);
         //return that restaurant
-        res.json(restaurant);
+        return res.json(restaurant);
       });
     })
 
@@ -70,18 +71,19 @@ module.exports = function(app, express) {
       // use our restaurant model to find the restaurant we want
       Restaurant.findById(req.params.restaurant_id, function(err, restaurant) {
         if (err) res.status(404).send(err);
+        if (restaurant === null) return res.status(404).send(err);
 
         // update the restaurant's info only if it's new
         if (req.body.name) restaurant.name = req.body.name;
-        if (req.body.description) restaurant.description = req.body.description;
         if (req.body.street) restaurant.street = req.body.street;
         if (req.body.city) restaurant.city = req.body.city;
         if (req.body.state) restaurant.state = req.body.state;
         if (req.body.zip) restaurant.zip = req.body.zip;
-        if (req.body.suite) restaurant.suite = req.body.suite;
         if (req.body.cuisine) restaurant.cuisine = req.body.cuisine;
         if (req.body.website) restaurant.website = req.body.website;
         if (req.body.phone) restaurant.phone = req.body.phone;
+        if (req.body.email) restaurant.email = req.body.email;
+        if (req.body.archived) restaurant.archived = req.body.archived;
 
         // save the restaurant
         restaurant.save(function(err) {
@@ -97,9 +99,9 @@ module.exports = function(app, express) {
       Restaurant.remove({
         _id: req.params.restaurant_id
       }, function(err, restaurant) {
-        if (err) return res.send(err);
-
-        res.json({ message: 'Successfully deleted restaurant' });
+        if (err) return res.status(404).send(err);
+        if (restaurant.result.n === 0) return res.status(404).send(err);
+        res.json({ message: 'Restaurant deleted!' });
 
         Restaurant.find(function(err, restaurants) {
           if (err) res.send(err);

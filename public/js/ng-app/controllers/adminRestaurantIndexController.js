@@ -7,19 +7,23 @@ angular.module('Juno')
   $scope.message = '';
 
   // get all restaurants
-  Restaurant.all()
+  var getRestaurants = function() {
+    Restaurant.all()
     .success(function(data) {
       $scope.restaurants = data;
     });
+  };
 
   $scope.archiveListing = function(restaurant) {
-    Restaurant.update(restaurant, { archived: true })
+    Restaurant.update(restaurant, {archived: true})
       .success(function(data) {
         $scope.message = 'Restaurant archived successfully!';
-        $scope.restaurants = data.restaurants;
+        getRestaurants();
       })
       .error(function(err) {
         $scope.message = 'Restaurant was not archived';
       });
   };
+
+  getRestaurants();
 }]);
