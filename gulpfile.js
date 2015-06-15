@@ -70,7 +70,10 @@ gulp.task('nodemon', function() {
     // below is specifying the types of files to watch
     ext    : 'js less html',
     ignore : [
-      'public'
+      'public',
+      'node_modules',
+      'bower*',
+      '.bower*'
     ]
   })
   .on('start', ['watch'], function() {
