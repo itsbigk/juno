@@ -15,7 +15,7 @@ module.exports = function(app, express) {
     // get all the restaurants
     .get(function(req, res) {
       Restaurant.find(function(err, restaurants) {
-        if (err) res.send(err);
+        if (err) res.status(404).send(err);
 
         // return the restaurants
         res.json(restaurants);
@@ -59,10 +59,10 @@ module.exports = function(app, express) {
     // get the restaurant with that id
     .get(function(req, res) {
       Restaurant.findById(req.params.restaurant_id, function(err, restaurant) {
-        if (err) res.status(404).send(err);
-
+        if (err) return res.status(404).send(err);
+        if (restaurant === null) return res.status(404).send(err);
         //return that restaurant
-        res.json(restaurant);
+        return res.json(restaurant);
       });
     })
 
@@ -71,6 +71,7 @@ module.exports = function(app, express) {
       // use our restaurant model to find the restaurant we want
       Restaurant.findById(req.params.restaurant_id, function(err, restaurant) {
         if (err) res.status(404).send(err);
+        if (restaurant === null) return res.status(404).send(err);
 
         // update the restaurant's info only if it's new
         if (req.body.name) restaurant.name = req.body.name;
@@ -99,9 +100,9 @@ module.exports = function(app, express) {
       Restaurant.remove({
         _id: req.params.restaurant_id
       }, function(err, restaurant) {
-        if (err) return res.send(err);
-
-        res.json({ message: 'Successfully deleted restaurant' });
+        if (err) return res.status(404).send(err);
+        if (restaurant.result.n === 0) return res.status(404).send(err);
+        res.json({ message: 'Restaurant deleted!' });
 
         Restaurant.find(function(err, restaurants) {
           if (err) res.send(err);
