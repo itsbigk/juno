@@ -5,7 +5,6 @@ rename           = require('gulp-rename'),
 concat           = require('gulp-concat'),
 uglify           = require('gulp-uglify'),
 mocha            = require('gulp-mocha'),
-karma            = require('gulp-karma'),
 jshint           = require('gulp-jshint'),
 ngAnnotate       = require('gulp-ng-annotate'),
 nodemon          = require('gulp-nodemon');
