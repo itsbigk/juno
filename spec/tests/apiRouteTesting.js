@@ -26,9 +26,13 @@ describe('Routing', function() {
       request
       .post(restaurantsURL)
       .send(restaurant)
-      .expect(200)
       .end(function(err, res) {
-        request.delete(restaurantsURL + res.body.restaurant_id).expect(200, done);
+        expect(res.statusCode).to.equal(200);
+        request.delete(restaurantsURL + res.body.restaurant_id)
+        .end(function(err, res) {
+          expect(res.statusCode).to.equal(200);
+          done();
+        });
       });
     });
 
@@ -36,16 +40,20 @@ describe('Routing', function() {
       request
       .post(restaurantsURL)
       .send(restaurant)
-      .expect(200)
       .end(function(err, res) {
+        expect(res.statusCode).to.equal(200);
         var firstRestaurantId = res.body.restaurant_id;
         expect(err).to.be.null;
         request
         .post(restaurantsURL)
         .send(restaurant)
-        .expect(400)
         .end(function(err, res) {
-          request.delete(restaurantsURL + firstRestaurantId).expect(200, done);
+          expect(res.statusCode).to.equal(400);
+          request.delete(restaurantsURL + firstRestaurantId)
+          .end(function(err, res) {
+            expect(res.statusCode).to.equal(200);
+            done();
+          });
         });
       });
     });
@@ -81,15 +89,19 @@ describe('Routing', function() {
       request
       .post(restaurantsURL)
       .send(restaurant)
-      .expect(200)
       .end(function(err, res) {
+        expect(res.statusCode).to.equal(200);
         var restaurantId = res.body.restaurant_id;
         request
         .put(restaurantsURL + restaurantId)
         .send(restaurantTwo)
-        .expect(200)
         .end(function(err, res) {
-          request.delete(restaurantsURL + restaurantId).expect(200, done);
+          expect(res.statusCode).to.equal(200);
+          request.delete(restaurantsURL + restaurantId)
+          .end(function(err, res) {
+            expect(res.statusCode).to.equal(200);
+            done();
+          });
         });
       });
     });
@@ -98,26 +110,30 @@ describe('Routing', function() {
       request
       .post(restaurantsURL)
       .send(restaurant)
-      .expect(200)
       .end(function(err, res) {
         var firstRestaurantId = res.body.restaurant_id;
+        expect(res.statusCode).to.equal(200);
         request
         .post(restaurantsURL)
         .send(restaurantTwo)
-        .expect(200)
         .end(function(err, res) {
+          expect(res.statusCode).to.equal(200);
           var secondRestaurantId = res.body.restaurant_id;
           restaurantTwo.street = "8 Pizza Way";
           request
           .put(restaurantsURL + secondRestaurantId)
           .send(restaurantTwo)
-          .expect(400)
           .end(function(err, res) {
+            expect(res.statusCode).to.equal(400);
             request
             .delete(restaurantsURL + firstRestaurantId)
-            .expect(200)
             .end(function(err, res) {
-              request.delete(restaurantsURL + secondRestaurantId).expect(200, done);
+              expect(res.statusCode).to.equal(200);
+              request.delete(restaurantsURL + secondRestaurantId)
+              .end(function(err, res) {
+                expect(res.statusCode).to.equal(200);
+                done();
+              });
             });
           });
         });
@@ -126,4 +142,118 @@ describe('Routing', function() {
 
   });
 
+  describe('Testing GET /api/restaurants/ and GET /api/restaurants/:restaurant_id', function() {
+    var restaurant = null;
+    before(function() {
+      restaurant = new Restaurant();
+      restaurant.name = "Pepe's Pizza";
+      restaurant.cuisine =  "Italian";
+      restaurant.website = "www.pepepizza.com";
+      restaurant.phone = "839-838-1111";
+      restaurant.street =  "8 Pizza Way";
+      restaurant.state =  "California";
+      restaurant.city =  "Los Angeles";
+      restaurant.zip =  90045;
+    });
+
+    it('should GET all restaurants successfully', function(done) {
+      request
+      .post(restaurantsURL)
+      .send(restaurant)
+      .end(function(err, res) {
+        expect(res.statusCode).to.equal(200);
+        var restaurant_id = res.body.restaurant_id;
+        request
+        .get(restaurantsURL)
+        .end(function(err, res) {
+          expect(res.statusCode).to.equal(200);
+          request.delete(restaurantsURL + restaurant_id)
+          .end(function(err, res) {
+            expect(res.statusCode).to.equal(200);
+            done();
+          });
+        });
+      });
+    });
+
+    it('should GET a single existing restaurant successfully', function(done) {
+      request
+      .post(restaurantsURL)
+      .send(restaurant)
+      .end(function(err, res) {
+        expect(res.statusCode).to.equal(200);
+        var restaurant_id = res.body.restaurant_id;
+        request
+        .get(restaurantsURL + restaurant_id)
+        .end(function(err, res) {
+          expect(res.statusCode).to.equal(200);
+          request
+          .delete(restaurantsURL + restaurant_id)
+          .end(function(err, res) {
+            expect(res.statusCode).to.equal(200);
+            done();
+          });
+        });      
+      });
+    });
+
+    it('should return 404 if trying to get restaurant that does not exist', function(done) {
+      request
+      .post(restaurantsURL)
+      .send(restaurant)
+      .end(function(err, res) {
+        expect(res.statusCode).to.equal(200);
+        var restaurant_id = res.body.restaurant_id;
+        request
+        .delete(restaurantsURL + restaurant_id)
+        .end(function(err, res) {
+          expect(res.statusCode).to.equal(200);
+          request
+          .get(restaurantsURL + restaurant_id)
+          .end(function(err, res) {
+            expect(res.statusCode).to.equal(404);
+            done();
+          });      
+        });
+      });
+    });
+  });
+
+  describe('Testing DEL /api/restaurants/:restaurant_id', function() {
+    var restaurant = null;
+    before(function() {
+      restaurant = new Restaurant();
+      restaurant.name = "Pepe's Pizza";
+      restaurant.cuisine =  "Italian";
+      restaurant.website = "www.pepepizza.com";
+      restaurant.phone = "839-838-1111";
+      restaurant.street =  "8 Pizza Way";
+      restaurant.state =  "California";
+      restaurant.city =  "Los Angeles";
+      restaurant.zip =  90045;
+    });
+
+    it('should delete an existing restaurant successfully', function(done) {
+      request
+      .post(restaurantsURL)
+      .send(restaurant)
+      .end(function(err, res) {
+        expect(res.statusCode).to.equal(200);
+        request.delete(restaurantsURL + res.body.restaurant_id)
+        .end(function(err, res) {
+          expect(res.statusCode).to.equal(200);
+          done();
+        });
+      });
+    });
+
+    it('should return 404 if trying to delete a restaurant that does not exist', function(done) {
+      request
+      .delete(restaurantsURL + restaurant._id)
+      .end(function(err, res) {
+        expect(res.statusCode).to.equal(404);
+        done();
+      });
+    });
+  });
 });
