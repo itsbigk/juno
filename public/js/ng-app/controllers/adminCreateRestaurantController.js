@@ -15,7 +15,7 @@ angular
 
   // function for creating new restaurants
   // this will run when the ng-click function on the view happens
-  $scope.saveRestaurant = function(formData) {
+  $scope.saveRestaurant = function() {
 
     console.log($scope.formData);
 

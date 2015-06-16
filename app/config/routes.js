@@ -29,13 +29,20 @@ module.exports = function(app, express) {
       var restaurant = new Restaurant();
 
       // set the restaurant information (comes from the request)
-      restaurant.name = req.body.name;
-      restaurant.cuisine = req.body.cuisine;
-      restaurant.address = req.body.street + ' ' + req.body.city + ', ' + req.body.state + ' ' + req.body.zip
+      // making all of the address and cuisine fields lowercase for more consistent data
+      restaurant.name = req.body.name.toLowerCase();
+      restaurant.cuisine = req.body.cuisine.toLowerCase();
+      restaurant.address = req.body.street.toLowerCase() + ' ' + req.body.city.toLowerCase() + ', ' + req.body.state.toLowerCase() + ' ' + req.body.zip
+      restaurant.street = req.body.street.toLowerCase();
+      restaurant.city = req.body.city.toLowerCase();
+      restaurant.state = req.body.state.toLowerCase();
+      restaurant.zip = req.body.zip;
       restaurant.website = req.body.website;
       restaurant.phone = req.body.phone;
       restaurant.email = req.body.email;
       restaurant.archived = false;
+
+
 
       // save the restaurant and check for errors
       restaurant.save(function(err) {
@@ -71,12 +78,14 @@ module.exports = function(app, express) {
         if (restaurant === null) return res.status(404).send(err);
 
         // update the restaurant's info only if it's new
+        // changing all of the address and cuising fields to be all lowercase to have more consistent data
         if (req.body.name != restaurant.name) restaurant.name = req.body.name;
-        if (req.body.street != restaurant.street) restaurant.street = req.body.street;
-        if (req.body.city != restaurant.city) restaurant.city = req.body.city;
-        if (req.body.state != restaurant.state) restaurant.state = req.body.state;
+        if (req.body.street != restaurant.street && req.body.city != restaurant.city && req.body.state != restaurant.state && req.body.zip != restaurant.zip) restaurant.address = req.body.street.toLowerCase() + ' ' + req.body.city.toLowerCase() + ', ' + req.body.state.toLowerCase() + ' ' + req.body.zip
+        if (req.body.street != restaurant.street) restaurant.street = req.body.street.toLowerCase();
+        if (req.body.city != restaurant.city) restaurant.city = req.body.city.toLowerCase();
+        if (req.body.state != restaurant.state) restaurant.state = req.body.state.toLowerCase();
         if (req.body.zip != restaurant.zip) restaurant.zip = req.body.zip;
-        if (req.body.cuisine != restaurant.cuisine) restaurant.cuisine = req.body.cuisine;
+        if (req.body.cuisine != restaurant.cuisine) restaurant.cuisine = req.body.cuisine.toLowerCase();
         if (req.body.website != restaurant.website) restaurant.website = req.body.website;
         if (req.body.phone != restaurant.phone) restaurant.phone = req.body.phone;
         if (req.body.email != restaurant.email) restaurant.email = req.body.email;

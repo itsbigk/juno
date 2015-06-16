@@ -32,9 +32,9 @@
         <!-- <td>{{restaurant._id}}</td> -->
         <!-- @TODO eliminating archived listings is still not working -->
         <div>
-          <td>{{restaurant.name}}</td>
-          <td>{{restaurant.street}}</td>
-          <td>{{restaurant.cuisine}}</td>
+          <td>{{restaurant.name | capitalize}}</td>
+          <td>{{restaurant.street | capitalize}}</td>
+          <td>{{restaurant.cuisine | capitalize}}</td>
         </div>
         <td class="col-sm-2">
           <a href="/#/admin/restaurants/{{restaurant._id}}" ng-if="type == 'list'" class="btn btn-danger">Edit</a>
