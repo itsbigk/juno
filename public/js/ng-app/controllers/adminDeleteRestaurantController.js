@@ -4,17 +4,24 @@ angular.module('Juno')
 
     $scope.type = 'delete';
 
-    Restaurant.all()
+    var getRestaurants = function() {
+      Restaurant.all()
       .success(function(data) {
         $scope.restaurants = data;
       });
+    };
 
     $scope.deleteRestaurant = function(restaurant) {
 
-    Restaurant.delete(restaurant)
-      .success(function(data) {
-        $scope.message = data.message;
-        $scope.restaurants = data.restaurants;
-      });
+      Restaurant.delete(restaurant)
+        .success(function(data) {
+          $scope.message = data.message;
+          getRestaurants();
+        })
+        .error(function(data) {
+          $scope.message = data.message;
+        });
     };
+
+    getRestaurants();
   }]);
