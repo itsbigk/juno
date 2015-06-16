@@ -74,20 +74,20 @@ module.exports = function(app, express) {
         if (restaurant === null) return res.status(404).send(err);
 
         // update the restaurant's info only if it's new
-        if (req.body.name) restaurant.name = req.body.name;
-        if (req.body.street) restaurant.street = req.body.street;
-        if (req.body.city) restaurant.city = req.body.city;
-        if (req.body.state) restaurant.state = req.body.state;
-        if (req.body.zip) restaurant.zip = req.body.zip;
-        if (req.body.cuisine) restaurant.cuisine = req.body.cuisine;
-        if (req.body.website) restaurant.website = req.body.website;
-        if (req.body.phone) restaurant.phone = req.body.phone;
-        if (req.body.email) restaurant.email = req.body.email;
+        if (req.body.name != restaurant.name) restaurant.name = req.body.name;
+        if (req.body.street != restaurant.street) restaurant.street = req.body.street;
+        if (req.body.city != restaurant.city) restaurant.city = req.body.city;
+        if (req.body.state != restaurant.state) restaurant.state = req.body.state;
+        if (req.body.zip != restaurant.zip) restaurant.zip = req.body.zip;
+        if (req.body.cuisine != restaurant.cuisine) restaurant.cuisine = req.body.cuisine;
+        if (req.body.website != restaurant.website) restaurant.website = req.body.website;
+        if (req.body.phone != restaurant.phone) restaurant.phone = req.body.phone;
+        if (req.body.email != restaurant.email) restaurant.email = req.body.email;
         if (req.body.archived) restaurant.archived = req.body.archived;
 
         // save the restaurant
         restaurant.save(function(err) {
-          if (err) res.status(400).send({ success: false, message: 'All required fields were not filled out.'});
+          if (err) res.status(400).send({ success: false, message: 'Restaurant validation failed.'});
 
           // return a message
           res.json({ message: 'Restaurant updated!' });
