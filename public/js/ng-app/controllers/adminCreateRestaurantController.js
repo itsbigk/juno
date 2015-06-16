@@ -37,6 +37,8 @@ angular
           clearErrorStyling();
         }
         else {
+
+          console.log(data);
           // Clear previous errors in case user has fixed some fields
           clearErrorStyling();
           // Each key in errors is the name associated with an input ID. Loops through all keys to get all the error fields
