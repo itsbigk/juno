@@ -87,10 +87,15 @@ module.exports = function(app, express) {
 
         // save the restaurant
         restaurant.save(function(err) {
-          if (err) res.status(400).send({ success: false, message: 'Restaurant validation failed.'});
-
-          // return a message
-          res.json({ message: 'Restaurant updated!' });
+        if (err) {
+          if (err.code == 11000)
+            return res.status(400).send({ success: false, message: 'Restaurant validation failed.'});
+          else
+            res.status(400).send(err);
+        } else {
+            // return a message
+            res.json({ message: 'Restaurant updated!' });
+          };
         });
       });
     })
