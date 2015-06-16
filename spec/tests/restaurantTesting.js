@@ -24,6 +24,7 @@ describe('testing crud functionality for restaurants', function() {
     restaurant.cuisine =  "Italian";
     restaurant.website = "www.pepepizza.com";
     restaurant.phone = "839-838-1111";
+    restaurant.address = restaurant.street + ' ' + restaurant.city + ', ' + restaurant.state + ' ' + restaurant.zip;
   });
 
   it('should create a new record of a restaurant with all of the correct fields', function(done) {
@@ -38,6 +39,7 @@ describe('testing crud functionality for restaurants', function() {
       expect(obj.cuisine).to.be.a('string').and.equal("Italian");
       expect(obj.website).to.be.a('string').and.equal("www.pepepizza.com");
       expect(obj.phone).to.be.a('string').and.equal("839-838-1111");
+      expect(obj.address).to.be.a('string').and.equal("1 Pizza Way Los Angeles, California 90045");
       done();
     });
   });
@@ -57,6 +59,7 @@ describe('testing crud functionality for restaurants', function() {
         expect(obj.cuisine).to.be.a('string').and.equal("Italian");
         expect(obj.website).to.be.a('string').and.equal("www.pepepizza.com");
         expect(obj.phone).to.be.a('string').and.equal("839-838-1111");
+        expect(obj.address).to.be.a('string').and.equal("1 Pizza Way Los Angeles, California 90045");
         done();
       });
     });
@@ -77,6 +80,7 @@ describe('testing crud functionality for restaurants', function() {
         restaurant.cuisine =  "Burgers";
         restaurant.website = "www.junoburgers.com";
         restaurant.phone = "239-655-7277";
+        restaurant.address = restaurant.street + ' ' + restaurant.city + ', ' + restaurant.state + ' ' + restaurant.zip;
         restaurant.save(function(err,obj) {
           expect(err).to.be.null;
           expect(obj.name).to.be.a('string').and.equal("Juno Burgers");
@@ -88,6 +92,7 @@ describe('testing crud functionality for restaurants', function() {
           expect(obj.cuisine).to.be.a('string').and.equal("Burgers");
           expect(obj.website).to.be.a('string').and.equal("www.junoburgers.com");
           expect(obj.phone).to.be.a('string').and.equal("239-655-7277");
+          expect(obj.address).to.be.a('string').and.equal("123 Main St Redondo Beach, California 90277");
           done();
         });
       });
@@ -109,6 +114,7 @@ describe('testing crud functionality for restaurants', function() {
         expect(obj.cuisine).to.be.a('string').and.equal("Italian");
         expect(obj.website).to.be.a('string').and.equal("www.pepepizza.com");
         expect(obj.phone).to.be.a('string').and.equal("839-838-1111");
+        expect(obj.address).to.be.a('string').and.equal("1 Pizza Way Los Angeles, California 90045");
         done();
       });
     });

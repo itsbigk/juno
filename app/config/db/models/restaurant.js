@@ -9,12 +9,16 @@ RestaurantSchema = mongoose.model('Restaurant', {
                     type     : String,
                     required : true,
                  },
-  street      :  {
+  address     :  {
                   type     : String,
                   required : true,
                   index    : {
                               unique : true
                              }
+                 },
+  street      :  {
+                  type     : String,
+                  required : true
                  },
   state       :  {
                   type     : String,

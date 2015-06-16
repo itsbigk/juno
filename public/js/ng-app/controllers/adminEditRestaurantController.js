@@ -7,7 +7,6 @@ angular.module('Juno')
   Restaurant.get($stateParams.restaurant_id)
     .success(function(data) {
       $scope.formData = data;
-      // $scope.restaurantState = data.state;
     });
 
   // Clears error elements and error styling
@@ -18,7 +17,7 @@ angular.module('Juno')
 
     // function for editing restaurants
     // this will run when the ng-click function on the view happens
-    $scope.saveRestaurant = function(formData) {
+    $scope.saveRestaurant = function() {
 
       console.log($scope.formData);
 
