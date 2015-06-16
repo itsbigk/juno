@@ -1,18 +1,12 @@
 angular.module('Juno')
 
-.controller('editRestaurantController', ['$scope', 'Restaurant', '$stateParams', '$location', '$filter', function($scope, Restaurant, $stateParams, $location, $filter) {
+.controller('editRestaurantController', ['$scope', 'Restaurant', '$stateParams', '$location', function($scope, Restaurant, $stateParams, $location) {
 
   $scope.type = 'edit';
 
   Restaurant.get($stateParams.restaurant_id)
     .success(function(data) {
       $scope.formData = data;
-      // $scope.restaurantState = data.state;
-      $scope.formData.name = $filter('capitalize')($scope.formData.name);
-      $scope.formData.street = $filter('capitalize')($scope.formData.street);
-      $scope.formData.city = $filter('capitalize')($scope.formData.city);
-      $scope.formData.state = $filter('capitalize')($scope.formData.state);
-      $scope.formData.cuisine = $filter('capitalize')($scope.formData.cuisine);
     });
 
   // Clears error elements and error styling
@@ -24,13 +18,6 @@ angular.module('Juno')
     // function for editing restaurants
     // this will run when the ng-click function on the view happens
     $scope.saveRestaurant = function() {
-
-      // capitalizing some of the form fields for more consistent data
-      $scope.formData.name = $filter('capitalize')($scope.formData.name);
-      $scope.formData.street = $filter('capitalize')($scope.formData.street);
-      $scope.formData.city = $filter('capitalize')($scope.formData.city);
-      $scope.formData.state = $filter('capitalize')($scope.formData.state);
-      $scope.formData.cuisine = $filter('capitalize')($scope.formData.cuisine);
 
       console.log($scope.formData);
 
