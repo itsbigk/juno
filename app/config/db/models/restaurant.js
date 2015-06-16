@@ -9,26 +9,26 @@ RestaurantSchema = mongoose.model('Restaurant', {
                     type     : String,
                     required : true,
                  },
-  street      :  {
+  address     :  {
                   type     : String,
                   required : true,
                   index    : {
                               unique : true
                              }
                  },
-  state       :  {
-                  type     : String,
-                  required : true
-                 },
-  city        :  {
-                  type     : String,
-                  required : true
-                 },
-  zip         :  {
-                  type     : Number,
-                  required : true,
-                  message: "Must be a number"
-                 },
+  // state       :  {
+  //                 type     : String,
+  //                 required : true
+  //                },
+  // city        :  {
+  //                 type     : String,
+  //                 required : true
+  //                },
+  // zip         :  {
+  //                 type     : Number,
+  //                 required : true,
+  //                 message: "Must be a number"
+  //                },
   website     :  {
                   type : String,
                   required : false

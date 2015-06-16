@@ -31,10 +31,7 @@ module.exports = function(app, express) {
       // set the restaurant information (comes from the request)
       restaurant.name = req.body.name;
       restaurant.cuisine = req.body.cuisine;
-      restaurant.street = req.body.street;
-      restaurant.state = req.body.state;
-      restaurant.city = req.body.city;
-      restaurant.zip = req.body.zip;
+      restaurant.address = req.body.street + ' ' + req.body.city + ', ' + req.body.state + ' ' + req.body.zip
       restaurant.website = req.body.website;
       restaurant.phone = req.body.phone;
       restaurant.email = req.body.email;
