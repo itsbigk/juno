@@ -32,8 +32,13 @@ angular.module('Juno')
       controller  : 'createRestaurantController',
       templateUrl : 'partials/admin/restaurants/restaurant.html'
     })
-    .state('admin-edit-restaurant', {
+    .state('admin-view-restaurant', {
       url         : '/admin/restaurants/:restaurant_id',
+      controller  : 'viewRestaurantController',
+      templateUrl : 'partials/admin/restaurants/viewRestaurant.html'
+    })
+    .state('admin-edit-restaurant', {
+      url         : '/admin/restaurants/edit/:restaurant_id',
       controller  : 'editRestaurantController',
       templateUrl : 'partials/admin/restaurants/restaurant.html'
     });

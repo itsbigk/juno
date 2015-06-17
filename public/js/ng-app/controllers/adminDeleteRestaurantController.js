@@ -1,6 +1,6 @@
 angular.module('Juno')
 
-  .controller('deleteRestaurantController', ['$scope', 'Restaurant', '$stateParams', function($scope, Restaurant, $stateParams) {
+  .controller('deleteRestaurantController', ['$scope', 'Restaurant', '$stateParams', '$location', function($scope, Restaurant, $stateParams, $location) {
 
     $scope.type = 'delete';
 
@@ -9,6 +9,11 @@ angular.module('Juno')
       .success(function(data) {
         $scope.restaurants = data;
       });
+    };
+
+    $scope.go = function(restaurant) {
+      var hash = '/admin/restaurants/' + restaurant._id;
+      $location.path(hash);
     };
 
     $scope.deleteRestaurant = function(restaurant) {
