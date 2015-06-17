@@ -1,0 +1,26 @@
+<div class="page-header">
+  <h1> Restaurant </h1>
+</div>
+
+
+<div class="row">
+  <h2>{{restaurant.name | capitalize}}</h2>
+</div>
+<div class="row">
+  <p>{{restaurant.street | capitalize}}</p>
+</div>
+<div class="row">
+  <p>{{restaurant.city | capitalize}}, {{restaurant.state | uppercase}}, {{restaurant.zip}}</p>
+</div>
+<div class="row" ng-show="restaurant.phone">
+  <p>{{restaurant.phone}}</p>
+</div>
+<div class="row" ng-show="restaurant.website">
+  <p>{{restaurant.website}}</p>
+</div>
+<div class="row" ng-show="restaurant.email">
+  <p>{{restaurant.email}}</p>
+</div>
+<div class="row">
+  <p>{{restaurant.cuisine | capitalize}}</p>
+</div>
