@@ -1,9 +1,9 @@
 angular
   .module('Juno')
-  .controller('createRestaurantController', ['$scope', '$state', 'Restaurant', function($scope, $state, Restaurant) {
+  .controller('createRestaurantController', ['$scope', '$state', 'Restaurant', 'flash', function($scope, $state, Restaurant, flash) {
 
+  $scope.flash = flash;
   $scope.type = 'create';
-
   // empty object for form data to create new restaurants
   $scope.formData = {};
 
@@ -17,11 +17,7 @@ angular
   // this will run when the ng-click function on the view happens
   $scope.saveRestaurant = function() {
 
-    console.log($scope.formData);
-
     $scope.processing = true;
-
-    $scope.message = '';
 
     Restaurant.create($scope.formData)
       .success(function(data) {
@@ -31,19 +27,20 @@ angular
         $scope.processing = false;
 
         if (data.errors === undefined) {
-          $scope.message = data.message;
+          console.log("runs if");
+          flash.setMessage(data.message);
           $scope.formData = {};
           // Clears all error styling for new form load
           clearErrorStyling();
         }
         else {
-
+          console.log("runs else");          
           console.log(data);
           // Clear previous errors in case user has fixed some fields
           clearErrorStyling();
           // Each key in errors is the name associated with an input ID. Loops through all keys to get all the error fields
           for (var key in data.errors) {
-            $scope.message = data.message;
+            flash.setMessage(data.message);
             // Removes unwanted characters from error messages for more user-friendly messages
             var errorMessage = data.errors[key].message.replace(/Path|`/g, '').trim(),
                 errorElementId = "#" + key;
@@ -57,7 +54,9 @@ angular
         }
       })
       .error(function(err){
-        $scope.message = err.message;
+        flash.setMessage("Temporary Error Message");
       });
+      // Reload the template after any result to show flash message
+      $state.go('admin-restaurant-new', {}, {reload: true});
   };
 }]);
