@@ -1,5 +1,5 @@
 angular.module('Juno')
 
-.controller('homeController', ['$scope', function($scope) {
-  $scope.hey = 'hey';
+.controller('homeController', ['$scope', 'flash', function($scope, flash) {
+  $scope.flash = flash;
 }]);
