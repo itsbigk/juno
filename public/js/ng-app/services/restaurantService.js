@@ -14,6 +14,9 @@ angular.module('Juno')
     update : function(id, restaurantForm) {
       return $http.put('/api/restaurants/' + id, restaurantForm);
     },
+    archive : function(id, restaurantForm) {
+      return $http.patch('/api/restaurants/' + id, restaurantForm);
+    },
     delete : function(id) {
       return $http.delete('/api/restaurants/' + id);
     }
