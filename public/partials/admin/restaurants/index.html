@@ -32,12 +32,12 @@
         <!-- <td>{{restaurant._id}}</td> -->
         <!-- @TODO eliminating archived listings is still not working -->
         <div>
-          <td>{{restaurant.name | capitalize}}</td>
-          <td>{{restaurant.street | capitalize}}</td>
-          <td>{{restaurant.cuisine | capitalize}}</td>
+          <td ng-click="go(restaurant)">{{restaurant.name | capitalize}}</td>
+          <td ng-click="go(restaurant)">{{restaurant.street | capitalize}}</td>
+          <td ng-click="go(restaurant)">{{restaurant.cuisine | capitalize}}</td>
         </div>
         <td class="col-sm-2">
-          <a href="/#/admin/restaurants/{{restaurant._id}}" ng-if="type == 'list'" class="btn btn-danger">Edit</a>
+          <a href="/#/admin/restaurants/edit/{{restaurant._id}}" ng-if="type == 'list'" class="btn btn-danger">Edit</a>
           <a confirm-click="archiveListing(restaurant._id)" ng-if="type == 'list'" class="btn btn-danger" confirmation="Do you really want to archive?">Archive</a>
           <a confirm-click="deleteRestaurant(restaurant._id)" ng-if="type == 'delete'" class="btn btn-danger" confirmation="Do you really want to delete?">Delete</a>
         </td>

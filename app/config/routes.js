@@ -49,7 +49,7 @@ module.exports = function(app, express) {
         if (err) {
           // duplicate entry
           if (err.code == 11000)
-            return res.status(400).send({ success: false, message: 'Restaurant street already exists.', restaurant_id: restaurant._id});
+            return res.status(400).send({ success: false, message: 'Restaurant already exists.', restaurant_id: restaurant._id});
           else
             return res.send(err);
         }
@@ -91,18 +91,29 @@ module.exports = function(app, express) {
         if (req.body.email != restaurant.email) restaurant.email = req.body.email;
         if (req.body.archived) restaurant.archived = req.body.archived;
 
+        console.log(req.body);
         // save the restaurant
-        restaurant.save(function(err) {
-        if (err) {
-          if (err.code == 11000)
-            return res.status(400).send({ success: false, message: 'Restaurant validation failed.'});
-          else
-            res.status(400).send(err);
-        } else {
+        restaurant.save(req.body, function(err) {
+          console.log(err);
+        if (err) return res.status(400).send( { success: false, message: 'Restaurant validation failed.', errors: err.errors});
+
             // return a message
             res.json({ message: 'Restaurant updated!' });
-          };
         });
+      });
+    })
+
+    .patch(function(req, res) {
+      Restaurant.findById(req.params.restaurant_id, function(err, restaurant) {
+        if (err) res.status(404).send(err);
+        if (restaurant === null) return res.status(404).send(err);
+
+        restaurant.update({archived: true}, function(err) {
+
+            if (err) return res.status(400).send({ success: false, message: 'Restaurant was not archived.'});
+
+            res.json({ message: 'Restaurant archived!' });
+          });
       });
     })
 

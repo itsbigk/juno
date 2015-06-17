@@ -38,6 +38,8 @@ angular.module('Juno')
           }
         })
         .error(function(err){
+          $scope.message = err.message;
+
           // Clear previous errors in case user has fixed some fields
           clearErrorStyling();
           // Each key in errors is the name associated with an input ID. Loops through all keys to get all the error fields
