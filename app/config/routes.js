@@ -105,7 +105,6 @@ module.exports = function(app, express) {
 
     .patch(function(req, res) {
       Restaurant.findById(req.params.restaurant_id, function(err, restaurant) {
-        console.log(restaurant);
         if (err) res.status(404).send(err);
         if (restaurant === null) return res.status(404).send(err);
 
