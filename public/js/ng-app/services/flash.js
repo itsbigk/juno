@@ -11,11 +11,9 @@ angular.module('Juno')
   return {
     setMessage: function(message) {
       queue.push(message);
-      console.log(message);
     },
     getMessage: function() {
       return currentMessage;
-      console.log(message);
     }
   };
 });
