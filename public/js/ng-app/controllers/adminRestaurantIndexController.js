@@ -15,13 +15,13 @@ angular.module('Juno')
   };
 
   $scope.archiveListing = function(restaurant) {
-    Restaurant.update(restaurant, {archived: true})
+    Restaurant.archive(restaurant)
       .success(function(data) {
-        $scope.message = 'Restaurant archived successfully!';
+        $scope.message = data.message;
         getRestaurants();
       })
       .error(function(err) {
-        $scope.message = 'Restaurant was not archived';
+        $scope.message = err.message;
       });
   };
 
