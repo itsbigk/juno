@@ -30,12 +30,12 @@ module.exports = function(app, express) {
 
       // set the restaurant information (comes from the request)
       // making all of the address and cuisine fields lowercase for more consistent data
-      restaurant.name = req.body.name.toLowerCase();
-      restaurant.cuisine = req.body.cuisine.toLowerCase();
-      restaurant.address = req.body.street.toLowerCase() + ' ' + req.body.city.toLowerCase() + ', ' + req.body.state.toLowerCase() + ' ' + req.body.zip
-      restaurant.street = req.body.street.toLowerCase();
-      restaurant.city = req.body.city.toLowerCase();
-      restaurant.state = req.body.state.toLowerCase();
+      if (req.body.name != undefined) restaurant.name = req.body.name.toLowerCase();
+      if (req.body.cuisine != undefined) restaurant.cuisine = req.body.cuisine.toLowerCase();
+      if (req.body.street != undefined && req.body.city != undefined) restaurant.address = req.body.street.toLowerCase() + ' ' + req.body.city.toLowerCase() + ', ' + req.body.state.toLowerCase() + ' ' + req.body.zip
+      if (req.body.street != undefined) restaurant.street = req.body.street.toLowerCase();
+      if (req.body.city != undefined) restaurant.city = req.body.city.toLowerCase();
+      if (req.body.state != undefined) restaurant.state = req.body.state.toLowerCase();
       restaurant.zip = req.body.zip;
       restaurant.website = req.body.website;
       restaurant.phone = req.body.phone;
@@ -80,7 +80,7 @@ module.exports = function(app, express) {
         // update the restaurant's info only if it's new
         // changing all of the address and cuising fields to be all lowercase to have more consistent data
         if (req.body.name != restaurant.name) restaurant.name = req.body.name;
-        if (req.body.street != restaurant.street && req.body.city != restaurant.city && req.body.state != restaurant.state && req.body.zip != restaurant.zip) restaurant.address = req.body.street.toLowerCase() + ' ' + req.body.city.toLowerCase() + ', ' + req.body.state.toLowerCase() + ' ' + req.body.zip
+        if (req.body.street != restaurant.street || req.body.city != restaurant.city || req.body.state != restaurant.state || req.body.zip != restaurant.zip) restaurant.address = req.body.street.toLowerCase() + ' ' + req.body.city.toLowerCase() + ', ' + req.body.state.toLowerCase() + ' ' + req.body.zip
         if (req.body.street != restaurant.street) restaurant.street = req.body.street.toLowerCase();
         if (req.body.city != restaurant.city) restaurant.city = req.body.city.toLowerCase();
         if (req.body.state != restaurant.state) restaurant.state = req.body.state.toLowerCase();
@@ -94,11 +94,15 @@ module.exports = function(app, express) {
         console.log(req.body);
         // save the restaurant
         restaurant.save(req.body, function(err) {
-          console.log(err);
-        if (err) return res.status(400).send( { success: false, message: 'Restaurant validation failed.', errors: err.errors});
-
-            // return a message
-            res.json({ message: 'Restaurant updated!' });
+          if (err) {
+            // duplicate entry
+            if (err.code == 11000)
+              return res.status(400).send({ success: false, message: 'Restaurant already exists.'});
+            else
+              return res.send(err);
+          }
+          // return a message
+          res.json({ message: 'Restaurant updated!' });
         });
       });
     })

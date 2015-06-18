@@ -13,6 +13,21 @@ angular
     $(".error-message").remove();
   }
 
+  function addErrorStyling(data) {
+    // Each key in errors is the name associated with an input ID. Loops through all keys to get all the error fields
+    for (var key in data.errors) {
+      // Removes unwanted characters from error messages for more user-friendly messages
+      var errorMessage = data.errors[key].message.replace(/Path|`/g, '').trim(),
+          errorElementId = "#" + key;
+      // Checks to make sure that an error message is not applied more than once
+      if ( !$(errorElementId).hasClass("error") ){
+        console.log("has error: " + errorElementId);
+        $(errorElementId + "-container").append("<div class='error-message'>" + errorMessage  + "</div>");
+      }
+      $(errorElementId).addClass("error");
+    }
+  }
+
   // function for creating new restaurants
   // this will run when the ng-click function on the view happens
   $scope.saveRestaurant = function() {
@@ -21,42 +36,29 @@ angular
 
     Restaurant.create($scope.formData)
       .success(function(data) {
-        console.log("success!");
-        console.log("data: ", data);
 
         $scope.processing = false;
 
         if (data.errors === undefined) {
-          console.log("runs if");
           flash.setMessage(data.message);
           $scope.formData = {};
-          // Clears all error styling for new form load
           clearErrorStyling();
+          // Reload the template after any result to show flash confirmation message
+          $state.go('admin-restaurant-new', {}, {reload: true});
         }
         else {
-          console.log("runs else");          
-          console.log(data);
-          // Clear previous errors in case user has fixed some fields
           clearErrorStyling();
-          // Each key in errors is the name associated with an input ID. Loops through all keys to get all the error fields
-          for (var key in data.errors) {
-            flash.setMessage(data.message);
-            // Removes unwanted characters from error messages for more user-friendly messages
-            var errorMessage = data.errors[key].message.replace(/Path|`/g, '').trim(),
-                errorElementId = "#" + key;
-            // Checks to make sure that an error message is not applied more than once
-            if ( !$(errorElementId).hasClass("error") ){
-              console.log("has error: " + errorElementId);
-              $(errorElementId + "-container").append("<div class='error-message'>" + errorMessage  + "</div>");
-            }
-            $(errorElementId).addClass("error");
-          }
+          addErrorStyling(data);
         }
       })
       .error(function(err){
-        flash.setMessage("Temporary Error Message");
+        if (err.errors) {
+          addErrorStyling(err);
+        } else {
+          flash.setMessage(err.message);
+          // Reload the template after any result to show flash duplicate record error message
+          $state.go('admin-restaurant-new', {}, {reload: true});
+        }
       });
-      // Reload the template after any result to show flash message
-      $state.go('admin-restaurant-new', {}, {reload: true});
   };
 }]);

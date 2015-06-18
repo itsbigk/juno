@@ -15,10 +15,8 @@
 </head>
 <body ng-app="Juno" ng-controller="homeController">
 
-  <div class="row show-hide-message" ng-show="flash.getMessage()">
-   <div class="col-xs-12 col-md-6">
+  <div class="container form-group show-hide-message" ng-show="flash.getMessage()">
      <div class="alert alert-info">{{flash.getMessage()}}</div>
-   </div>
   </div>
 
   <div class="container">
