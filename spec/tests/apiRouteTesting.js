@@ -64,14 +64,14 @@ describe('Routing', function() {
     var restaurantTwo = null;
     before(function() {
       restaurant = new Restaurant();
-      restaurant.name = "Pepe's Pizza";
-      restaurant.cuisine =  "Italian";
-      restaurant.website = "www.pepepizza.com";
-      restaurant.phone = "839-838-1111";
-      restaurant.street =  "8 Pizza Way";
+      restaurant.name = "Jim's Hotdogs";
+      restaurant.cuisine =  "American";
+      restaurant.website = "www.jimshd.com";
+      restaurant.phone = "839-838-1234";
+      restaurant.street =  "9 Doggie Way";
       restaurant.state =  "California";
       restaurant.city =  "Los Angeles";
-      restaurant.zip =  90045;
+      restaurant.zip =  90048;
 
       restaurantTwo = new Restaurant();
       restaurantTwo.name = "Jane's Diner";
@@ -106,7 +106,7 @@ describe('Routing', function() {
       });
     });
 
-    it('should not update a restaurant if another has the same street', function(done) {
+    it('should not update a restaurant if another has the same address', function(done) {
       request
       .post(restaurantsURL)
       .send(restaurant)
@@ -119,7 +119,10 @@ describe('Routing', function() {
         .end(function(err, res) {
           expect(res.statusCode).to.equal(200);
           var secondRestaurantId = res.body.restaurant_id;
-          restaurantTwo.street = "8 Pizza Way";
+          restaurantTwo.street = "9 Doggie Way";
+          restaurantTwo.state =  "California";
+          restaurantTwo.city =  "Los Angeles";
+          restaurantTwo.zip =  90048;
           request
           .put(restaurantsURL + secondRestaurantId)
           .send(restaurantTwo)
