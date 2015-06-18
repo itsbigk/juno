@@ -80,7 +80,7 @@ module.exports = function(app, express) {
         // update the restaurant's info only if it's new
         // changing all of the address and cuising fields to be all lowercase to have more consistent data
         if (req.body.name != restaurant.name) restaurant.name = req.body.name;
-        if (req.body.street != restaurant.street && req.body.city != restaurant.city && req.body.state != restaurant.state && req.body.zip != restaurant.zip) restaurant.address = req.body.street.toLowerCase() + ' ' + req.body.city.toLowerCase() + ', ' + req.body.state.toLowerCase() + ' ' + req.body.zip
+        if (req.body.street != restaurant.street || req.body.city != restaurant.city || req.body.state != restaurant.state || req.body.zip != restaurant.zip) restaurant.address = req.body.street.toLowerCase() + ' ' + req.body.city.toLowerCase() + ', ' + req.body.state.toLowerCase() + ' ' + req.body.zip
         if (req.body.street != restaurant.street) restaurant.street = req.body.street.toLowerCase();
         if (req.body.city != restaurant.city) restaurant.city = req.body.city.toLowerCase();
         if (req.body.state != restaurant.state) restaurant.state = req.body.state.toLowerCase();
@@ -94,11 +94,15 @@ module.exports = function(app, express) {
         console.log(req.body);
         // save the restaurant
         restaurant.save(req.body, function(err) {
-          console.log(err);
-        if (err) return res.status(400).send( { success: false, message: 'Restaurant validation failed.', errors: err.errors});
-
-            // return a message
-            res.json({ message: 'Restaurant updated!' });
+          if (err) {
+            // duplicate entry
+            if (err.code == 11000)
+              return res.status(400).send({ success: false, message: 'Restaurant already exists.'});
+            else
+              return res.send(err);
+          }
+          // return a message
+          res.json({ message: 'Restaurant updated!' });
         });
       });
     })
