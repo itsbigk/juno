@@ -21,7 +21,7 @@ beforeEach(function (done) {
  }
 
  if (mongoose.connection.readyState === 0) {
-   mongoose.connect(config.db.test, function (err) {
+   mongoose.connect(process.env.MONGOLAB_TEST_URI || config.db.test, function (err) {
      if (err) {
        throw err;
      }

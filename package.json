@@ -7,7 +7,7 @@
   },
   "main": "server.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha spec",
+    "test": "./node_modules/.bin/mocha spec/tests",
     "postinstall": "bower install"
   },
   "repository": {
