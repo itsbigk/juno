@@ -30,12 +30,12 @@ module.exports = function(app, express) {
 
       // set the restaurant information (comes from the request)
       // making all of the address and cuisine fields lowercase for more consistent data
-      restaurant.name = req.body.name.toLowerCase();
-      restaurant.cuisine = req.body.cuisine.toLowerCase();
-      restaurant.address = req.body.street.toLowerCase() + ' ' + req.body.city.toLowerCase() + ', ' + req.body.state.toLowerCase() + ' ' + req.body.zip
-      restaurant.street = req.body.street.toLowerCase();
-      restaurant.city = req.body.city.toLowerCase();
-      restaurant.state = req.body.state.toLowerCase();
+      if (req.body.name != undefined) restaurant.name = req.body.name.toLowerCase();
+      if (req.body.cuisine != undefined) restaurant.cuisine = req.body.cuisine.toLowerCase();
+      if (req.body.street != undefined && req.body.city != undefined) restaurant.address = req.body.street.toLowerCase() + ' ' + req.body.city.toLowerCase() + ', ' + req.body.state.toLowerCase() + ' ' + req.body.zip
+      if (req.body.street != undefined) restaurant.street = req.body.street.toLowerCase();
+      if (req.body.city != undefined) restaurant.city = req.body.city.toLowerCase();
+      if (req.body.state != undefined) restaurant.state = req.body.state.toLowerCase();
       restaurant.zip = req.body.zip;
       restaurant.website = req.body.website;
       restaurant.phone = req.body.phone;

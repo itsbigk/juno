@@ -44,7 +44,7 @@ angular.module('Juno')
           clearErrorStyling();
           // Each key in errors is the name associated with an input ID. Loops through all keys to get all the error fields
           for (var key in err.errors) {
-            flash.setMessage(err.message);
+            // flash.setMessage(err.message);
             // Removes unwanted characters from error messages for more user-friendly messages
             var errorMessage = err.errors[key].message.replace(/Path|`/g, '').trim(),
                 errorElementId = "#" + key;
@@ -55,7 +55,7 @@ angular.module('Juno')
             }
             $(errorElementId).addClass("error");
             // Reloads the state to display flash errors
-            $state.go("admin-edit-restaurant", {}, {reload: true});
+            // $state.go("admin-edit-restaurant", {}, {reload: true});
           }
         });
     };
