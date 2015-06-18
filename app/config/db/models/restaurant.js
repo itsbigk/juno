@@ -48,7 +48,14 @@ RestaurantSchema = mongoose.model('Restaurant', {
   archived    :  {
                   type     : Boolean,
                   required : false
-                 }
+                 },
+  menuItems   : [{
+                  name: String,
+                  price: Number,
+                  description: String,
+                  imageURL: String,
+                  required: false
+                }]
 });
 
 module.exports = mongoose.model('Restaurant', RestaurantSchema);

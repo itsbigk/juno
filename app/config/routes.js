@@ -91,10 +91,8 @@ module.exports = function(app, express) {
         if (req.body.email != restaurant.email) restaurant.email = req.body.email;
         if (req.body.archived) restaurant.archived = req.body.archived;
 
-        console.log(req.body);
         // save the restaurant
         restaurant.save(req.body, function(err) {
-          console.log(err);
         if (err) return res.status(400).send( { success: false, message: 'Restaurant validation failed.', errors: err.errors});
 
             // return a message
