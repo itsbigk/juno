@@ -39,4 +39,4 @@ function adminRestaurantIndex ($scope, Restaurant, $location, flash, $state) {
   };
 
   getRestaurants();
-};
+}
