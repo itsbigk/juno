@@ -25,6 +25,7 @@ describe('testing crud functionality for restaurants', function() {
     restaurant.website = "www.pepepizza.com";
     restaurant.phone = "839-838-1111";
     restaurant.address = restaurant.street + ' ' + restaurant.city + ', ' + restaurant.state + ' ' + restaurant.zip;
+    restaurant.archived = false;
   });
 
   it('should create a new record of a restaurant with all of the correct fields', function(done) {
@@ -40,6 +41,7 @@ describe('testing crud functionality for restaurants', function() {
       expect(obj.website).to.be.a('string').and.equal("www.pepepizza.com");
       expect(obj.phone).to.be.a('string').and.equal("839-838-1111");
       expect(obj.address).to.be.a('string').and.equal("1 Pizza Way Los Angeles, California 90045");
+      expect(obj.archived).to.be.a('boolean').and.equal(false);
       done();
     });
   });
