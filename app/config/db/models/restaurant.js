@@ -50,10 +50,10 @@ RestaurantSchema = mongoose.model('Restaurant', {
                   required : false
                  },
   menuItems   : [{
-                  name: String,
-                  price: Number,
-                  description: String,
-                  imageURL: String,
+                  name: { type: String, required: true },
+                  price: { type: Number, required: true },
+                  description: { type: String, required: true },
+                  imageURL: { type: String, required: true },
                   required: false
                 }]
 });

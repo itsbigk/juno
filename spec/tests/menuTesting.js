@@ -51,4 +51,12 @@ describe('testing crud functionality for menuItems', function() {
     });
   });
 
+  it('should have an error when trying to create a restaurant with a menu item without a name field', function(done) {
+    restaurant.menuItems[1].name = null;
+    restaurant.save(function(err, obj) {
+      expect(err.name).to.equal('ValidationError');
+      done();
+    });
+  });
+
 });
