@@ -1,6 +1,10 @@
-angular.module('Juno')
+angular
+  .module('Juno')
+  .controller('viewRestaurantController', viewRestaurantController);
 
-.controller('viewRestaurantController', ['$scope', 'Restaurant', '$stateParams', '$location', function($scope, Restaurant, $stateParams, $location) {
+viewRestaurantController.$inject =  ['$scope', 'Restaurant', '$stateParams', '$location'];
+
+function viewRestaurantController($scope, Restaurant, $stateParams, $location) {
 
   $scope.type = 'view';
 
@@ -9,4 +13,4 @@ angular.module('Juno')
     $scope.restaurant = data;
   });
 
-}]);
+}

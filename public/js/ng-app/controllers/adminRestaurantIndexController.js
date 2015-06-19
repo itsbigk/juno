@@ -1,9 +1,12 @@
-angular.module('Juno')
+angular
+  .module('Juno')
+  .controller('adminRestaurantIndex', adminRestaurantIndex);
 
-.controller('adminRestaurantIndex', ['$scope', 'Restaurant', '$location', function($scope, Restaurant, $location) {
+adminRestaurantIndex.$inject = ['$scope', '$location', 'Restaurant'];
+
+function adminRestaurantIndex($scope, $location, Restaurant) {
 
   $scope.type = 'list';
-
   $scope.message = '';
 
   // get all restaurants
@@ -15,7 +18,6 @@ angular.module('Juno')
   };
 
   $scope.go = function(restaurant) {
-    console.log(restaurant);
     var hash = '/admin/restaurants/' + restaurant._id;
     $location.path(hash);
   };
@@ -32,4 +34,5 @@ angular.module('Juno')
   };
 
   getRestaurants();
-}]);
+
+}

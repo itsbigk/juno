@@ -1,7 +1,10 @@
 angular
   .module('Juno')
-  .controller('createRestaurantController', ['$scope', '$state', 'Restaurant', 'flash', function($scope, $state, Restaurant, flash) {
+  .controller('createRestaurantController', createRestaurantController);
 
+createRestaurantController.$inject = ['$scope', '$state', 'Restaurant', 'flash', 'Upload'];
+
+function createRestaurantController($scope, $state, Restaurant, flash, Upload) {
   $scope.flash = flash;
   $scope.type = 'create';
   // empty object for form data to create new restaurants
@@ -28,8 +31,30 @@ angular
     }
   }
 
-  // function for creating new restaurants
-  // this will run when the ng-click function on the view happens
+  // Uploads images
+  $scope.$watch('files', function () {
+      $scope.upload($scope.files);
+  });
+
+  $scope.upload = function (files) {
+      if (files && files.length) {
+          for (var i = 0; i < files.length; i++) {
+              var file = files[i];
+              Upload.upload({
+                  url: 'upload/url',
+                  fields: {'username': $scope.username},
+                  file: file
+              }).progress(function (evt) {
+                  var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                  console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+              }).success(function (data, status, headers, config) {
+                  console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+              });
+          }
+      }
+  };
+
+  // Creates new restaurant. Runs when the ng-click function on the view happens
   $scope.saveRestaurant = function() {
 
     $scope.processing = true;
@@ -61,4 +86,4 @@ angular
         }
       });
   };
-}]);
+}

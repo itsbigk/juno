@@ -1,5 +1,9 @@
-angular.module('Juno')
+angular
+  .module('Juno')
+  .controller('homeController', homeController);
 
-.controller('homeController', ['$scope', 'flash', function($scope, flash) {
+homeController.$inject = ['$scope', 'flash'];
+
+function homeController($scope, flash) {
   $scope.flash = flash;
-}]);
+}

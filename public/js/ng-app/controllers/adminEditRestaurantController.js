@@ -1,7 +1,10 @@
-angular.module('Juno')
+angular
+  .module('Juno')
+  .controller('editRestaurantController', editRestaurantController);
 
-.controller('editRestaurantController', ['$scope', 'Restaurant', '$stateParams', '$location', 'flash', '$state', function($scope, Restaurant, $stateParams, $location, flash, $state) {
+editRestaurantController.$inject = ['$scope', 'Restaurant', '$stateParams', '$location', 'flash', '$state'];
 
+function editRestaurantController($scope, Restaurant, $stateParams, $location, flash, $state) {
   $scope.flash = flash;
   $scope.type = 'edit';
 
@@ -31,8 +34,7 @@ angular.module('Juno')
     }
   }
 
-  // function for editing restaurants
-  // this will run when the ng-click function on the view happens
+  // Edits restaurant. Runs when the ng-click function on the view happens
   $scope.saveRestaurant = function() {
 
     $scope.processing = true;
@@ -63,4 +65,4 @@ angular.module('Juno')
         }
       });
   };
-}]);
+}
