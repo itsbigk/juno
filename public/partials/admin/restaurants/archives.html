@@ -16,16 +16,14 @@
   </thead>
   <tbody>
     <!-- LOOP OVER THE RESTAURANTS -->
-    <tr ng-repeat="restaurant in restaurants | filter:searchText | filter:archived === false">
+    <tr ng-repeat="restaurant in restaurants | filter:searchText | filter:archived === true">
         <div>
           <td ng-click="go(restaurant)">{{restaurant.name | capitalize}}</td>
           <td ng-click="go(restaurant)">{{restaurant.street | capitalize}}</td>
           <td ng-click="go(restaurant)">{{restaurant.cuisine | capitalize}}</td>
         </div>
         <td class="col-sm-2">
-          <a href="/#/admin/restaurants/edit/{{restaurant._id}}" ng-if="type == 'list'" class="btn btn-danger">Edit</a>
-          <a confirm-click="archiveListing(restaurant._id)" ng-if="type == 'list'" class="btn btn-danger" confirmation="Do you really want to archive?">Archive</a>
-          <a confirm-click="deleteRestaurant(restaurant._id)" ng-if="type == 'delete'" class="btn btn-danger" confirmation="Do you really want to delete?">Delete</a>
+          <a confirm-click="restoreListing(restaurant._id)" class="btn btn-danger" confirmation="Do you really want to restore?">Restore</a>
         </td>
     </tr>
   </tbody>

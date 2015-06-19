@@ -22,6 +22,11 @@ angular.module('Juno')
       controller  : 'adminRestaurantIndex',
       templateUrl : 'partials/admin/restaurants/index.html'
     })
+    .state('admin-archive-list', {
+      url         : '/admin/restaurants/archive',
+      controller  : 'adminArchiveList',
+      templateUrl : 'partials/admin/restaurants/archives.html'
+    })
     .state('admin-delete-restaurants', {
       url         : '/admin/restaurants/delete',
       controller  : 'deleteRestaurantController',
@@ -42,5 +47,4 @@ angular.module('Juno')
       controller  : 'editRestaurantController',
       templateUrl : 'partials/admin/restaurants/restaurant.html'
     });
-
 }]);

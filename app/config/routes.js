@@ -112,12 +112,21 @@ module.exports = function(app, express) {
         if (err) res.status(404).send(err);
         if (restaurant === null) return res.status(404).send(err);
 
-        restaurant.update({archived: true}, function(err) {
+        if (restaurant.archived === false) {
+          restaurant.update({archived: true}, function(err) {
 
             if (err) return res.status(400).send({ success: false, message: 'Restaurant was not archived.'});
 
             res.json({ message: 'Restaurant archived!' });
           });
+        } else {
+          restaurant.update({archived: false}, function(err) {
+
+            if (err) return res.status(400).send({ success: false, message: 'Restaurant was not restored.'});
+
+            res.json({ message: 'Restaurant restored!' });
+          });
+        }
       });
     })
 
