@@ -5,7 +5,7 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Name</th> <th>Address</th> <th>Cuisine</th>
+      <th>Name</th> <th>Address</th> <th>Cuisine</th> <th>Archive Date</th>
       <th class="col-sm-2"></th>
     </tr>
   </thead>
@@ -16,6 +16,7 @@
           <td ng-click="go(restaurant)">{{restaurant.name | capitalize}}</td>
           <td ng-click="go(restaurant)">{{restaurant.street | capitalize}}</td>
           <td ng-click="go(restaurant)">{{restaurant.cuisine | capitalize}}</td>
+          <td ng-click="go(restaurant)">{{restaurant.archiveDate | date}}</td>
         </div>
         <td class="col-sm-2">
           <a confirm-click="restoreListing(restaurant._id)" class="btn btn-danger" confirmation="Do you really want to restore?">Restore</a>

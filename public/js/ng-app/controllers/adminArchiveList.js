@@ -24,7 +24,7 @@ angular.module('Juno')
     };
 
     $scope.restoreListing = function(restaurant) {
-      Restaurant.archive(restaurant, {archived: false})
+      Restaurant.archive(restaurant, {archived: false, archiveDate: ''})
         .success(function(data) {
           flash.setMessage(data.message);
           $state.go('admin-archive-list', {}, {reload: true});

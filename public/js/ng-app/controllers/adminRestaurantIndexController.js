@@ -26,7 +26,7 @@ function adminRestaurantIndex ($scope, Restaurant, $location, flash, $state) {
   };
 
   $scope.archiveListing = function(restaurant) {
-    Restaurant.archive(restaurant, {archived: true})
+    Restaurant.archive(restaurant, {archived: true, archiveDate: Date.now()})
       .success(function(data) {
         flash.setMessage(data.message);
         $state.go('admin-restaurant-index', {}, {reload: true});

@@ -49,6 +49,10 @@ RestaurantSchema = mongoose.model('Restaurant', {
                   type     : Boolean,
                   required : false
                  },
+  archiveDate :  {
+                  type: String,
+                  required: false
+                 },
   menuItems   : [{
                   name: { type: String, required: true },
                   price: { type: Number, required: true },
