@@ -41,7 +41,7 @@ module.exports = function(app, express) {
       restaurant.phone = req.body.phone;
       restaurant.email = req.body.email;
       restaurant.archived = false;
-
+      restaurant.menuItems = req.body.menuItems;
 
 
       // save the restaurant and check for errors
@@ -59,7 +59,7 @@ module.exports = function(app, express) {
     });
 
   apiRouter.route('/restaurants/:restaurant_id')
-
+ 
     // get the restaurant with that id
     .get(function(req, res) {
       Restaurant.findById(req.params.restaurant_id, function(err, restaurant) {
