@@ -1,1 +1,1 @@
-angular.module('Juno', ['ui.router', 'ngFileUpload']);
+angular.module('Juno', ['ui.router']);
