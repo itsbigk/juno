@@ -2,12 +2,16 @@ angular
   .module('Juno')
   .controller('adminRestaurantIndex', adminRestaurantIndex);
 
-adminRestaurantIndex.$inject = ['$scope', '$location', 'Restaurant'];
+.controller('adminRestaurantIndex', adminRestaurantIndex);
 
-function adminRestaurantIndex($scope, $location, Restaurant) {
+adminRestaurantIndex.$inject =  ['$scope', 'Restaurant', '$location', 'flash', '$state'];
+
+
+function adminRestaurantIndex ($scope, Restaurant, $location, flash, $state) {
 
   $scope.type = 'list';
-  $scope.message = '';
+
+  $scope.flash = flash;
 
   // get all restaurants
   var getRestaurants = function() {
@@ -23,16 +27,17 @@ function adminRestaurantIndex($scope, $location, Restaurant) {
   };
 
   $scope.archiveListing = function(restaurant) {
-    Restaurant.archive(restaurant)
+    Restaurant.archive(restaurant, {archived: true, archiveDate: Date.now()})
       .success(function(data) {
-        $scope.message = data.message;
+        flash.setMessage(data.message);
+        $state.go('admin-restaurant-index', {}, {reload: true});
         getRestaurants();
       })
       .error(function(err) {
-        $scope.message = err.message;
+        flash.setMessage(err.message);
+        $state.go('admin-restaurant-index', {}, {reload: true});
       });
   };
 
   getRestaurants();
-
 }

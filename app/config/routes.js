@@ -41,7 +41,7 @@ module.exports = function(app, express) {
       restaurant.phone = req.body.phone;
       restaurant.email = req.body.email;
       restaurant.archived = false;
-
+      restaurant.menuItems = req.body.menuItems;
 
 
       // save the restaurant and check for errors
@@ -59,7 +59,7 @@ module.exports = function(app, express) {
     });
 
   apiRouter.route('/restaurants/:restaurant_id')
-
+ 
     // get the restaurant with that id
     .get(function(req, res) {
       Restaurant.findById(req.params.restaurant_id, function(err, restaurant) {
@@ -91,7 +91,6 @@ module.exports = function(app, express) {
         if (req.body.email != restaurant.email) restaurant.email = req.body.email;
         if (req.body.archived) restaurant.archived = req.body.archived;
 
-        console.log(req.body);
         // save the restaurant
         restaurant.save(req.body, function(err) {
           if (err) {
@@ -112,12 +111,17 @@ module.exports = function(app, express) {
         if (err) res.status(404).send(err);
         if (restaurant === null) return res.status(404).send(err);
 
-        restaurant.update({archived: true}, function(err) {
-
+        restaurant.update(req.body, function(err) {
+          if (req.body.archived === true) {
             if (err) return res.status(400).send({ success: false, message: 'Restaurant was not archived.'});
 
             res.json({ message: 'Restaurant archived!' });
-          });
+          } else {
+              if (err) return res.status(400).send({ success: false, message: 'Restaurant was not restored.'});
+
+              res.json({ message: 'Restaurant restored!' });
+          }
+        });
       });
     })
 
