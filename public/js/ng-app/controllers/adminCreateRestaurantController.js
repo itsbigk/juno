@@ -1,7 +1,11 @@
 angular
   .module('Juno')
-  .controller('createRestaurantController', ['$scope', '$state', 'Restaurant', 'flash', function($scope, $state, Restaurant, flash) {
+  .controller('createRestaurantController', createRestaurantController);
 
+createRestaurantController.$inject = ['$scope', '$state', 'Restaurant', 'flash'];
+
+function createRestaurantController($scope, $state, Restaurant, flash, Upload) {
+  $scope.$on('$viewContentLoaded', formImageInput);
   $scope.flash = flash;
   $scope.type = 'create';
   // empty object for form data to create new restaurants
@@ -28,8 +32,7 @@ angular
     }
   }
 
-  // function for creating new restaurants
-  // this will run when the ng-click function on the view happens
+  // Creates new restaurant. Runs when the ng-click function on the view happens
   $scope.saveRestaurant = function() {
 
     $scope.processing = true;
@@ -61,4 +64,4 @@ angular
         }
       });
   };
-}]);
+}

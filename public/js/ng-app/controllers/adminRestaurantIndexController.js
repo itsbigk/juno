@@ -1,6 +1,6 @@
-angular.module('Juno')
-
-.controller('adminRestaurantIndex', adminRestaurantIndex);
+angular
+  .module('Juno')
+  .controller('adminRestaurantIndex', adminRestaurantIndex);
 
 adminRestaurantIndex.$inject =  ['$scope', 'Restaurant', '$location', 'flash', '$state'];
 
@@ -20,7 +20,6 @@ function adminRestaurantIndex ($scope, Restaurant, $location, flash, $state) {
   };
 
   $scope.go = function(restaurant) {
-    console.log(restaurant);
     var hash = '/admin/restaurants/' + restaurant._id;
     $location.path(hash);
   };

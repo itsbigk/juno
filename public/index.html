@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Juno Pay</title>
-  <!-- <base href="/"> -->
-  <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="dist/style.min.css">
-  <script src="vendor/jquery/dist/jquery.min.js"></script>
-  <script src="vendor/angular/angular.min.js"></script>
-  <script src="vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
-  <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="vendor/angular-bootstrap/ui-bootstrap.min.js"></script>
-  <script src="dist/ngApp.min.js"></script>
-</head>
-<body ng-app="Juno" ng-controller="homeController">
+  <head>
+    <meta charset="UTF-8">
+    <title>Juno Pay</title>
+    <!-- <base href="/"> -->
+    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/bootstrap-fileinput/css/fileinput.min.css">
+    <link rel="stylesheet" href="dist/style.min.css">
+    <script src="vendor/jquery/dist/jquery.min.js"></script>
+    <script src="vendor/angular/angular.min.js"></script>
+    <script src="vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="vendor/bootstrap-fileinput/js/fileinput.min.js"></script>
+    <script src="vendor/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="dist/ngApp.min.js"></script>
+    <script src="js/init.js" type="text/javascript"></script>
+    <!-- <script src="vendor/ng-file-upload/ng-file-upload-shim.min.js"></script>  for no html5 browsers support
+    <script src="vendor/ng-file-upload/ng-file-upload.min.js"></script> -->
+  </head>
+  <body ng-app="Juno" ng-controller="homeController">
 
-  <div class="container form-group show-hide-message" ng-show="flash.getMessage()">
-     <div class="alert alert-info">{{flash.getMessage()}}</div>
-  </div>
+    <div class="container form-group show-hide-message" ng-show="flash.getMessage()">
+       <div class="alert alert-info">{{flash.getMessage()}}</div>
+    </div>
 
-  <div class="container">
-    <div ui-view></div>
-  </div>
+    <div class="container">
+      <div ui-view></div>
+    </div>
 
-</body>
+  </body>
 </html>

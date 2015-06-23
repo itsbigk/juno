@@ -1,32 +1,37 @@
-angular.module('Juno')
+angular
+  .module('Juno')
+  .controller('deleteRestaurantController', deleteRestaurantController);
 
-  .controller('deleteRestaurantController', ['$scope', 'Restaurant', '$stateParams', '$location', function($scope, Restaurant, $stateParams, $location) {
+deleteRestaurantController.$inject = ['$scope', 'Restaurant', '$stateParams', '$location'];
 
-    $scope.type = 'delete';
+function deleteRestaurantController($scope, Restaurant, $stateParams, $location) {
 
-    var getRestaurants = function() {
-      Restaurant.all()
+  $scope.type = 'delete';
+
+  var getRestaurants = function() {
+    Restaurant.all()
+    .success(function(data) {
+      $scope.restaurants = data;
+    });
+  };
+
+  $scope.go = function(restaurant) {
+    var hash = '/admin/restaurants/' + restaurant._id;
+    $location.path(hash);
+  };
+
+  $scope.deleteRestaurant = function(restaurant) {
+
+    Restaurant.delete(restaurant)
       .success(function(data) {
-        $scope.restaurants = data;
+        $scope.message = data.message;
+        getRestaurants();
+      })
+      .error(function(data) {
+        $scope.message = data.message;
       });
-    };
+  };
 
-    $scope.go = function(restaurant) {
-      var hash = '/admin/restaurants/' + restaurant._id;
-      $location.path(hash);
-    };
+  getRestaurants();
 
-    $scope.deleteRestaurant = function(restaurant) {
-
-      Restaurant.delete(restaurant)
-        .success(function(data) {
-          $scope.message = data.message;
-          getRestaurants();
-        })
-        .error(function(data) {
-          $scope.message = data.message;
-        });
-    };
-
-    getRestaurants();
-  }]);
+}

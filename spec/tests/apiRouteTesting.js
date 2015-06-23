@@ -12,7 +12,7 @@ describe('Routing', function() {
   describe('Testing POST /api/restaurants/', function() {
     var restaurant = null;
     before(function() {
-      restaurant = new Restaurant({ menuItems: [{name: "Pepperoni Pizza", price: "12.99", description: "Cheese and pepperoni pieces", imageURL: "peppizza"}, 
+      restaurant = new Restaurant({ menuItems: [{name: "Pepperoni Pizza", price: "12.99", description: "Cheese and pepperoni pieces", imageURL: "peppizza"},
       {name: "Cheese Pizza", price: "9.99", description: "Cheese", imageURL: "cheesepizza"}] });;
       restaurant.name = "Pepe's Pizza";
       restaurant.cuisine =  "Italian";
@@ -198,7 +198,7 @@ describe('Routing', function() {
             expect(res.statusCode).to.equal(200);
             done();
           });
-        });      
+        });
       });
     });
 
@@ -218,7 +218,7 @@ describe('Routing', function() {
           .end(function(err, res) {
             expect(res.statusCode).to.equal(404);
             done();
-          });      
+          });
         });
       });
     });

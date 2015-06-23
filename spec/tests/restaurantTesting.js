@@ -11,9 +11,7 @@ describe('testing crud functionality for restaurants', function() {
   var restaurant = null;
 
   beforeEach(function(done) {
-    Restaurant.collection.dropAllIndexes(function(err, results) {
-      done();
-    });
+    Restaurant.collection.dropAllIndexes();
     restaurant = new Restaurant();
     restaurant.name = "Pepe's Pizza";
     restaurant.street =  "1 Pizza Way";
@@ -26,6 +24,7 @@ describe('testing crud functionality for restaurants', function() {
     restaurant.phone = "839-838-1111";
     restaurant.address = restaurant.street + ' ' + restaurant.city + ', ' + restaurant.state + ' ' + restaurant.zip;
     restaurant.archived = false;
+    done();
   });
 
   it('should create a new record of a restaurant with all of the correct fields', function(done) {
