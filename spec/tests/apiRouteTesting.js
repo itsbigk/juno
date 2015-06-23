@@ -5,7 +5,7 @@ Restaurant = require('../../app/config/db/models/restaurant'),
 request = require('supertest');
 
 describe('Routing', function() {
-  request = request(process.env.MONGOLAB_URI || 'localhost:3000');
+  request = request(process.env.testDomain || 'localhost:3000');
   var restaurantsURL = '/api/restaurants/';
 
 
