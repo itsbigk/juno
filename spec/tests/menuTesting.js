@@ -12,7 +12,7 @@ describe('testing crud functionality for menuItems', function() {
     Restaurant.collection.dropAllIndexes(function(err, results) {
       done();
     });
-    restaurant = new Restaurant({ menuItems: [{name: "Pepperoni Pizza", price: "12.99", description: "Cheese and pepperoni pieces", imageURL: "peppizza"}, 
+    restaurant = new Restaurant({ menuItems: [{name: "Pepperoni Pizza", price: "12.99", description: "Cheese and pepperoni pieces", imageURL: "peppizza"},
       {name: "Cheese Pizza", price: "9.99", description: "Cheese", imageURL: "cheesepizza"}] });
     restaurant.name = "Pepe's Pizza";
     restaurant.street =  "1 Pizza Way";

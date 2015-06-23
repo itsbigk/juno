@@ -2,8 +2,6 @@ angular
   .module('Juno')
   .controller('adminRestaurantIndex', adminRestaurantIndex);
 
-.controller('adminRestaurantIndex', adminRestaurantIndex);
-
 adminRestaurantIndex.$inject =  ['$scope', 'Restaurant', '$location', 'flash', '$state'];
 
 

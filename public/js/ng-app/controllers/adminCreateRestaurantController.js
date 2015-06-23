@@ -5,6 +5,7 @@ angular
 createRestaurantController.$inject = ['$scope', '$state', 'Restaurant', 'flash'];
 
 function createRestaurantController($scope, $state, Restaurant, flash, Upload) {
+  $scope.$on('$viewContentLoaded', formImageInput);
   $scope.flash = flash;
   $scope.type = 'create';
   // empty object for form data to create new restaurants

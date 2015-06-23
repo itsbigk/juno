@@ -1,4 +1,8 @@
 var path    = require('path'),
+aws         = require('aws-sdk'),
+AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY,
+AWS_SECRET_KEY = process.env.AWS_SECRET_KEY,
+S3_BUCKET = process.env.S3_BUCKET,
 Restaurant  = require('../config/db/models/restaurant.js');
 
 module.exports = function(app, express) {
@@ -41,6 +45,7 @@ module.exports = function(app, express) {
       restaurant.phone = req.body.phone;
       restaurant.email = req.body.email;
       restaurant.archived = false;
+      restaurant.imageUrl = req.body.imageUrl;
       restaurant.menuItems = req.body.menuItems;
 
 
@@ -59,7 +64,7 @@ module.exports = function(app, express) {
     });
 
   apiRouter.route('/restaurants/:restaurant_id')
- 
+
     // get the restaurant with that id
     .get(function(req, res) {
       Restaurant.findById(req.params.restaurant_id, function(err, restaurant) {
@@ -145,6 +150,36 @@ module.exports = function(app, express) {
 
 
   app.use('/api', apiRouter);
+
+  // getting the s3 url to save to the database
+
+  app.get('/sign_s3', function(req, res){
+    console.log('made it to s3 upload');
+    aws.config.update({accessKeyId: AWS_ACCESS_KEY , secretAccessKey: AWS_SECRET_KEY });
+    aws.config.update({region: 'us-east-1' , signatureVersion: 'v4' });
+    var s3 = new aws.S3();
+    var s3_params = {
+        Bucket: S3_BUCKET,
+        Key: req.query.s3_object_name,
+        Expires: 60,
+        ContentType: req.query.file_type,
+        ACL: 'public-read'
+    };
+    s3.getSignedUrl('putObject', s3_params, function(err, data){
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log('uploaded!');
+            var return_data = {
+                signed_request: data,
+                url: 'https://'+S3_BUCKET+'.s3.amazonaws.com/'+req.query.s3_object_name
+            };
+            res.write(JSON.stringify(return_data));
+            res.end();
+        }
+    });
+  });
 
   app.get('/', function(req, res) {
     res.sendFile('index');

@@ -59,7 +59,11 @@ RestaurantSchema = mongoose.model('Restaurant', {
                   description: { type: String, required: true },
                   imageURL: { type: String, required: true },
                   required: false
-                }]
+                }],
+  imageUrl    : {
+                  type : String,
+                  required : false
+                }
 });
 
 module.exports = mongoose.model('Restaurant', RestaurantSchema);
