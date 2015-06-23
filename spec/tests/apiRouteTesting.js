@@ -2,7 +2,8 @@ var chai   = require('chai'),
 expect     = chai.expect,
 should     = chai.should(),
 Restaurant = require('../../app/config/db/models/restaurant'),
-request = require('supertest');
+request    = require('supertest'),
+utils      = require('../utils.js');
 
 describe('Routing', function() {
   request = request(process.env.testDomain || 'localhost:3000');
