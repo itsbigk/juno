@@ -1,64 +1,96 @@
 <div class="landing-wrapper">
   <section id="hero">
     <h1 id="hero-title">Quick Munchy</h1>
-    <p>What do you crave?</p>
+    <h3>What do you crave?</h3>
+    <a class="btn btn-primary" href="#">Find Lunch!</a>
   </section>
   <section id="food-choices">
-    <h2>Tell us what you're craving</h2>
-    <h4>(select one)</h4>
-    <div class="images-container">
-      <div class="image-container">
-        <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
-      </div>
-      <div class="image-container">
-        <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
-      </div>
-      <div class="image-container">
-        <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
-      </div>
-      <div class="image-container">
-        <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
-      </div>
-      <div class="image-container">
-        <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
-      </div>
-      <div class="image-container">
-        <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
-      </div>
-      <div class="image-container">
-        <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
-      </div>
-      <div class="image-container">
-        <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
+    <div class="container">
+      <h2>Tell us what you're craving</h2>
+      <h4>(choose one)</h4>
+      <div class="images-container">
+        <div class="image-container">
+          <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
+        </div>
+        <div class="image-container">
+          <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
+        </div>
+        <div class="image-container">
+          <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
+        </div>
+        <div class="image-container">
+          <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
+        </div>
+        <div class="image-container">
+          <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
+        </div>
+        <div class="image-container">
+          <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
+        </div>
+        <div class="image-container">
+          <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
+        </div>
+        <div class="image-container">
+          <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
+        </div>
       </div>
     </div>
   </section>
   <section id="food-preferences">
-    <h2>What should we know about you?</h2>
-    <h4>(select many)</h4>
-    <div class="btn-group" data-toggle="buttons">
-      <label class="btn btn-primary">
-        <input type="checkbox" autocomplete="off" checked> Gluten Free 
-      </label>
-      <label class="btn btn-primary">
-        <input type="checkbox" autocomplete="off"> Peanut Allergy
-      </label>
-      <label class="btn btn-primary">
-        <input type="checkbox" autocomplete="off"> Vegan
-      </label>
-      <label class="btn btn-primary">
-        <input type="checkbox" autocomplete="off"> Vegatarian
-      </label>
-      <label class="btn btn-primary">
-        <input type="checkbox" autocomplete="off"> Pescatarian
-      </label>
-      <label class="btn btn-primary">
-        <input type="checkbox" autocomplete="off"> None
-      </label>
+    <div class="container">
+      <h2>What should we know about you?</h2>
+      <h4>(choose all that apply)</h4>
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-warning food-preference">
+          <input type="checkbox" autocomplete="off" checked> Gluten Free 
+        </label>
+        <label class="btn btn-warning food-preference">
+          <input type="checkbox" autocomplete="off"> Peanut Allergy
+        </label>
+        <label class="btn btn-warning food-preference">
+          <input type="checkbox" autocomplete="off"> Vegan
+        </label>
+        <label class="btn btn-warning food-preference">
+          <input type="checkbox" autocomplete="off"> Vegatarian
+        </label>
+        <label class="btn btn-warning food-preference">
+          <input type="checkbox" autocomplete="off"> Pescatarian
+        </label>
+        <label class="btn btn-warning food-preference">
+          <input type="checkbox" autocomplete="off"> None
+        </label>
+      </div>
     </div>
   </section>
-  <section id="amount"></section>
-  <section id="user-details"></section>
+  <section id="amount">
+    <h2>What is your budget?</h2>
+    <h4>(choose one)</h4>
+    <div class="price-scale">
+      <rating class="rating-box" ng-model="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" state-on="'glyphicon-usd'" state-off="'glyphicon-minus'"></rating>
+    </div>
+    <div class="average-cost label label-warning">{{averageCost}}</div>
+  </section>
+  <section id="user-details">
+    <h2>Almost done.</h2>
+    <form class="container">
+      <div class="form-group row">
+        <label class="control-label col-xs-12">What is your email?</label>
+        <div id="name-container" class="col-xs-12 col-md-6 col-md-offset-3">
+          <input type="text" class="form-control" ng-model="formData.email" id="email">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-xs-12">What is your zipcode?</label>
+        <div id="street-container" class="col-xs-12 col-md-6 col-md-offset-3">
+          <input type="text" class="form-control" ng-model="formData.zipcode" id="zipcode">
+        </div>
+      </div>
+      <div class="form-group row">
+        <button type="submit" class="btn btn-success col-xs-4 col-xs-offset-4 col-md-2 col-md-offset-5">Submit</button>
+      </div>
+    </form>
+  </section>
+  </div>
 </div>
 
 

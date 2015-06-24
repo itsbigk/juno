@@ -1,1 +1,1 @@
-angular.module('Juno', ['ui.router']);
+angular.module('Juno', ['ui.router', 'ui.bootstrap']);
