@@ -35,9 +35,9 @@ describe('Routing', function() {
         request.delete(restaurantsURL + res.body.restaurant_id)
         .end(function(err, res) {
           expect(res.statusCode).to.equal(200);
-          done();
         });
       });
+      done();
     });
 
     it('should not create duplicate restaurant', function(done) {
@@ -56,10 +56,10 @@ describe('Routing', function() {
           request.delete(restaurantsURL + firstRestaurantId)
           .end(function(err, res) {
             expect(res.statusCode).to.equal(200);
-            done();
           });
         });
       });
+      done();
     });
   });
 
@@ -104,10 +104,10 @@ describe('Routing', function() {
           request.delete(restaurantsURL + restaurantId)
           .end(function(err, res) {
             expect(res.statusCode).to.equal(200);
-            done();
           });
         });
       });
+      done();
     });
 
     it('should not update a restaurant if another has the same address', function(done) {
@@ -139,14 +139,13 @@ describe('Routing', function() {
               request.delete(restaurantsURL + secondRestaurantId)
               .end(function(err, res) {
                 expect(res.statusCode).to.equal(200);
-                done();
               });
             });
           });
         });
       });
+      done();
     });
-
   });
 
   describe('Testing GET /api/restaurants/ and GET /api/restaurants/:restaurant_id', function() {
@@ -177,10 +176,10 @@ describe('Routing', function() {
           request.delete(restaurantsURL + restaurant_id)
           .end(function(err, res) {
             expect(res.statusCode).to.equal(200);
-            done();
           });
         });
       });
+      done();
     });
 
     it('should GET a single existing restaurant successfully', function(done) {
@@ -198,10 +197,10 @@ describe('Routing', function() {
           .delete(restaurantsURL + restaurant_id)
           .end(function(err, res) {
             expect(res.statusCode).to.equal(200);
-            done();
           });
         });
       });
+      done();
     });
 
     it('should return 404 if trying to get restaurant that does not exist', function(done) {
@@ -219,10 +218,10 @@ describe('Routing', function() {
           .get(restaurantsURL + restaurant_id)
           .end(function(err, res) {
             expect(res.statusCode).to.equal(404);
-            done();
           });
         });
       });
+      done();
     });
   });
 
@@ -249,9 +248,9 @@ describe('Routing', function() {
         request.delete(restaurantsURL + res.body.restaurant_id)
         .end(function(err, res) {
           expect(res.statusCode).to.equal(200);
-          done();
         });
       });
+      done();
     });
 
     it('should return 404 if trying to delete a restaurant that does not exist', function(done) {
@@ -259,8 +258,8 @@ describe('Routing', function() {
       .delete(restaurantsURL + restaurant._id)
       .end(function(err, res) {
         expect(res.statusCode).to.equal(404);
-        done();
       });
+      done();
     });
   });
 });
