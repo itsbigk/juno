@@ -30,6 +30,7 @@ describe('Routing', function() {
       .post(restaurantsURL)
       .send(restaurant)
       .end(function(err, res) {
+        console.log('made it to this test');
         expect(res.statusCode).to.equal(200);
         request.delete(restaurantsURL + res.body.restaurant_id)
         .end(function(err, res) {
