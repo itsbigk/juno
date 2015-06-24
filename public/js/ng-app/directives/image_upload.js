@@ -38,5 +38,5 @@ angular.module('Juno')
         return [dateId, restName].join('_');
       }
     }
-  }
-})
+  };
+});
