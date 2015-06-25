@@ -1,8 +1,8 @@
 var path    = require('path'),
 aws         = require('aws-sdk'),
-AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY,
-AWS_SECRET_KEY = process.env.AWS_SECRET_KEY,
-S3_BUCKET = process.env.S3_BUCKET,
+AWS_ACCESS_KEY = 'AKIAINEDRF744HKGAOFA',
+AWS_SECRET_KEY = '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',
+S3_BUCKET = 'junopay-development',
 Restaurant  = require('../config/db/models/restaurant.js');
 
 module.exports = function(app, express) {
@@ -94,6 +94,7 @@ module.exports = function(app, express) {
         if (req.body.website != restaurant.website) restaurant.website = req.body.website;
         if (req.body.phone != restaurant.phone) restaurant.phone = req.body.phone;
         if (req.body.email != restaurant.email) restaurant.email = req.body.email;
+        if (req.body.menuItems) restaurant.menuItems = req.body.menuItems;
         if (req.body.archived) restaurant.archived = req.body.archived;
 
         // save the restaurant

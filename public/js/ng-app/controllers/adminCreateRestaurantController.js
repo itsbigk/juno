@@ -2,13 +2,13 @@ angular
   .module('Juno')
   .controller('createRestaurantController', createRestaurantController);
 
-createRestaurantController.$inject = ['$scope', '$state', 'Restaurant', 'flash'];
+createRestaurantController.$inject = ['$scope', '$state', 'Restaurant', 'flash', '$location'];
 
-function createRestaurantController($scope, $state, Restaurant, flash, Upload) {
+function createRestaurantController($scope, $state, Restaurant, flash, $location) {
   $scope.$on('$viewContentLoaded', formImageInput);
   $scope.flash = flash;
   $scope.type = 'create';
-  // empty object for form data to create new restaurants
+  // empty object for form data to create new restaurants. the menus are also saved within this object
   $scope.formData = {};
 
   // Clears error elements and error styling
@@ -39,7 +39,6 @@ function createRestaurantController($scope, $state, Restaurant, flash, Upload) {
 
     Restaurant.create($scope.formData)
       .success(function(data) {
-
         $scope.processing = false;
 
         if (data.errors === undefined) {
@@ -47,7 +46,8 @@ function createRestaurantController($scope, $state, Restaurant, flash, Upload) {
           $scope.formData = {};
           clearErrorStyling();
           // Reload the template after any result to show flash confirmation message
-          $state.go('admin-restaurant-new', {}, {reload: true});
+          // $state.go('admin-restaurant-new', {}, {reload: true});
+          $location.path('/admin/restaurants/edit/menu/' + data.restaurant_id);
         }
         else {
           clearErrorStyling();

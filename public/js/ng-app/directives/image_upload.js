@@ -1,11 +1,23 @@
 angular.module('Juno')
 
-.directive('imageUpload', function() {
+.directive('imageUpload', imageUpload);
+
+imageUpload.$inject = ['$state'];
+
+function imageUpload() {
+
   return {
     restrict: 'E',
+    scope: {
+      itemData: '='
+    },
     templateUrl: '../../../partials/admin/restaurants/image-upload.html',
-    link: function($scope, element, attrs) {
+    // template: '<input id="image" type="file" class="img-upload" data-preview-file-type="text" onchange="angular.element(this).scope().s3Upload(this, item)">',
+    link: function($scope, element, attrs, $state) {
       $scope.s3Upload = function(image){
+        console.log(image);
+        var index = angular.element(image).scope().$index;
+        console.log(index);
         // var status_elem = document.getElementById("status");
         // var url_elem = document.getElementById("image_url");
         // var preview_elem = document.getElementById("preview");
@@ -18,9 +30,13 @@ angular.module('Juno')
           // },
           onFinishS3Put: function(public_url) {
               // status_elem.innerHTML = 'Upload completed. Uploaded to: '+ public_url;
-              console.log(public_url);
-              $scope.formData.imageUrl = public_url;
-              console.log($scope.formData.imageUrl);
+              // if($scope.type === 'edit' || $scope.type === 'create') {
+                $scope.formData.imageUrl = public_url;
+              // } else if($scope.type === 'menuEdit') {
+                // console.log($scope.formData.menuItems[index].imageUrl);
+                // $scope.formData.menuItems[index].imageUrl = public_url;
+              // }
+              // console.log($scope.formData.imageUrl);
               // preview_elem.innerHTML = '<img src="'+ public_url +'" style="width:300px;" />';
           },
           onError: function(status) {
@@ -30,7 +46,12 @@ angular.module('Juno')
       };
 
       function showImageIdentifier() {
-        var restName = $scope.formData.name;
+        var restName;
+        if($scope.type === 'create' || $scope.type === 'edit') {
+          restName = $scope.formData.name;
+        } else if($scope.type === 'menuEdit') {
+          restName = $scope.formData.menuItems[index].name;
+        }
         if(restName) {
           restName = restName.replace(/[^\w\s]|_/g, " ") .replace(/\s+/g, "_");
         }
@@ -39,4 +60,4 @@ angular.module('Juno')
       }
     }
   };
-});
+}

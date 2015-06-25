@@ -2,7 +2,7 @@ function formImageInput() {
     setTimeout(function() {
       $(".img-upload").fileinput({
       showUpload: false,
-      browseClass: "btn btn-success",
+      browseClass: "btn btn-primary",
       browseLabel: "Pick Image",
       browseIcon: '<i class="glyphicon glyphicon-picture"></i>',
       removeClass: "btn btn-danger",
