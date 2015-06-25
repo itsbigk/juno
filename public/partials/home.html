@@ -9,29 +9,8 @@
       <h2>Tell us what you're craving</h2>
       <h4>(choose one)</h4>
       <div class="images-container">
-        <div class="image-container">
-          <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
-        </div>
-        <div class="image-container">
-          <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
-        </div>
-        <div class="image-container">
-          <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
-        </div>
-        <div class="image-container">
-          <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
-        </div>
-        <div class="image-container">
-          <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
-        </div>
-        <div class="image-container">
-          <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
-        </div>
-        <div class="image-container">
-          <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
-        </div>
-        <div class="image-container">
-          <img src="https://d4z6dx8qrln4r.cloudfront.net/choice-5582027a2f289-supersize.jpeg" alt="food-choice">
+        <div class="image-container" ng-repeat="image in images" scroll-to="food-preferences">
+          <img ng-src="{{image.url}}" alt="food-choice">
         </div>
       </div>
     </div>
@@ -41,31 +20,19 @@
       <h2>What should we know about you?</h2>
       <h4>(choose all that apply)</h4>
       <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-warning food-preference">
-          <input type="checkbox" autocomplete="off" checked> Gluten Free 
+        <label class="btn btn-warning food-preference" ng-repeat="preference in foodPreferences">
+          <input type="checkbox" autocomplete="off" ng-click="formData.preference = preference"> {{preference}} 
         </label>
-        <label class="btn btn-warning food-preference">
-          <input type="checkbox" autocomplete="off"> Peanut Allergy
-        </label>
-        <label class="btn btn-warning food-preference">
-          <input type="checkbox" autocomplete="off"> Vegan
-        </label>
-        <label class="btn btn-warning food-preference">
-          <input type="checkbox" autocomplete="off"> Vegatarian
-        </label>
-        <label class="btn btn-warning food-preference">
-          <input type="checkbox" autocomplete="off"> Pescatarian
-        </label>
-        <label class="btn btn-warning food-preference">
-          <input type="checkbox" autocomplete="off"> None
-        </label>
+      </div>
+      <div class="row">
+        <a class="btn btn-primary col-xs-4 col-xs-offset-4 col-md-2 col-md-offset-5" href="#" scroll-to="amount">Next</a>
       </div>
     </div>
   </section>
   <section id="amount">
     <h2>What is your budget?</h2>
     <h4>(choose one)</h4>
-    <div class="price-scale">
+    <div class="price-scale" scroll-to="user-details">
       <rating class="rating-box" ng-model="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" state-on="'glyphicon-usd'" state-off="'glyphicon-minus'"></rating>
     </div>
     <div class="average-cost label label-warning">{{averageCost}}</div>
