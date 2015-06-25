@@ -1,1 +1,1 @@
-angular.module('Juno', ['ui.router', 'ui.bootstrap']);
+angular.module('Juno', ['ui.router', 'ui.bootstrap', 'smoothScroll']);

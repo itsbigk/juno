@@ -21,5 +21,8 @@ angular
       
     };
 
+    // $(document).on('click', '#hero-button', function(e){
+    //   ('#food-choices').smoothScroll();
+    // });
 
   }
