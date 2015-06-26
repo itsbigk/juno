@@ -1,6 +1,6 @@
 angular
   .module('Juno')
-  .factory('FormRequest', Restaurant);
+  .factory('FormRequest', FormRequest);
 
   FormRequest.$inject = ['$http'];
 
@@ -13,4 +13,4 @@ angular
         return $http.put('/api/requests/' + id, requestForm);
       }
     };
-  };
+  }

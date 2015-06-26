@@ -4,6 +4,7 @@ AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY,
 AWS_SECRET_KEY = process.env.AWS_SECRET_KEY,
 S3_BUCKET = process.env.S3_BUCKET,
 Restaurant  = require('../config/db/models/restaurant.js');
+FormRequest  = require('../config/db/models/formRequest.js');
 
 module.exports = function(app, express) {
   var apiRouter = express.Router();
@@ -12,6 +13,27 @@ module.exports = function(app, express) {
   apiRouter.use(function(req, res, next) {
     // this is where we will authenticate users
     next();
+  });
+
+  apiRouter.route('/requests')
+
+  // create a request
+  .post(function(req, res) {
+
+    // create a new instance of the formRequest model
+    var request = new FormRequest();
+    request.zipcode = req.body.zipcode;
+    request.email = req.body.email;
+    request.craving = req.body.craving;
+    request.budget = req.body.budget;
+    request.foodPreferences = req.body.foodPreferences;
+
+    // save the request and check for errors
+    request.save(function(err) {
+      if (err) {
+        return res.send(err);
+      }
+    })
   });
 
   apiRouter.route('/restaurants')
