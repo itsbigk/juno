@@ -8,7 +8,7 @@
     <div class="container">
       <h2>Tell us what you're craving</h2>
       <h4>(choose one)</h4>
-      <div class="images-container">
+      <div class="images-container ">
         <div class="image-container" ng-repeat="image in images" ng-click="selectCraving(image.name)">
           <img ng-src="{{image.url}}" alt="food-choice">
         </div>
@@ -27,7 +27,6 @@
       <div>
         <input type="text" ng-if="formData.foodPreferences[formData.foodPreferences.length-1].selected" ng-model="formData.foodPreferences[formData.foodPreferences.length-1].value">
       </div>
-      {{formData.foodPreferences}}
       <div class="row">
         <a class="btn btn-primary col-xs-4 col-xs-offset-4 col-md-2 col-md-offset-5" href="#" scroll-to="amount">Next</a>
       </div>

@@ -12,7 +12,7 @@ angular
     $scope.formData.foodPreferences = [
       {name:'Gluten Free', selected: false},
       {name:'Peanut Allergy', selected: false},
-      {name:'Vegan', selected: true},
+      {name:'Vegan', selected: false},
       {name:'Vegetarian', selected: false},
       {name:'Pescatarian', selected: false},
       {name: 'Other', selected: false, value: ""}

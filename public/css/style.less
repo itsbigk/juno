@@ -16,6 +16,13 @@
   margin-top: 20px;
 }
 
+// FORM PAGE ///////////////////////////////////////////////////////////////////////////
+
+@tomato: #DE5934;
+@tan: #CEC2B8;
+@creme: #F2F1ED;
+@darkblue: #434452;
+
 
 // FORM PAGE ///////////////////////////////////////////////////////////////////////////
 
@@ -53,10 +60,14 @@ section {
   min-height: 100vh;
 }
 
+.selected {
+  border: 4px solid red;
+}
+
 // HERO ///////////////////////////////////////////////////////
 
 #hero {
-  background: url('http://i.huffpost.com/gen/1482056/images/o-SUSHI-facebook.jpg');
+  background: url('https://s3.amazonaws.com/junopay-development/general-images/juno-hero.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
@@ -92,16 +103,16 @@ h1#hero-title {
 }
 
 .image-container img {
-  width: 40vw;
-  @media (min-width: 768px) {
-    width: 260px;
-  }
+  width: 100%;
+  // @media (min-width: 768px) {
+  //   width: 260px;
+  // }
 }
 
 // FOOD PREFERENCES //////////////////////////////////////////
 
 #food-preferences, #user-details {
-  background-color: #D5F4B5;
+  background-color: @darkblue;
 }
 
 .food-preference {
