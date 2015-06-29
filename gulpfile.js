@@ -7,7 +7,7 @@ uglify           = require('gulp-uglify'),
 mocha            = require('gulp-mocha'),
 jshint           = require('gulp-jshint'),
 ngAnnotate       = require('gulp-ng-annotate'),
-nodemon          = require('gulp-nodemon'); 
+nodemon          = require('gulp-nodemon');
 
 gulp.task('css', function() {
   // processing the less file and outputting it to the same folder as css
@@ -37,7 +37,7 @@ gulp.task('angular', function() {
   .pipe(ngAnnotate())
   .pipe(concat('ngApp.js'))
   .pipe(rename('ngApp.min.js'))
-  .pipe(uglify())
+  // .pipe(uglify())
   .pipe(gulp.dest('public/dist'));
 });
 
