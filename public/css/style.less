@@ -64,95 +64,153 @@ section {
   border: 4px solid red;
 }
 
-// HERO ///////////////////////////////////////////////////////
+.landing-wrapper {
+  font-family: 'Josefin Slab', serif;
+  color: #fff;
 
-#hero {
-  background: url('https://s3.amazonaws.com/junopay-development/general-images/juno-hero.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100vh;
-}
+  #hero {
+    background: url('https://s3.amazonaws.com/junopay-development/general-images/juno-hero.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    height: 100vh;
 
-h1#hero-title {
-  padding-top: 30vh;
-}
+    h1 {
+      padding-top: 10vh;
+      font-weight: 700;
+      font-size: 36px;
+      margin-bottom: 30vh;
+    }
 
-// FOOD CHOICES //////////////////////////////////////////////
+    .ribbon {
+      background: rgba(67, 68, 82, 0.9);
+      border-top: 1px solid #979797;
+      border-bottom: 1px solid #979797;
+      padding: 5vh;
 
-#food-choices {
-  background-color: #FCA248;
-  -webkit-box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.5);
-  -moz-box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.5);
-  box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.5);
-}
-
-.image-container {
-  display: inline-block;
-  width: 40vw;
-  padding-bottom: 80px;
-  margin: 10px;
-  background-color: aliceblue;
-  cursor: pointer;
-  -webkit-box-shadow: 0 6px 24px -6px rgba(0,0,0,0.5);;
-  -moz-box-shadow: 0 6px 24px -6px rgba(0,0,0,0.5);;
-  box-shadow: 0 6px 24px -6px rgba(0,0,0,0.5);;
-  @media (min-width: 768px) {
-    width: 260px;
-    padding-bottom: 100px;
+      p {
+        text-align: left;
+        color: #fff;
+        font-size: 18px;
+        margin-bottom: 20px;
+      }
+    }
   }
-}
 
-.image-container img {
-  width: 100%;
-  // @media (min-width: 768px) {
-  //   width: 260px;
+  #food-choices {
+    background-color: #434452;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      font-size: 20px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex: 2;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      li {
+        background: #F2F1ED;
+        border: 1px solid #979797;
+        width: 30%;
+        margin: 6% 10%;
+        color: #434452;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        &.selected {
+          box-shadow: 0 0 0 5px #DE5934;
+        }
+
+        * {
+          cursor: pointer;
+        }
+      }
+
+      label {
+        font-weight: 700;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex: 1;
+        margin: 0;
+
+        span {
+          // flex: 2;
+          flex: 1;
+        }
+
+        input {
+          visibility: hidden;
+          flex: 2;
+          margin: 0;
+        }
+
+        .image {
+          background-size: cover;
+          background-position: center center;
+          width: 100%;
+          height: 40px;
+          flex: 2 1 auto;
+        }
+      }
+    }
+  }
+
+  #food-preferences {
+    background: url("https://s3.amazonaws.com/junopay-development/general-images/preferences.jpg");
+    background-size: cover;
+  }
+
+  .food-preference {
+    width: 100%;
+    @media (min-width: 768px) {
+      width: initial;
+    }
+  }
+
+  // PRICE /////////////////////////////////////////////////////
+
+  .price-scale {
+    margin-top: 10vh;
+    font-size: 25vw;
+    @media (min-width: 768px) {
+      font-size: 200px;
+    }
+  }
+
+  .rating-box {
+    outline: none;
+    cursor: pointer;
+  }
+
+  .average-cost {
+    font-size: 10vw;
+    @media (min-width: 768px) {
+      font-size: 60px;
+    }
+  }
+
+  .glyphicon-minus {
+    color: gainsboro;
+  }
+
+  // USER DETAIL ////////////////////////////////////////////////////
+
+  // form {
+  //   text-align: left;
   // }
+
 }
 
-// FOOD PREFERENCES //////////////////////////////////////////
-
-#food-preferences, #user-details {
-  background-color: @darkblue;
-}
-
-.food-preference {
-  width: 100%;
-  @media (min-width: 768px) {
-    width: initial;
-  }
-}
-
-// PRICE /////////////////////////////////////////////////////
-
-.price-scale {
-  margin-top: 10vh;
-  font-size: 25vw;
-  @media (min-width: 768px) {
-    font-size: 200px;
-  }
-}
-
-.rating-box {
-  outline: none;
-  cursor: pointer;
-}
-
-.average-cost {
-  font-size: 10vw;
-  @media (min-width: 768px) {
-    font-size: 60px;
-  }
-}
-
-.glyphicon-minus {
-  color: gainsboro;
-}
-
-// USER DETAIL ////////////////////////////////////////////////////
-
-// form {
-//   text-align: left;
-// }
 
 
 
@@ -163,7 +221,7 @@ h1#hero-title {
 }
 
 .btn-group>.btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
-   border-radius: 5px; 
+   border-radius: 5px;
 }
 
 .btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {

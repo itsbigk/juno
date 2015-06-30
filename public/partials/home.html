@@ -1,27 +1,37 @@
 <div class="landing-wrapper">
   <section id="hero">
-    <h1 id="hero-title">Quick Munchy</h1>
-    <h3>What do you crave?</h3>
-    <a id="hero-button" class="btn btn-primary" href="#" scroll-to="food-choices">Find Lunch!</a>
-  </section>
-  <section id="food-choices">
-    <div class="container">
-      <h2>Tell us what you're craving</h2>
-      <h4>(choose one)</h4>
-      <div class="images-container ">
-        <div class="image-container" ng-repeat="image in images" ng-click="selectCraving(image.name)">
-          <img ng-src="{{image.url}}" alt="food-choice">
-        </div>
-      </div>
+    <h1>Kraved</h1>
+    <div class="ribbon">
+      <p>Getting lunch just got a hell of a lot easier.</p>
+      <p>Tell us what you krave we'll tell you where to find it.</p>
+      <a class="btn btn-primary" href scroll-to="food-choices">Find Lunch!</a>
     </div>
+
+  </section>
+  <section id="food-choices" class="container">
+    <h2>Tell us what you're craving.</h2>
+    <h4>(select only one)</h4>
+    <ul>
+      <li ng-repeat="craving in cravings" ng-class="{selected: formData.craving === craving}">
+        <label>
+          <div class="image" style="background-image: url({{craving.url}})"></div>
+          <input type="radio" ng-model="formData.craving" ng-value="craving" />
+          <span>{{craving.name}}</span>
+        </label>
+      </li>
+    </ul>
   </section>
   <section id="food-preferences">
     <div class="container">
       <h2>What should we know about you?</h2>
-      <h4>(choose all that apply)</h4>
-      <div class="btn-group" ng-repeat="preference in formData.foodPreferences">
+      <h4>(select all that apply)</h4>
+      <ul>
+        <!-- <li ng-repeat="preference in preferences" ng-class="{selected}" -->
+      </ul>
+
+      <!-- <div class="btn-group" ng-repeat="preference in formData.foodPreferences">
         <label class="btn btn-warning food-preference">
-          <input type="checkbox" ng-model="preference.selected"> {{preference.name}} 
+          <input type="checkbox" ng-model="preference.selected"> {{preference.name}}
         </label>
       </div>
       <div>
@@ -30,7 +40,7 @@
       <div class="row">
         <a class="btn btn-primary col-xs-4 col-xs-offset-4 col-md-2 col-md-offset-5" href="#" scroll-to="amount">Next</a>
       </div>
-    </div>
+    </div> -->
   </section>
   <section id="amount">
     <h2>What is your budget?</h2>
@@ -62,5 +72,3 @@
   </section>
   </div>
 </div>
-
-

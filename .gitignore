@@ -13,3 +13,4 @@ node_modules
 .bower-registry
 public/dist/
 *.orig
+.DS_Store
