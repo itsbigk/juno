@@ -15,3 +15,335 @@
 .alert {
   margin-top: 20px;
 }
+
+// FORM PAGE ///////////////////////////////////////////////////////////////////////////
+
+@tomato: #DE5934;
+@tan: #CEC2B8;
+@creme: #F2F1ED;
+@darkblue: #434452;
+
+
+// FORM PAGE ///////////////////////////////////////////////////////////////////////////
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.landing-wrapper {
+  text-align: center;
+}
+
+h1 {
+  font-size: 72px;
+}
+
+h1, h2, h3, h4, h5 {
+  margin-top: 0;
+}
+
+h2 {
+  padding-top: 5vh;
+}
+
+.centered-text {
+  text-align: center;
+}
+
+section {
+  width: 100vw;
+  min-height: 100vh;
+  height: 100vh;
+}
+
+.landing-wrapper {
+  font-family: 'Josefin Slab', serif;
+  color: #fff;
+
+  input,
+  textarea {
+    color: #333;
+  }
+
+  .orange-button {
+    background: #de5934;
+    border: 1px solid #DE5934;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.50);
+    padding: 10px 40px 5px;
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+  }
+
+  #hero, #thank-you {
+    background: url('https://s3.amazonaws.com/junopay-development/general-images/juno-hero.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    h1 {
+      padding-top: 10vh;
+      font-weight: 700;
+      font-size: 36px;
+      // margin-bottom: 20vh;
+    }
+
+    .ribbon {
+      background: rgba(222, 88, 51, 0.75);
+      border-top: 1px solid #979797;
+      border-bottom: 1px solid #979797;
+      padding: 5vh;
+
+      p {
+        text-align: left;
+        color: #fff;
+        font-size: 22px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  #intro {
+    background: url('https://s3.amazonaws.com/junopay-development/general-images/blur-bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+
+    .container {
+
+      h2 {
+        font-size: 4vh;
+
+      }
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+  }
+
+  #food-choices {
+    background-color: #434452;
+
+    .container {
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+
+      h2 {
+        font-size: 20px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex: 2;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        li {
+          background: #F2F1ED;
+          border: 1px solid #979797;
+          width: 30%;
+          margin: 6% 10%;
+          color: #434452;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          &.selected {
+            box-shadow: 0 0 0 5px #DE5934;
+          }
+
+          * {
+            cursor: pointer;
+          }
+        }
+
+        label {
+          font-weight: 700;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          flex: 1;
+          margin: 0;
+
+          span {
+            // flex: 2;
+            flex: 1;
+          }
+
+          input {
+            visibility: hidden;
+            flex: 2;
+            margin: 0;
+          }
+
+          .image {
+            background-size: cover;
+            background-position: center center;
+            width: 100%;
+            height: 40px;
+            flex: 3 1 auto;
+          }
+        }
+      }
+    }
+  }
+
+  #food-preferences {
+    background: url("https://s3.amazonaws.com/junopay-development/general-images/blur-bg.jpg");
+    background-size: cover;
+
+    .container {
+      display: flex;
+      height: 95%;
+      flex-direction: column;
+      justify-content: space-around;
+
+      input[type="text"] {
+        margin-bottom: 3vh;
+        width: 80%;
+        border: 1px solid #979797;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0 0 5vh;
+        padding: 0;
+        display: flex;
+        flex: 2;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        li {
+          box-shadow: 0 0 0 4px #F2F1ED;
+          width: 30%;
+          margin: 3% 10%;
+          color: #F2F1ED;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          &.selected {
+            box-shadow: 0 0 0 4px #DE5934;
+            background: #434452;
+          }
+
+          * {
+            cursor: pointer;
+          }
+
+          label {
+            font-weight: 700;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+            margin: 0;
+
+            span {
+              // flex: 2;
+              flex: 1;
+            }
+
+            input {
+              visibility: hidden;
+              flex: 10;
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #budget {
+    background-color: #434452;
+
+    .container {
+      display: flex;
+      height: 95%;
+      flex-direction: column;
+      justify-content: space-around;
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex: 2;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        li {
+          box-shadow: 0 0 0 2px #F2F1ED;
+          width: 40%;
+          margin: 3% 20%;
+          color: #F2F1ED;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          &.selected {
+            box-shadow: 0 0 0 4px #DE5934;
+            background: rgba(242, 241, 237, 0.40);
+          }
+
+          * {
+            cursor: pointer;
+          }
+
+          label {
+            font-weight: 700;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+            margin: 0;
+
+            span {
+              // flex: 2;
+              flex: 10;
+              font-size: 9vh;
+            }
+
+            input {
+              visibility: hidden;
+              flex: 9;
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #user-details {
+    background: url("https://s3.amazonaws.com/junopay-development/general-images/blur-bg.jpg");
+    background-size: cover;
+
+    .container {
+      display: flex;
+      height: 95%;
+      flex-direction: column;
+      justify-content: space-around;
+
+      font-size: 3vh;
+    }
+  }
+}

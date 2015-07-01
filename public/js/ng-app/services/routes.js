@@ -9,8 +9,12 @@ angular.module('Juno')
   $stateProvider
     .state('/', {
       url         : '/',
-      controller  : 'homeController',
+      controller  : 'landingController',
       templateUrl : 'partials/home.html'
+    })
+    .state('thank-you', {
+      url         : '/thankyou',
+      templateUrl : 'partials/thankyou.html'
     })
     .state('admin', {
       url         : '/admin',

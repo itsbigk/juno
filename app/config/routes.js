@@ -1,9 +1,13 @@
+'use strict';
+
 var path    = require('path'),
 aws         = require('aws-sdk'),
 AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY,
 AWS_SECRET_KEY = process.env.AWS_SECRET_KEY,
 S3_BUCKET = process.env.S3_BUCKET,
-Restaurant  = require('../config/db/models/restaurant.js');
+Restaurant  = require('./db/models/restaurant.js'),
+FormRequest = require('./db/models/formRequest.js'),
+FoodPreference = require('./db/models/FoodPreference');
 
 module.exports = function(app, express) {
   var apiRouter = express.Router();
@@ -12,6 +16,58 @@ module.exports = function(app, express) {
   apiRouter.use(function(req, res, next) {
     // this is where we will authenticate users
     next();
+  });
+
+  apiRouter.route('/requests/:id')
+    .get(function(req, res) {
+      FormRequest.findById(req.params.id)
+        .populate('foodPreferences')
+        .exec()
+        .then(function(formRequest) {
+          res.json(formRequest);
+        });
+    });
+
+  apiRouter.route('/requests')
+
+  // create a request
+  .post(function(req, res) {
+
+    // create a new instance of the formRequest model
+    var formRequest = new FormRequest();
+    formRequest.zipcode = req.body.zipcode;
+    formRequest.email = req.body.email;
+    formRequest.craving = req.body.craving;
+    formRequest.budget = req.body.budget;
+
+    var preferenceNames = [];
+
+    for (var preference in req.body.foodPreferences) {
+      if (req.body.foodPreferences.hasOwnProperty(preference)) {
+        if (preference !== 'Other') {
+          preferenceNames.push(preference);
+        } else {
+          formRequest.otherPreference = req.body.foodPreferences.Other;
+        }
+      }
+    }
+
+    FoodPreference
+      .where('name').in(preferenceNames)
+      .exec()
+      .then(function(foodPreferences) {
+        formRequest.foodPreferences = foodPreferences;
+        return Promise.resolve();
+      })
+      .then(formRequest.save)
+      .then(function(formRequest) {
+        res.json();
+        Promise.resolve();
+      })
+      .onReject(function(err) {
+        console.log('error: ', err);
+        res.status(409).json(err);
+      });
   });
 
   apiRouter.route('/restaurants')

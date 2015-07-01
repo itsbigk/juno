@@ -1,3 +1,5 @@
+'use strict';
+
 angular
   .module('Juno')
   .controller('homeController', homeController);
