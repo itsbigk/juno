@@ -106,15 +106,15 @@
             {{errors['email']}}
           </div>
           <label for="email">What is your email?</label>
-          <input type="text" id="email" class="form-control" ng-model="formData.email" />
+          <input type="text" id="email" class="form-control" placeholder="name@example.com" ng-model="formData.email" />
         </div>
         <div class="form-group">
           <div class="alert alert-danger" role="alert"
                ng-if="errors['zipcode'] && !zipRegex.test(formData.zipcode)">
             {{errors['zipcode']}}
           </div>
-          <label for="zipcode">What is your zip code?</label>
-          <input type="text" id="zipcode" class="form-control" ng-model="formData.zipcode">
+          <label for="zipcode">Where would you like to eat?</label>
+          <input type="text" id="zipcode" class="form-control" placeholder="zipcode" ng-model="formData.zipcode">
           </div>
           <p>Once you hit submit we will craft the perfect meal recommendation and email it to you.</p>
           <p>Let us know if we satisfied your Kraving.</p>

@@ -12,6 +12,10 @@ angular.module('Juno')
       controller  : 'landingController',
       templateUrl : 'partials/home.html'
     })
+    .state('thank-you', {
+      url         : '/thankyou',
+      templateUrl : 'partials/thankyou.html'
+    })
     .state('admin', {
       url         : '/admin',
       controller  : 'adminRestaurantIndex',
