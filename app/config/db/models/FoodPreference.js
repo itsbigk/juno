@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
 
-var FoodPreferencesSchema = mongoose.Schema({
+var FoodPreferenceSchema = mongoose.Schema({
   name: {
     type: String,
     required: true
   }
 });
 
-module.exports = mongoose.model('FoodPreferences', FoodPreferencesSchema);
+module.exports = mongoose.model('FoodPreference', FoodPreferenceSchema);

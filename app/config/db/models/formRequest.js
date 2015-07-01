@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 var FormRequestSchema = mongoose.model('FormRequest', {
   zipcode: {
@@ -14,23 +15,17 @@ var FormRequestSchema = mongoose.model('FormRequest', {
     required : true
   },
   budget: {
-    type : Number,
-    required : false
+    type : String,
+    required : true
+  },
+  otherPreference: {
+    type: String,
+    required: false
   },
   foodPreferences   : [{
-    name: {type: String},
-    selected: {type: Boolean},
-    value: {type: String},
-    required: false
+    type: Schema.Types.ObjectId,
+    ref: 'FoodPreference'
   }]
-                //   glutenFree: { type: Boolean },
-                //   peanutAllergy: { type: Boolean },
-                //   vegan: { type: Boolean },
-                //   vegetarian: { type: Boolean },
-                //   pescatarian: { type: Boolean },
-                //   other: {type: String },
-                //   required: false
-                // },
 });
 
 module.exports = mongoose.model('FormRequest', FormRequestSchema);

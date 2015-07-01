@@ -4,9 +4,9 @@ angular
   .module('Juno')
   .controller('landingController', landingController);
 
-  landingController.$inject = ['$scope', 'FormRequest', 'smoothScroll'];
+  landingController.$inject = ['$scope', 'FormRequest', 'smoothScroll', '$state'];
 
-  function landingController($scope, FormRequest, smoothScroll) {
+  function landingController($scope, FormRequest, smoothScroll, $state) {
 
     angular.extend($scope, {
       formData: {
@@ -130,20 +130,33 @@ angular
         $scope.errors.zipcode = 'Please enter a valid zip code.';
       }
 
-      if ($scope.errors) {
+      if (!_.isEmpty($scope.errors)) {
         var element;
         for (var first in $scope.errors) {
-          if ($scope.hasOwnProperty(first)) {
+          if ($scope.errors.hasOwnProperty(first)) {
             element = document.getElementById(first);
+            break;
           }
         }
 
         if (element) {
-          smoothScroll();
+
+          smoothScroll(element);
         }
+      } else {
+        console.log('data sent to server: ', data);
+        FormRequest.create(data)
+          .success(function(data) {
+            $state.go('thank-you');
+          })
+          .error(function(err) {
+            console.log('error: ', err);
+          });
       }
 
-      console.log('formData: ', $scope.formData);
+      // console.log('formData: ', $scope.formData);
+
+
 
       // FormRequest.create($scope.formData)
       //   .success(function(data) {

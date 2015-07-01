@@ -21,8 +21,6 @@ gulp.task('css', function() {
 // minifying all js files and using jshint
 gulp.task('js', function() {
   return gulp.src(['public/js/init.js'])
-  .pipe(jshint())
-  .pipe(jshint.reporter('default'))
   .pipe(concat('application.js'))
   .pipe(rename('application.min.js'))
   .pipe(uglify())
@@ -32,8 +30,8 @@ gulp.task('js', function() {
 // minification of all angular files
 gulp.task('angular', function() {
   return gulp.src(['public/js/ng-app/**/*.js'])
-  .pipe(jshint())
-  .pipe(jshint.reporter('default'))
+  // .pipe(jshint())
+  // .pipe(jshint.reporter('default'))
   .pipe(ngAnnotate())
   .pipe(concat('ngApp.js'))
   .pipe(rename('ngApp.min.js'))
