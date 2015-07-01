@@ -1,22 +1,22 @@
-var mongoose     = require('mongoose'),
+var mongoose = require('mongoose');
 
-FormRequestSchema = mongoose.model('FormRequest', {
-  zipcode           : {
-                        type     : String,
-                        required : true
-                      },
-  email             : {
-                        type     : String,
-                        required : true
-                      },
-  craving          : {
-                        type     : String,
-                        required : true
-                      },
-  budget            : {
-                        type : Number,
-                        required : false
-                      },
+var FormRequestSchema = mongoose.model('FormRequest', {
+  zipcode: {
+    type     : String,
+    required : true
+  },
+  email: {
+    type     : String,
+    required : true
+  },
+  craving: {
+    type     : String,
+    required : true
+  },
+  budget: {
+    type : Number,
+    required : false
+  },
   foodPreferences   : [{
     name: {type: String},
     selected: {type: Boolean},

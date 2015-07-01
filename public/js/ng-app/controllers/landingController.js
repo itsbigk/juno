@@ -6,7 +6,7 @@ angular
 
   landingController.$inject = ['$scope', 'FormRequest', 'smoothScroll'];
 
-  function landingController($scope, FormRequest, smoothScroll, flash, $state) {
+  function landingController($scope, FormRequest, smoothScroll) {
 
     angular.extend($scope, {
       formData: {
@@ -95,10 +95,6 @@ angular
     function saveRequestForm() {
       var data = angular.copy($scope.formData);
 
-
-
-      console.log('data: ', data);
-
       $scope.errors = {};
 
       // Validate Craving
@@ -138,14 +134,16 @@ angular
         var element;
         for (var first in $scope.errors) {
           if ($scope.hasOwnProperty(first)) {
-            element = first;
+            element = document.getElementById(first);
           }
         }
 
-        console.log($scope.errors);
-        smoothScroll(document.getElementById(first));
-
+        if (element) {
+          smoothScroll();
+        }
       }
+
+      console.log('formData: ', $scope.formData);
 
       // FormRequest.create($scope.formData)
       //   .success(function(data) {
