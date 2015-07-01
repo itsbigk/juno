@@ -8,24 +8,38 @@ angular
 
   function landingController($scope, FormRequest, smoothScroll, flash, $state) {
 
-    $scope.formData = {};
+    angular.extend($scope, {
+      formData: {
+        foodPreferences: {},
+        craving: undefined,
+        budget: undefined
+      },
+      formOptions: getFormOptions(),
+      saveRequestForm: saveRequestForm,
+      errors: {},
+      zipRegex: /^\d{5}(-\d{4})?$/,
+      emailRegex: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+    });
 
-    // $scope.formData.foodPreferences = [
-    //   {name:'Gluten Free', selected: false},
-    //   {name:'Peanut Allergy', selected: false},
-    //   {name:'Vegan', selected: false},
-    //   {name:'Vegetarian', selected: false},
-    //   {name:'Pescatarian', selected: false},
-    //   {name: 'Other', selected: false, value: ''}
-    // ];
-
-    $scope.$watch('formData.craving', function(value) {
-      if (value) {
-        smoothScroll(document.getElementById('food-preferences'));
+    $scope.$watch('foodPreferenceOtherToggle', function(value) {
+      if (!value) {
+        delete $scope.formData.foodPreferences.Other;
       }
     });
 
-    function getCravingsAndPreferences() {
+    $scope.$watch('formData.foodPreferences', function(foodPreferences) {
+      for (var preference in foodPreferences) {
+        if (foodPreferences.hasOwnProperty(preference)) {
+          if (foodPreferences[preference] === false) {
+            delete foodPreferences[preference];
+          } else {
+            delete $scope.errors['food-preferences'];
+          }
+        }
+      }
+    }, true);
+
+    function getFormOptions() {
       // TODO this should hit the server
 
       var cravings = [
@@ -56,70 +70,105 @@ angular
       ];
 
       var preferences = [
-        'Gluten Free',
-        'Peanut Allergy',
         'Vegan',
         'Vegetarian',
-        'Pescatarian'
+        'Pescatarian',
+        'Gluten Free',
+        'Peanut Allergy',
+        'Dairy',
+        'None'
+      ];
+
+      var budgets = [
+        '$',
+        '$$',
+        '$$$'
       ];
 
       return {
         cravings: cravings,
-        preferences: preferences
+        preferences: preferences,
+        budgets: budgets
       };
     }
 
-    $scope.cravings = getCravingsAndPreferences().cravings;
-    $scope.preferences = getCravingsAndPreferences().preferences;
-
-    $scope.saveRequestForm = function() {
-
-      $scope.processing = true;
-
-      FormRequest.create($scope.formData)
-        .success(function(data) {
-
-          $scope.processing = false;
-
-          if (data.errors === undefined) {
-            flash.setMessage(data.message);
-            $scope.formData = {};
-            clearErrorStyling();
-            $state.go('thank-you');
-          }
-          else {
-            // clearErrorStyling();
-            // addErrorStyling(data);
-            console.log(data);
-          }
-        })
-        .error(function(err){
-          if (err.errors) {
-            // addErrorStyling(err);
-          } else {
-            flash.setMessage(err.message);
-            $state.go('/');
-          }
-        });
-    };
+    function saveRequestForm() {
+      var data = angular.copy($scope.formData);
 
 
 
-    // Logic for price hover over
-    $scope.rate = 1;
-    $scope.max = 3;
-    $scope.isReadonly = false;
+      console.log('data: ', data);
 
-    $scope.hoveringOver = function(value) {
-      $scope.overStar = value;
-      if ($scope.overStar === 1) {
-        $scope.averageCost = '$5 - $10';
-      } else if ($scope.overStar === 2) {
-        $scope.averageCost = '$10 - $18';
-      } else if ($scope.overStar === 3) {
-        $scope.averageCost = '$18 - $25';
+      $scope.errors = {};
+
+      // Validate Craving
+      if (!data.craving) {
+        $scope.errors['food-choices'] = 'Please select a craving';
       }
 
-    };
+      // Validate Preferences
+      var hasPreference = false;
+      for (var preference in data.foodPreferences) {
+        if (data.foodPreferences.hasOwnProperty(preference)) {
+          hasPreference = true;
+          break;
+        }
+      }
+      if (!hasPreference) {
+        $scope.errors['food-preferences'] = 'Please select preferences';
+      }
 
+      // Validate Budget
+      if (!data.budget) {
+        $scope.errors.budget = 'Please select your budget';
+      }
+
+      // Validate Email
+      if (!data.email || !$scope.emailRegex.test(data.email)) {
+        $scope.errors.email = 'Please enter a valid email';
+      }
+
+      // Validate Zip
+
+      if (!data.zipcode || !$scope.zipRegex.test(data.zipcode)) {
+        $scope.errors.zipcode = 'Please enter a valid zip code.';
+      }
+
+      if ($scope.errors) {
+        var element;
+        for (var first in $scope.errors) {
+          if ($scope.hasOwnProperty(first)) {
+            element = first;
+          }
+        }
+
+        console.log($scope.errors);
+        smoothScroll(document.getElementById(first));
+
+      }
+
+      // FormRequest.create($scope.formData)
+      //   .success(function(data) {
+      //
+      //     if (data.errors === undefined) {
+      //       flash.setMessage(data.message);
+      //       $scope.formData = {};
+      //       clearErrorStyling();
+      //       $state.go('thank-you');
+      //     }
+      //     else {
+      //       // clearErrorStyling();
+      //       // addErrorStyling(data);
+      //       console.log(data);
+      //     }
+      //   })
+      //   .error(function(err){
+      //     if (err.errors) {
+      //       // addErrorStyling(err);
+      //     } else {
+      //       flash.setMessage(err.message);
+      //       $state.go('/');
+      //     }
+      //   });
+    }
   }

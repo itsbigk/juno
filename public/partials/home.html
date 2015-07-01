@@ -1,74 +1,128 @@
 <div class="landing-wrapper">
-  <section id="hero">
-    <h1>Kraved</h1>
-    <div class="ribbon">
-      <p>Getting lunch just got a hell of a lot easier.</p>
-      <p>Tell us what you krave we'll tell you where to find it.</p>
-      <a class="btn btn-primary" href scroll-to="food-choices">Find Lunch!</a>
-    </div>
-
-  </section>
-  <section id="food-choices" class="container">
-    <h2>Tell us what you're craving.</h2>
-    <h4>(select only one)</h4>
-    <ul>
-      <li ng-repeat="craving in cravings" ng-class="{selected: formData.craving === craving}">
-        <label>
-          <div class="image" style="background-image: url({{craving.url}})"></div>
-          <input type="radio" ng-model="formData.craving" ng-value="craving" />
-          <span>{{craving.name}}</span>
-        </label>
-      </li>
-    </ul>
-  </section>
-  <section id="food-preferences">
-    <div class="container">
-      <h2>What should we know about you?</h2>
-      <h4>(select all that apply)</h4>
-      <ul>
-        <!-- <li ng-repeat="preference in preferences" ng-class="{selected}" -->
-      </ul>
-
-      <!-- <div class="btn-group" ng-repeat="preference in formData.foodPreferences">
-        <label class="btn btn-warning food-preference">
-          <input type="checkbox" ng-model="preference.selected"> {{preference.name}}
-        </label>
+  <form name="form" ng-submit="saveRequestForm()">
+    <section id="hero">
+      <h1>Kraved</h1>
+      <div class="ribbon">
+        <p>Getting lunch just got a hell of a lot easier.</p>
+        <p>Tell us what you krave we'll tell you where to find it.</p>
       </div>
       <div>
-        <input type="text" ng-if="formData.foodPreferences[formData.foodPreferences.length-1].selected" ng-model="formData.foodPreferences[formData.foodPreferences.length-1].value">
+        <a href scroll-to="intro">
+          <img src="https://s3.amazonaws.com/junopay-development/general-images/down-arrow-icon.svg" />
+        </a>
       </div>
-      <div class="row">
-        <a class="btn btn-primary col-xs-4 col-xs-offset-4 col-md-2 col-md-offset-5" href="#" scroll-to="amount">Next</a>
-      </div>
-    </div> -->
-  </section>
-  <section id="amount">
-    <h2>What is your budget?</h2>
-    <h4>(choose one)</h4>
-    <div class="price-scale" scroll-to="user-details" ng-click="formData.budget = rate">
-      <rating class="rating-box" ng-model="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" state-on="'glyphicon-usd'" state-off="'glyphicon-minus'"></rating>
-    </div>
-    <div class="average-cost label label-warning">{{averageCost}}</div>
-  </section>
-  <section id="user-details">
-    <h2>Almost done.</h2>
-    <form class="container">
-      <div class="form-group row">
-        <label class="control-label col-xs-12">What is your email?</label>
-        <div id="name-container" class="col-xs-12 col-md-6 col-md-offset-3">
-          <input type="text" class="form-control" ng-model="formData.email" id="email">
+    </section>
+    <section id="intro">
+      <div class="container">
+        <h2>Welcome to Kraved!</h2>
+        <h2>Step 1: Tell us what you crave.</h2>
+        <h2>Step 2: We'll send you the perfect recommendation in your area.</h2>
+        <h2>Step 3:  That's it.<br>
+            No Step 3...<br>
+            No searching...<br>
+            No endless list of options
+        </h2>
+        <div>
+          <button class="orange-button" scroll-to="food-choices">Let's Go!</button>
         </div>
       </div>
-      <div class="form-group row">
-        <label class="control-label col-xs-12">What is your zipcode?</label>
-        <div id="street-container" class="col-xs-12 col-md-6 col-md-offset-3">
-          <input type="text" class="form-control" ng-model="formData.zipcode" id="zipcode">
+    </section>
+    <section id="food-choices">
+      <div class="container">
+        <h2>Tell us what you're craving.</h2>
+        <h4>(select only one)</h4>
+        <div class="alert alert-danger" role="alert"
+             ng-if="errors['food-choices'] && !formData.craving">
+          {{errors['food-choices']}}
+        </div>
+        <ul>
+          <li ng-repeat="craving in formOptions.cravings" ng-class="{selected: formData.craving === craving.name}">
+            <label>
+              <div class="image" style="background-image: url({{craving.url}})"></div>
+              <input type="radio" ng-model="formData.craving"
+                     ng-value="craving.name" scroll-to="food-preferences" />
+              <span>{{craving.name}}</span>
+            </label>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section id="food-preferences">
+      <div class="container">
+        <h2>What else should we know about you?</h2>
+        <h4>(select all that apply)</h4>
+        <div class="alert alert-danger" role="alert"
+             ng-if="errors['food-preferences']">
+          {{errors['food-preferences']}}
+        </div>
+        <ul>
+          <li ng-repeat="preference in formOptions.preferences"
+              ng-class="{selected: formData.foodPreferences[preference]}">
+            <label>
+              <input type="checkbox" ng-model="formData.foodPreferences[preference]" />
+              <span>{{preference}}</span>
+            </label>
+          </li>
+          <li ng-class="{selected: foodPreferenceOtherToggle}">
+            <label>
+              <input type="checkbox" ng-model="foodPreferenceOtherToggle" />
+              <span>Other</span>
+            </label>
+          </li>
+        </ul>
+        <div ng-if="foodPreferenceOtherToggle">
+          <input type="text" ng-model="formData.foodPreferences['Other']" />
+        </div>
+        <div>
+          <button class="orange-button" scroll-to="budget">Next</button>
         </div>
       </div>
-      <div class="form-group row">
-        <button type="submit" class="btn btn-success col-xs-4 col-xs-offset-4 col-md-2 col-md-offset-5" ng-click="saveRequestForm()">Submit</button>
+    </section>
+    <section id="budget">
+      <div class="container">
+        <h2>What is your budget?</h2>
+        <h4>(select only one)</h4>
+        <div class="alert alert-danger" role="alert"
+             ng-if="errors['budget'] && !formData.budget">
+          {{errors['budget']}}
+        </div>
+        <ul>
+          <li ng-repeat="budget in formOptions.budgets"
+              ng-class="{selected: budget === formData.budget}">
+            <label>
+              <input type="radio" ng-model="formData.budget" ng-value="budget" scroll-to="user-details" />
+              <span>{{budget}}</span>
+            </label>
+          </li>
+        </ul>
       </div>
-    </form>
-  </section>
-  </div>
+    </section>
+    <section id="user-details">
+      <div class="container">
+        <h2>Almost done.</h2>
+        <div class="form-group">
+          <div class="alert alert-danger" role="alert"
+               ng-if="errors['email'] && !emailRegex.test(formData.email)">
+            {{errors['email']}}
+          </div>
+          <label for="email">What is your email?</label>
+          <input type="text" id="email" class="form-control" ng-model="formData.email" />
+        </div>
+        <div class="form-group">
+          <div class="alert alert-danger" role="alert"
+               ng-if="errors['zipcode'] && !zipRegex.test(formData.zipcode)">
+            {{errors['zipcode']}}
+          </div>
+          <label for="zipcode">What is your zip code?</label>
+          <input type="text" id="zipcode" class="form-control" ng-model="formData.zipcode">
+          </div>
+          <p>Once you hit submit we will craft the perfect meal recommendation and email it to you.</p>
+          <p>Let us know if we satisfied your Kraving.</p>
+          <div>
+            <button type="submit" class="orange-button">Submit</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </form>
 </div>
