@@ -34,8 +34,8 @@ function formImageInput() {
     };
 
     function S3Upload(options) {
-      if (options == null) options = {};
-      for (option in options) {
+      if (options === null) options = {};
+      for (var option in options) {
         this[option] = options[option];
       }
       this.handleFileSelect(document.getElementById(this.file_dom_selector));
@@ -57,7 +57,7 @@ function formImageInput() {
     S3Upload.prototype.createCORSRequest = function(method, url) {
       var xhr;
       xhr = new XMLHttpRequest();
-      if (xhr.withCredentials != null) {
+      if (xhr.withCredentials !== null) {
         xhr.open(method, url, true);
       } else if (typeof XDomainRequest !== "undefined") {
         xhr = new XDomainRequest();

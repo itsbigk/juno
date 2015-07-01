@@ -1,14 +1,16 @@
-// var chai   = require('chai'),
-// expect     = chai.expect,
-// should     = chai.should(),
-// Restaurant = require('../../app/config/db/models/restaurant'),
-// request = require('supertest');
+var chai   = require('chai'),
+expect     = chai.expect,
+should     = chai.should(),
+Restaurant = require('../../app/config/db/models/restaurant'),
+request    = require('supertest'),
+utils      = require('../utils.js');
+
 
 // describe('Routing', function() {
 //   request = request(process.env.testDomain || 'localhost:3000');
 //   var restaurantsURL = '/api/restaurants/';
-
-
+//
+//
 //   describe('Testing POST /api/restaurants/', function() {
 //     var restaurant = null;
 //     before(function() {
@@ -23,7 +25,7 @@
 //       restaurant.city =  "Los Angeles";
 //       restaurant.zip =  90045;
 //     });
-
+//
 //     it('should create restaurant successfully', function(done) {
 //       request
 //       .post(restaurantsURL)
@@ -37,13 +39,13 @@
 //         });
 //       });
 //     });
-
+//
 //     it('should not create duplicate restaurant', function(done) {
 //       request
 //       .post(restaurantsURL)
 //       .send(restaurant)
 //       .end(function(err, res) {
-//         var firstRestaurantId = res.body.restaurant_id;  
+//         var firstRestaurantId = res.body.restaurant_id;
 //         request
 //         .post(restaurantsURL)
 //         .send(restaurant)
@@ -55,7 +57,7 @@
 //       });
 //     });
 //   });
-
+//
 //   describe('Testing PUT /api/restaurants/', function() {
 //     var restaurant = null;
 //     var restaurantTwo = null;
@@ -69,7 +71,7 @@
 //       restaurant.state =  "California";
 //       restaurant.city =  "Los Angeles";
 //       restaurant.zip =  90048;
-
+//
 //       restaurantTwo = new Restaurant();
 //       restaurantTwo.name = "Jane's Diner";
 //       restaurantTwo.description = "Classic diner";
@@ -81,7 +83,7 @@
 //       restaurantTwo.city =  "San Francisco";
 //       restaurantTwo.zip =  94143;
 //     });
-
+//
 //     it('should update restaurant successfully', function(done) {
 //       request
 //       .post(restaurantsURL)
@@ -102,7 +104,7 @@
 //         });
 //       });
 //     });
-
+//
 //     it('should not update a restaurant if another has the same address', function(done) {
 //       request
 //       .post(restaurantsURL)
@@ -139,9 +141,9 @@
 //         });
 //       });
 //     });
-
+//
 //   });
-
+//
 //   describe('Testing GET /api/restaurants/ and GET /api/restaurants/:restaurant_id', function() {
 //     var restaurant = null;
 //     before(function() {
@@ -155,7 +157,7 @@
 //       restaurant.city =  "Los Angeles";
 //       restaurant.zip =  90045;
 //     });
-
+//
 //     it('should GET all restaurants successfully', function(done) {
 //       request
 //       .post(restaurantsURL)
@@ -175,7 +177,7 @@
 //         });
 //       });
 //     });
-
+//
 //     it('should GET a single existing restaurant successfully', function(done) {
 //       request
 //       .post(restaurantsURL)
@@ -196,7 +198,7 @@
 //         });
 //       });
 //     });
-
+//
 //     it('should return 404 if trying to get restaurant that does not exist', function(done) {
 //       request
 //       .post(restaurantsURL)
@@ -218,7 +220,7 @@
 //       });
 //     });
 //   });
-
+//
 //   describe('Testing DEL /api/restaurants/:restaurant_id', function() {
 //     var restaurant = null;
 //     before(function() {
@@ -232,7 +234,7 @@
 //       restaurant.city =  "Los Angeles";
 //       restaurant.zip =  90045;
 //     });
-
+//
 //     it('should delete an existing restaurant successfully', function(done) {
 //       request
 //       .post(restaurantsURL)
@@ -246,7 +248,7 @@
 //         });
 //       });
 //     });
-
+//
 //     it('should return 404 if trying to delete a restaurant that does not exist', function(done) {
 //       request
 //       .delete(restaurantsURL + restaurant._id)

@@ -29,7 +29,7 @@ console.log('App listening on port: ' + port);
 // connect to mongo database
 var db = null;
 // MONGOLAB_URI is set as a Heroku config var on production
-db = process.env.testDomain || config.db.development;
+db = process.env.MONGOLAB_URI || config.db.development;
 mongoose.connect(db);
 
 require('./app/config/routes')(app, express);
