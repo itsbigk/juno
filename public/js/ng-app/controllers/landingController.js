@@ -144,42 +144,13 @@ angular
           smoothScroll(element);
         }
       } else {
-        console.log('data sent to server: ', data);
         FormRequest.create(data)
-          .success(function(data) {
+          .success(function() {
             $state.go('thank-you');
           })
           .error(function(err) {
             console.log('error: ', err);
           });
       }
-
-      // console.log('formData: ', $scope.formData);
-
-
-
-      // FormRequest.create($scope.formData)
-      //   .success(function(data) {
-      //
-      //     if (data.errors === undefined) {
-      //       flash.setMessage(data.message);
-      //       $scope.formData = {};
-      //       clearErrorStyling();
-      //       $state.go('thank-you');
-      //     }
-      //     else {
-      //       // clearErrorStyling();
-      //       // addErrorStyling(data);
-      //       console.log(data);
-      //     }
-      //   })
-      //   .error(function(err){
-      //     if (err.errors) {
-      //       // addErrorStyling(err);
-      //     } else {
-      //       flash.setMessage(err.message);
-      //       $state.go('/');
-      //     }
-      //   });
     }
   }
