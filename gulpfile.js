@@ -35,7 +35,7 @@ gulp.task('angular', function() {
   .pipe(ngAnnotate())
   .pipe(concat('ngApp.js'))
   .pipe(rename('ngApp.min.js'))
-  // .pipe(uglify())
+  .pipe(uglify())
   .pipe(gulp.dest('public/dist'));
 });
 
