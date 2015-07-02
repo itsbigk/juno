@@ -50,5 +50,10 @@ angular.module('Juno')
       url         : '/admin/restaurants/edit/:restaurant_id',
       controller  : 'editRestaurantController',
       templateUrl : 'partials/admin/restaurants/restaurant.html'
+    })
+    .state('admin-formrequests-index', {
+      url         : '/admin/requests/',
+      controller  : 'formRequestsIndex',
+      templateUrl : 'partials/admin/requests/index.html'
     });
 }]);
