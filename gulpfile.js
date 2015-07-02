@@ -7,12 +7,17 @@ uglify           = require('gulp-uglify'),
 mocha            = require('gulp-mocha'),
 jshint           = require('gulp-jshint'),
 ngAnnotate       = require('gulp-ng-annotate'),
-nodemon          = require('gulp-nodemon');
+nodemon          = require('gulp-nodemon'),
+autoprefixer     = require('gulp-autoprefixer');
 
 gulp.task('css', function() {
   // processing the less file and outputting it to the same folder as css
   return gulp.src('public/css/style.less')
   .pipe(less())
+  .pipe(autoprefixer({
+              browsers: ['last 2 versions'],
+              cascade: false
+          }))
   .pipe(minifyCSS())
   .pipe(rename('style.min.css'))
   .pipe(gulp.dest('public/dist'));
