@@ -11,6 +11,5 @@ node_modules
 /public/vendor
 .bower-cache
 .bower-registry
-public/dist/
 *.orig
 .DS_Store
