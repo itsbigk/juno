@@ -4,7 +4,6 @@ angular
 
 adminRestaurantIndex.$inject =  ['$scope', 'Restaurant', '$location', 'flash', '$state'];
 
-
 function adminRestaurantIndex ($scope, Restaurant, $location, flash, $state) {
 
   $scope.type = 'list';

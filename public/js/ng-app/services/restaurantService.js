@@ -1,6 +1,10 @@
-angular.module('Juno')
+angular
+  .module('Juno')
+  .factory('Restaurant', Restaurant);
 
-.factory('Restaurant', ['$http', function($http) {
+Restaurant.$inject = ['$http'];
+
+function Restaurant($http) {
   return {
     all : function() {
       return $http.get('/api/restaurants');
@@ -20,5 +24,5 @@ angular.module('Juno')
     delete : function(id) {
       return $http.delete('/api/restaurants/' + id);
     }
-  };
-}]);
+  }
+}

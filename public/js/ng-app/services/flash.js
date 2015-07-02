@@ -1,6 +1,12 @@
-angular.module('Juno')
+'use strict';
 
-.factory("flash", function($rootScope) {
+angular
+  .module('Juno')
+  .factory("flash", flash);
+
+flash.$inject = ['$rootScope'];
+
+function flash($rootScope) {
   var queue = [];
   var currentMessage = "";
 
@@ -16,4 +22,4 @@ angular.module('Juno')
       return currentMessage;
     }
   };
-});
+}

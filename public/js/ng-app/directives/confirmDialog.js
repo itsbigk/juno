@@ -1,6 +1,6 @@
-var app = angular.module('Juno');
-
-app.directive('confirmClick', function() {
+angular
+  .module('Juno')
+  .directive('confirmClick', function() {
   return {
     priority: -1,
     restrict: 'A',
