@@ -1,0 +1,22 @@
+
+<div class="container">
+  <h1>Kraving Requests</h1>
+  <table class="table table-striped">
+    <tr>
+      <td>Email</td>
+      <td>Zipcode</td>
+      <td>Craving</td>
+      <td>Budget</td>
+      <td>Preferences</td>
+    </tr>
+    <tr ng-repeat="request in formRequests">
+    <div>{{request}}</div>
+      <td>{{request.email}}</td>
+      <td>{{request.zipcode}}</td>
+      <td>{{request.craving}}</td>
+      <td>{{request.budget}}</td>
+      <td><span ng-repeat ="preference in request.foodPreferences">{{preference.name}} | </span><span>{{request.otherPreference}}</span></td>
+    </tr>
+  </table>
+</div>
+
