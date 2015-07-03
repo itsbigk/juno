@@ -8,6 +8,9 @@ FormRequest.$inject = ['$http'];
 
 function FormRequest($http) {
   return {
+    all : function() {
+      return $http.get('/api/requests');
+    },
     create : function(requestForm) {
       return $http.post('/api/requests', requestForm);
     },

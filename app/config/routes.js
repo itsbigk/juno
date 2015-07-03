@@ -30,6 +30,16 @@ module.exports = function(app, express) {
 
   apiRouter.route('/requests')
 
+  // get all the form requests
+  .get(function(req, res) {
+    FormRequest.find()
+    .populate('foodPreferences')
+    .exec()
+    .then(function(formRequest){
+      res.json(formRequest);
+    })
+  })
+
   // create a request
   .post(function(req, res) {
 
