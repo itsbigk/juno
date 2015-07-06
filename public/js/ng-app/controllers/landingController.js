@@ -80,9 +80,9 @@ angular
       ];
 
       var budgets = [
-        '$',
-        '$$',
-        '$$$'
+        'less than $10',
+        '$10-$20',
+        '$20+'
       ];
 
       return {
