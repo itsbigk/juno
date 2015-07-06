@@ -16,6 +16,11 @@
   margin-top: 20px;
 }
 
+.form-control {
+  width: 80%;
+  margin: 0 auto;
+}
+
 // FORM PAGE ///////////////////////////////////////////////////////////////////////////
 
 @tomato: #DE5934;
@@ -55,6 +60,10 @@ h2 {
   padding-top: 5vh;
 }
 
+p {
+  margin: 0;
+}
+
 // .centered-text {
 //   text-align: center;
 // }
@@ -62,7 +71,7 @@ h2 {
 section {
   width: 100vw;
   min-height: 100vh;
-  height: 100vh;
+  // height: 100vh;
 }
 
 .landing-wrapper {
@@ -80,7 +89,7 @@ section {
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.50);
     padding: 10px 40px 5px;
     display: block;
-    margin: 0 auto;
+    margin: 0 auto 1.5em;
     width: 80%;
     color: #fff;
     cursor: pointer;
@@ -113,7 +122,6 @@ section {
       p {
         color: #fff;
         font-size: 22px;
-        margin-bottom: 20px;
       }
     }
 
@@ -127,6 +135,7 @@ section {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center top;
+    height: 100vh;
 
     .container {
 
@@ -225,7 +234,7 @@ section {
       justify-content: space-around;
 
       input[type="text"] {
-        margin-bottom: 3vh;
+        margin: 0 auto 3vh;
         width: 80%;
         border: 1px solid #979797;
       }
@@ -241,12 +250,13 @@ section {
 
         li {
           box-shadow: 0 0 0 4px #F2F1ED;
-          width: 30%;
+          width: 35%;
           margin: 3% 5%;
           color: #F2F1ED;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+          font-size: 1.2em;
 
           &.selected {
             box-shadow: 0 0 0 4px #DE5934;
@@ -345,6 +355,7 @@ section {
   #user-details {
     background: url("https://s3.amazonaws.com/junopay-development/general-images/blur-bg.jpg");
     background-size: cover;
+    height: 100vh;
 
     .container {
       display: flex;

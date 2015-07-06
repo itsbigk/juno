@@ -73,9 +73,9 @@ angular
         'Vegan',
         'Vegetarian',
         'Pescatarian',
-        'Gluten Free',
+        'Gluten-Free',
         'Peanut Allergy',
-        'Dairy',
+        'Non-Dairy',
         'None'
       ];
 
