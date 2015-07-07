@@ -56,7 +56,7 @@ angular
           url: 'https://s3.amazonaws.com/junopay-development/general-images/meat.jpg'
         },
         {
-          name: 'Seafood',
+          name: 'Fish',
           url: 'https://s3.amazonaws.com/junopay-development/general-images/seafood.jpg'
         },
         {
