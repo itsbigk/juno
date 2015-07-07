@@ -18,7 +18,7 @@ angular
       saveRequestForm: saveRequestForm,
       errors: {},
       zipRegex: /^\d{5}(-\d{4})?$/,
-      emailRegex: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+      emailRegex: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
     });
 
     $scope.$watch('foodPreferenceOtherToggle', function(value) {
@@ -44,28 +44,28 @@ angular
 
       var cravings = [
         {
-          name: 'Carbs',
-          url: 'https://s3.amazonaws.com/junopay-development/general-images/carbs.jpg'
+          name: 'Shellfish',
+          url: 'https://s3.amazonaws.com/junopay-development/general-images/shellfish.jpg'
         },
         {
           name: 'Light & Healthy',
-          url: 'https://s3.amazonaws.com/junopay-development/general-images/light-healthy.jpg'
+          url: 'https://s3.amazonaws.com/junopay-development/general-images/healthy.jpg'
         },
         {
-          name: 'Meats',
-          url: 'https://s3.amazonaws.com/junopay-development/general-images/meats.jpg'
+          name: 'Meat',
+          url: 'https://s3.amazonaws.com/junopay-development/general-images/meat.jpg'
         },
         {
           name: 'Seafood',
           url: 'https://s3.amazonaws.com/junopay-development/general-images/seafood.jpg'
         },
         {
-          name: 'Greasy',
-          url: 'https://s3.amazonaws.com/junopay-development/general-images/greasy.jpg'
+          name: 'Comfort Food',
+          url: 'https://s3.amazonaws.com/junopay-development/general-images/comfort-food.jpg'
         },
         {
-          name: 'Raw & Clean',
-          url: 'https://s3.amazonaws.com/junopay-development/general-images/raw-clean.jpg'
+          name: 'Poultry',
+          url: 'https://s3.amazonaws.com/junopay-development/general-images/poultry.jpg'
         }
       ];
 
