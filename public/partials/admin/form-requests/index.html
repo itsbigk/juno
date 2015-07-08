@@ -11,12 +11,12 @@
       <td>Preferences</td>
     </tr>
     <tr ng-repeat="request in formRequests">
-      <td>{{request.created}}</td>
-      <td>{{request.email}}</td>
-      <td>{{request.zipcode}}</td>
-      <td>{{request.craving}}</td>
-      <td>{{request.budget}}</td>
-      <td><span ng-repeat ="preference in request.foodPreferences">{{preference.name}} | </span><span>{{request.otherPreference}}</span></td>
+      <td ng-hide="request.completed">{{request.created}}</td>
+      <td ng-hide="request.completed">{{request.email}}</td>
+      <td ng-hide="request.completed">{{request.zipcode}}</td>
+      <td ng-hide="request.completed">{{request.craving}}</td>
+      <td ng-hide="request.completed">{{request.budget}}</td>
+      <td ng-hide="request.completed"><span ng-repeat ="preference in request.foodPreferences">{{preference.name}} | </span><span>{{request.otherPreference}}</span></td>
     </tr>
   </table>
 </div>
