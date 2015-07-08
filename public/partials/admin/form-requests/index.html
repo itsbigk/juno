@@ -3,6 +3,7 @@
   <h1>Kraving Requests</h1>
   <table class="table table-striped">
     <tr>
+      <td>Date Requested</td>
       <td>Email</td>
       <td>Zipcode</td>
       <td>Craving</td>
@@ -10,7 +11,7 @@
       <td>Preferences</td>
     </tr>
     <tr ng-repeat="request in formRequests">
-    <div>{{request}}</div>
+      <td>{{request.created}}</td>
       <td>{{request.email}}</td>
       <td>{{request.zipcode}}</td>
       <td>{{request.craving}}</td>

@@ -22,6 +22,10 @@ var FormRequestSchema = mongoose.model('FormRequest', {
     type: String,
     required: false
   },
+  created: {
+    type : Date,
+    default: Date.now
+  },
   foodPreferences   : [{
     type: Schema.Types.ObjectId,
     ref: 'FoodPreference'

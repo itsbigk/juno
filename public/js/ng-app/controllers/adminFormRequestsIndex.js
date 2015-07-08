@@ -20,4 +20,5 @@ function adminFormRequestsIndex ($scope, FormRequest, $location, flash, $state) 
   };
 
   getFormRequests();
+
 }
